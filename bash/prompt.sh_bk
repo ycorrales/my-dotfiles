@@ -1,0 +1,95 @@
+  RED="\[\033[01;31m\]"
+MARGE="\[\033[01;35m\]"
+GREEN="\[\033[01;32m\]"
+DGRAY="\[\033[38;5;241m\]"
+RESET="\[\033[0m\]"
+
+# remove trailing slash in folder name completation
+#bind 'set mark-directories off'
+function _myPS1_PWD {
+  local myPWD=$PWD
+  [[ "$myPWD" =~ ^"$HOME"(/|$) ]] && myPWD="~${myPWD#$HOME}"
+  local cnt=${myPWD%/*/*/*/*};
+  local tmp=${myPWD%/*/*/*};
+  local pre='...'
+  [ ${#cnt} -gt 0 -a "${cnt}" != "$myPWD" ] && echo $pre${myPWD:${#tmp}} || echo $myPWD;
+}
+
+
+# indicate a job (for example, vim) has been backgrounded
+# If there is a job in the background, display a ✱
+suspended_jobs()
+{
+  local sj
+  sj=$(jobs 2>/dev/null | tail -n 1)
+  local MSG
+  if [[ $sj == "" ]]; then
+    MSG=' '
+  else
+    MSG='*'
+  fi
+
+  printf "${MARGE}%-10s${RESET}" "$MSG"
+}
+
+git_dirty() {
+  # check if we're in a git repo
+  git rev-parse --is-inside-work-tree &>/dev/null || return
+
+  # check if it's dirty
+  git diff --quiet --ignore-submodules HEAD &>/dev/null;
+  if [[ $? -eq 1 ]]; then
+      echo "${RED}✗${RESET}"
+  else
+      echo "${GREEN}✔${RESET}"
+  fi
+}
+upstream_branch() {
+  remote=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) 2>/dev/null
+  if [[ $remote != "" ]]; then
+    echo "${DGRAY}($remote)${RESET}"
+  fi
+}
+
+#retrieve git information like branch name and etc...
+#code taken from git-prompt.sh
+#git_info()
+#{
+#}
+
+# get the status of the current branch and it's remote
+# If there are changes upstream, display a ⇣
+# If there are changes that have been committed but not yet pushed, display a ⇡
+git_arrows()
+{
+  # do nothing if there is no upstream configured
+  git rev-parse --abbrev-ref @'{u}' &>/dev/null || return
+
+  local arrows=""
+  local status
+  arrow_status="$(git rev-list --left-right --count HEAD...@'{u}' 2>/dev/null)"
+
+  # do nothing if the command failed
+  (( !$? )) || return
+  # split on tabs
+  arrow_status=(${arrow_status//$'\t'/ })
+  local left=${arrow_status[0]} right=${arrow_status[1]}
+  (( ${right:-0} > 0 )) && arrows+="\[\033[38;5;11m\]⇣\[\033[0m\]"
+  (( ${left:-0} > 0 )) && arrows+="\[\033[38;5;12m\]⇡\[\033[0m\]"
+
+  echo $arrows
+}
+
+git_msg() {
+  printf "%s %s" `git_dirty` `__git_ps1 ${MARGE}' %s'${RESET}` `git_arrows`
+}
+
+PROMPT_SYMBOL='❯'
+set_prompt()
+{
+  PS1="${debian_chroot:+($debian_chroot)}${GREEN}[$(_myPS1_PWD)]`suspended_jobs;git_msg`\n${GREEN}$PROMPT_SYMBOL${RESET} "
+}
+
+
+PROMPT_COMMAND='set_prompt'
+#PROMPT_COMMAND='__git_ps1"$(_myPS1_PWD)\[\033[00m\]]\[\033[01;35m\]" "\[\033[00m\] \$ "'

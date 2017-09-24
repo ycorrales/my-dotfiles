@@ -1,0 +1,45 @@
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+Host zoroastro
+  HostName           zoroastro.to.infn.it
+  User               corrales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+Host ali139xl
+  HostName           ali139xl.to.infn.it
+  User               aliitsup
+  ControlMaster      auto
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
+Host ali42xl
+  HostName           ali42xl.to.infn.it
+  User               ycorrales
+  ControlMaster      auto
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
+Host alz110nas
+  HostName           alz110nas.to.infn.it
+  User               ycor
+  ControlMaster      yes
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
+Host superfarm
+  HostName           cloud-gw-215.to.infn.it
+  User               corrales
+  ControlMaster      yes
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand      ssh -qax zoroastro /usr/bin/nc %h %p
