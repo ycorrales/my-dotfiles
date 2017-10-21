@@ -11,22 +11,21 @@ c_clear='\[\e[0m\]'
 
 # remove trailing slash in folder name completation
 #bind 'set mark-directories off'
-function _myPS1_PWD {
+function __myPS1_PWD() {
   local myPWD=$PWD
   [[ "$myPWD" =~ ^"$HOME"(/|$) ]] && myPWD="~${myPWD#$HOME}"
   let WIDTH=${COLUMNS}/3
-  local pre=''
-  while [[ ${#myPWD} -gt $WIDTH ]]; do
+  while [[ ${#myPWD} -gt $WIDTH && ${myPWD} != ${PWD##*/} ]]; do
     myPWD=${myPWD#*/};
-    pre='.../'
+    local PRE='.../'
   done
-  echo "$pre$myPWD"
+  echo "${PRE:=""}${myPWD}"
 }
 
 
 # indicate a job (for example, vim) has been backgrounded
 # If there is a job in the background, display a ✱
-suspended_jobs()
+__suspended_jobs()
 {
   local sj
   sj=$(jobs 2>/dev/null | tail -n 1)
@@ -66,7 +65,7 @@ __git_dirty()
 }
 
 
-upstream_branch() {
+__upstream_branch() {
   remote=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)) 2>/dev/null
   if [[ $remote != "" ]]; then
     echo "$c_dgray($remote)$c_clear"
@@ -287,10 +286,39 @@ git_msg() {
 }
 
 PROMPT_SYMBOL='❯'
-set_prompt()
+function prompt_command()
 {
-  PS1="${debian_chroot:+($debian_chroot)}$c_green[\u on \h:$c_lyell$(_myPS1_PWD)$c_green]`suspended_jobs;git_msg`\n$c_green$PROMPT_SYMBOL$c_clear "
+  if [[ -n $SHOW_FEATURE ]]; then
+    PS1="${c_green}[\u on \h:${c_lyell}$(__myPS1_PWD)${c_green}]$(__suspended_jobs)$(git_msg)\n${c_green}${PROMPT_SYMBOL}${c_clear} "
+  else
+    PS1="${c_green}[\u on \h:${c_lyell}$(__myPS1_PWD)${c_green}]\n${c_green}${PROMPT_SYMBOL}${c_clear} "
+  fi
 }
 
+function safe_append_prompt_command {
+    local prompt_re
 
-PROMPT_COMMAND='set_prompt'
+    # Set OS dependent exact match regular expression
+    if [[ ${OSTYPE} == darwin* ]]; then
+      # macOS
+      prompt_re="[[:<:]]${1}[[:>:]]"
+    else
+      # Linux, FreeBSD, etc.
+      prompt_re="\<${1}\>"
+    fi
+
+    if [[ ${PROMPT_COMMAND} =~ ${prompt_re} ]]; then
+      return
+    elif [[ -z ${PROMPT_COMMAND} ]]; then
+      PROMPT_COMMAND="${1}"
+    else
+      PROMPT_COMMAND="${1};${PROMPT_COMMAND}"
+    fi
+}
+
+SHOW_FEATURE=1
+alias prompt_on='SHOW_FEATURE=1'
+alias prompt_off='unset SHOW_FEATURE'
+
+safe_append_prompt_command prompt_command
+

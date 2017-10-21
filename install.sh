@@ -9,3 +9,7 @@ ln -s $DOTFILES/vim/vimrc.symlink .vimrc
 ln -s $DOTFILES/vim/vim_runtime.symlink .vim_runtime
 ln -s $DOTFILES/ssh.symlink .ssh
 
+sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool FALSE
+

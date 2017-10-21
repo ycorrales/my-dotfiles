@@ -18,7 +18,7 @@ alias   l="gls -lah ${colorflag}"
 alias  la="gls -AF  ${colorflag}"
 alias  ll="gls -lFh ${colorflag} --group-directories-first "
 alias lld="gls -l   ${colorflag} | grep ^d"
-alias  ff='ll'
+alias  dds='ll'
 alias rmf="rm -rfv"
 
 # Helper
@@ -69,45 +69,9 @@ alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall
 alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 
-#ALIROOT
-alias    root="root -l"
-alias aliroot="aliroot -l"
-
-alias  ali_ls="alienv q | grep AliPhysics | grep -v latest"
-#
-export ROOT5="AliPhysics/r5-1"
-export ROOT6="VO_ALICE@ROOT::latest-r6-root6"
-
-#
-SINGLE_CMD='alienv setenv'
-MODULE_ALIROOT=${ROOT5}
-alias  ali_cmd="${SINGLE_CMD} ${ROOT5} -c $@"
-alias ali_load="alienv load $ROOT5"
-#
-alias  ali_token="alien-token-init ycorrale"
-alias  nitty='$HOME/Library/Python/2.7/bin/nitty'
-#
-#
-alias ali_cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
-alias ali_find='find ~/Alice/AliSoft/ali-master/ -iname'
-
-function ali_Print() {
- aliroot -b -q $HOME/Alice/MyMacros/PrintFileKeys.C\(\"$1\"\)
-}
-
-function kill_all_jobs()
-{
-  MAX=$1
-  for JOBID in $(alien_ps | grep -v '-' | grep 'ycorrale' | awk '{print $2}' | sed 's/.*\(.........\)/\1/'); do
-    if [ -z "$MAX" ]; then
-      alien_kill "$JOBID"
-    elif [[ $JOBID < $MAX ]]; then
-      alien_kill "$JOBID"
-    fi
-  done
-}
-
 #WORKING_DIR
+alias  goAliPhysics='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/'
+alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
 alias  goITSup="clr; cd $HOME/Alice/Upgrade_ITS/"
 alias  goITSupTest="clr; cd $HOME/Alice/Upgrade_ITS/05_OB-HS_Assembly/OB-HIC-HS_Test/"
 alias  goITSupTestHIC="clr; cd $HOME/Alice/Upgrade_ITS/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"
@@ -116,6 +80,6 @@ alias  goSpecRun1="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun1"
 alias  goSpecRun2="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $HOME/Alice/PWGHF_HFCJ/Bjets"
 
-#SECRET KEY
+#SECRET TOKEN
 alias   getGoogle='oathtool --totp -b 4tylumrlosezfsqlwol2heahoekqsfne'
 alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'

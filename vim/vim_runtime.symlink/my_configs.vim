@@ -5,7 +5,7 @@ if $USER == 'ycorrales'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Set font according to system
   if has("mac") || has("macunix")
-    set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ L\ DZ:h12
+    set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ M\ DZ:h13
   elseif has("win16") || has("win32")
     set gfn=Hack:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
   elseif has("gui_gtk2")
@@ -13,7 +13,7 @@ if $USER == 'ycorrales'
   elseif has("linux")
     set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
   elseif has("unix")
-    set gfn=Monospace\ 12
+    set gfn=Monospace\ 13
   endif
 
   " Disable scrollbars (real hackers don't use scrollbars for navigation!)
