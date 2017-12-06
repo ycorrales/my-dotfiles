@@ -113,7 +113,7 @@ if $USER == 'ycorrales'
   " => Parenthesis/bracket
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   vnoremap <leader>(  <esc>`>a)<esc>`<i(<esc>
-  vnoremap [uu[[[uuu[[]]]]]]]  <esc>`>a]<esc>`<i[<esc>
+  vnoremap <leader>[  <esc>`>a]<esc>`<i[<esc>
   vnoremap ${  <esc>`>a}<esc>`<i{<esc>
   vnoremap $'  <esc>`>a'<esc>`<i'<esc>
   vnoremap $"  <esc>`>a"<esc>`<i"<esc>
@@ -145,6 +145,7 @@ if $USER == 'ycorrales'
   " => C++ comment and uncomment
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   map <leader>c :s/^/\/\//<CR><leader><CR>
+  map <leader>cc :s/^/#/<CR><leader><CR>
   map <leader>u :s/^\/\///<CR><leader><CR>
   map <leader>uu :s/\s\s\/\///<CR><leader><CR>
 

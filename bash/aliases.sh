@@ -19,7 +19,7 @@ alias  la="gls -AF  ${colorflag}"
 alias  ll="gls -lFh ${colorflag} --group-directories-first "
 alias lld="gls -l   ${colorflag} | grep ^d"
 alias  dds='ll'
-alias rmf="rm -rfv"
+alias rmv="rm -rfv"
 
 # Helper
 alias grep='grep --color=auto'
@@ -68,14 +68,18 @@ alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall
 #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
 alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
+#
+alias ssh_ali139='ssh ali139xl'
+alias ssh_its099='ssh ita099xl'
 
 #WORKING_DIR
 alias  goAliPhysics='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/'
 alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
-alias  goITSup="clr; cd $HOME/Alice/Upgrade_ITS/"
-alias  goITSupTest="clr; cd $HOME/Alice/Upgrade_ITS/05_OB-HS_Assembly/OB-HIC-HS_Test/"
-alias  goITSupTestHIC="clr; cd $HOME/Alice/Upgrade_ITS/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"
-alias  goITSupTestHS="clr; cd $HOME/Alice/Upgrade_ITS/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HS_Test"
+alias  goITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
+alias  goITSup="clr; cd $HOME/Alice/ITSupgrade/"
+alias  goITSupTest="clr; cd $HOME/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/"
+alias  goITSupTestHIC="clr; cd $HOME/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"
+alias  goITSupTestHS="clr; cd $HOME/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HS_Test"
 alias  goSpecRun1="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun1"
 alias  goSpecRun2="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $HOME/Alice/PWGHF_HFCJ/Bjets"

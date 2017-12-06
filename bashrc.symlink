@@ -72,40 +72,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export DOTFILES=$HOME/.dotfiles
 
 # source all .sh files inside of the sh/ directory
-for config in $( ls -r $DOTFILES/bash/*.sh );do source $config; done
-
-
-
-#PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]$(_myPS1_PWD)\[\033[00m\]]\[\033[01;35m\]$(__git_ps1)\[\033[00m\] \$ '
-# enable color support of ls and also add handy aliases
-#if [ -x /usr/bin/dircolors ]; then
-#    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-#    alias lls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-#    alias  grep='grep --color=auto'
-#    alias fgrep='fgrep --color=auto'
-#    alias egrep='egrep --color=auto'
-#fi
-
-# some more ls aliases
-#alias la='ls -A'
-#alias ll='ls'
-#alias  l='ls -CF'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-#if [ -f ~/.bash_aliases ]; then
-#   . ~/.bash_aliases
-#fi
-
-
-
+for CFG_FILE in $( ls -r $HOME/.dotfiles/bash/*.sh );do source $CFG_FILE; done
 
 

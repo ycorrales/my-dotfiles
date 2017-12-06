@@ -6,9 +6,6 @@ export ALIBUILD_WORK_DIR="${ALICE_SOFT_DIR}/sw"
  ALICE_PHYS_DIR="${ALICE_SOFT_DIR}/ali-root/AliPhysics"
 
 #ALIROOT ALIASES
-alias    root="root -l"
-alias aliroot="aliroot -l"
-
 alias  alils="alienv q | grep AliPhysics | grep -v latest"
 #
 #export ROOT5="AliPhysics/r5-1"
@@ -22,24 +19,29 @@ alias aliload="alienv load $ROOT6"
 alias aliclean="alienv unload $ROOT6"
 alias alienter="alienv enter $ROOT6"
 #
-alias  alitoken="alien-token-init ycorrale"
+alias     root="alicmd root -l"
+alias  aliroot="alicmd aliroot -l"
+alias alitoken="alicmd alien-token-init ycorrale"
+alias aliensh="alicmd aliensh"
+alias nitty="alicmd nitty"
+
 #
 #
 alias alicert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 alias alifind='find ~/Alice/AliSoft/ali-master/ -iname'
 
 function aliprint() {
- aliroot -b -q $HOME/Alice/MyMacros/PrintFileKeys.C\(\"$1\"\)
+ alicmd aliroot -b -q $HOME/Alice/MyMacros/PrintFileKeys.C\(\"$1\"\)
 }
 
 function kill_all_jobs()
 {
   MAX=$1
-  for JOBID in $(alien_ps | grep -v '-' | grep 'ycorrale' | awk '{print $2}' | sed 's/.*\(.........\)/\1/'); do
+  for JOBID in $(alicmd alien_ps | grep -v '-' | grep 'ycorrale' | awk '{print $2}' | sed 's/.*\(..........\)/\1/'); do
     if [ -z "$MAX" ]; then
-      alien_kill "$JOBID"
+      alicmd alien_kill "$JOBID"
     elif [[ $JOBID < $MAX ]]; then
-      alien_kill "$JOBID"
+      alicmd alien_kill "$JOBID"
     fi
   done
 }

@@ -7,9 +7,18 @@ Host zoroastro
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
+Host its099xl
+  HostName           its099xl.to.infn.it
+  User               aliceitstorino
+  ControlMaster      auto
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
 Host ali139xl
   HostName           ali139xl.to.infn.it
-  User               aliitsup
+  User               aliceitstorino
   ControlMaster      auto
   ControlPath        ~/.ssh/sockets/%r@%h-%p
   ControlPersist     600
