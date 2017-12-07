@@ -77,8 +77,8 @@ if $USER == 'ycorrales'
 
   cno $h e ~/
   cno $d e ~/Desktop/
-  cno $c e <C-\>eCurrentFileDir("e")<cr>
-  cno $t tabe <C-\>eCurrentFileDir("e")<cr>
+  cno $c <C-\>eCurrentFileDir("e")<cr>
+  cno $t <C-\>eCurrentFileDir("tabe")<cr>
 
   cnoreabbrev <expr> te getcmdtype() == ":" && getcmdline() == 'te' ? 'tabe' : 'te'
 
@@ -130,6 +130,13 @@ if $USER == 'ycorrales'
 
   " C++
   inoremap #I #include <esc>a
+
+  "
+  noremap ;; :%s:::g<Left><Left><Left>
+  noremap ;' :%s:::gc<Left><Left><Left><Left>
+
+  cno <C-l> <Right>
+  cno <C-h> <Left>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => General abbreviations
