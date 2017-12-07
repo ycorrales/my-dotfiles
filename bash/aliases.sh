@@ -70,7 +70,7 @@ alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #
 alias ssh_ali139='ssh ali139xl'
-alias ssh_its099='ssh ita099xl'
+alias ssh_its099='ssh its099xl'
 
 #WORKING_DIR
 alias  goAliPhysics='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/'

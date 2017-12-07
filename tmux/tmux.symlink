@@ -1,0 +1,37 @@
+# if run as "tmux attach", create a session if one does not already exist
+new-session -n $HOST
+# remap prefix to Control + a
+set -g prefix C-a
+# bind 'C-a C-a' to type 'C-a'
+bind C-a send-prefix
+unbind C-b
+
+#Toggle mouse on with ^<leader> m
+#since tmux v2.1 there's not more longer options:
+#mouse-mode
+#mouse-resize-pane
+#mouse-select-pane
+#mouse-select-window
+#
+#only mouse
+
+bind m \
+  set -g mouse on \;\
+  display 'Mouse: ON'
+#Toggle mouse off with ^<leader> M
+bind M \
+  set -g mouse off \;\
+  display 'Mouse: OFF'
+
+#
+unbind +
+bind + \
+  new-window -d -n tmux-zoom 'clear && echo TMUX ZOOM && read' \;\
+  swap-pane -s tmux-zoom.0 \;\
+  select-window -t tmux-zoom
+#
+unbind -
+bind - \
+  last-window \;\
+  swap-pane -s tmux-zoom.0 \;\
+  kill-window -t tmux-zoom
