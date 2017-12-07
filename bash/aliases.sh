@@ -33,6 +33,9 @@ alias gits='git status'
 alias clr='clear'
 alias bye='exit'
 
+# Using mvim as vim in terminal
+alias vim='mvim -v'
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
