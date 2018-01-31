@@ -34,7 +34,7 @@ alias clr='clear'
 alias bye='exit'
 
 # Using mvim as vim in terminal
-alias vim='mvim -v'
+alias vim='nvim'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
