@@ -31,6 +31,7 @@ Plug 'tpope/vim-rhubarb' " hub extension for fugitive
 
 " plugin from vim
 "Plug 'itchyny/lightline.vim'
+Plug 'rhysd/vim-clang-format'
 Plug 'timakro/vim-searchant'
 Plug 'vim-scripts/peaksea'
 Plug 'KeitaNakamura/neodark.vim'
