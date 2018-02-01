@@ -78,7 +78,7 @@ alias ssh_its099='ssh its099xl'
 #WORKING_DIR
 alias  goAliPhysics='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/'
 alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
-alias  goITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
+alias  goTaskITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
 alias  goITSup="clr; cd $HOME/Alice/ITSupgrade/"
 alias  goITSupTest="clr; cd $HOME/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/"
 alias  goITSupTestHIC="clr; cd $HOME/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"

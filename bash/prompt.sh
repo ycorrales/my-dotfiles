@@ -288,7 +288,10 @@ git_msg() {
 PROMPT_SYMBOL='❯'
 function prompt_command()
 {
-  if [[ -n $SHOW_FEATURE ]]; then
+  local SHOW_FEATURE
+  [[ -n $ROOTSYS ]] && SHOW_FEATURE=0 ||  SHOW_FEATURE=1
+
+  if [[ $SHOW_FEATURE == 1 ]]; then
     PS1="${c_green}[\u on \h:${c_lyell}$(__myPS1_PWD)${c_green}]$(__suspended_jobs)$(git_msg)\n${c_green}${PROMPT_SYMBOL}${c_clear} "
   else
     PS1="${c_green}[\u on \h:${c_lyell}$(__myPS1_PWD)${c_green}]\n${c_green}${PROMPT_SYMBOL}${c_clear} "
@@ -315,10 +318,6 @@ function safe_append_prompt_command {
       PROMPT_COMMAND="${1};${PROMPT_COMMAND}"
     fi
 }
-
-SHOW_FEATURE=1
-alias prompt_on='SHOW_FEATURE=1'
-alias prompt_off='unset SHOW_FEATURE'
 
 safe_append_prompt_command prompt_command
 

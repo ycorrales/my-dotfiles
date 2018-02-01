@@ -396,17 +396,23 @@ nmap <leader><cr> <Plug>SearchantStop
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Netrw
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load Explore
+noremap <leader>nn :<C-u>Explore<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree and Nerd Tree Tab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "left"
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=30
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nm :NERDTreeMirrorToggle<cr>
-map <leader>nb :NERDTreeFromBookmark
-            \setlength{\itemsep}{5 cm}
-map <leader>nf :NERDTreeTabFind<cr>
+"let g:NERDTreeWinPos = "left"
+"let NERDTreeShowHidden=0
+"let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+"let g:NERDTreeWinSize=30
+"map <leader>nn :NERDTreeToggle<cr>
+"map <leader>nf :NERDTreeTabFind<cr>
+"map <leader>nm :NERDTreeMirrorToggle<cr>
+"map <leader>nb :NERDTreeFromBookmark
+"            \setlength{\itemsep}{5 cm}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
