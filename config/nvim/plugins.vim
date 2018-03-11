@@ -14,7 +14,7 @@ if !filereadable(plugpath)
     endif
 endif
 
-call plug#begin('~/.vim_runtime/plugged')
+call plug#begin('~/.vim/plugged')
 
 " colorschemes
 Plug 'joshdick/onedark.vim'
@@ -35,9 +35,10 @@ Plug 'timakro/vim-searchant'
 Plug 'vim-scripts/peaksea'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'skielbasa/vim-material-monokai'
-Plug '~/.vim_runtime/sources_used/set_tabline'
-Plug '~/.vim_runtime/sources_used/syntastic'
-Plug '~/.vim_runtime/sources_used/vim-gitgutter'
+Plug 'mkitt/tabline.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'kassio/neoterm'
 "
 
 call plug#end()

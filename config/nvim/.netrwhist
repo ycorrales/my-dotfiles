@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/ycorrales/Alice/ITSupgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/git_test-and-analysis/macros'
-let g:netrw_dirhist_2='/Users/ycorrales/.dotfiles'

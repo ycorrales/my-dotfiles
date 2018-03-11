@@ -1,15 +1,32 @@
-DOTFILES="~/.dotfiles"
+#! /bin/bash
 
-ln -s $DOTFILES/bash_profiles.symlink ~/.bash_profiles
-ln -s $DOTFILES/bashrc.symlink ~/.bashrc
-ln -s $DOTFILES/aliases.synlink ~/.bash_aliases
-ln -s $DOTFILES/globus.symlink ~/.globus
-ln -s $DOTFILES/gitconfig.symlink .gitconfig
-ln -s $DOTFILES/vim/vimrc.symlink .vimrc
-ln -s $DOTFILES/vim/vim_runtime.symlink .vim_runtime
-ln -s $DOTFILES/ssh.symlink .ssh
 
-sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
-sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool FALSE
+function Mac_config(){
+    sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO
+    sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool FALSE
+}
 
+function Make_symlink() {
+    local DOTFILES="$HOME/.dotfiles"
+    local SYMLINK_FILE=(bash_profile bashrc gitconfig globus oni ssh)
+    for file in ${SYMLINK_FILE[@]}; do
+        echo "linking $file"
+        local FILE=$file
+        local FILE_SYM="$FILE${FILE:+".symlink"}"
+        ln -sf $DOTFILES/$FILE_SYM $HOME/.$FILE
+    done
+    #additional links
+    echo "linking tmux.conf"
+    ln -sf $DOTFILES/tmux/tmux.symlink $HOME/.tmux.conf
+}
+
+function Main() {
+    Make_symlink
+    Mac_config
+}
+
+Main $@
+unset -f Mac_config
+unset -f Make_symlink
+unset -f Main

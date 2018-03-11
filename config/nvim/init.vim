@@ -1,7 +1,11 @@
-source ~/.vim_runtime/plugins.vim
+try
+  source ~/.vim/plugins.vim
+catch
+  echo "Error loading pluging files"
+endtry
 
 try
-  source ~/.vim_runtime/my_configs.vim
+  source ~/.vim/my_configs.vim
 catch
-  echo "Error found in file ~/.vim_runtime/init.vim"
+  echo "Error found in file ~/.vim/my_configs.vim"
 endtry
