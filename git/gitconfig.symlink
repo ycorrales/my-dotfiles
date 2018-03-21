@@ -16,9 +16,9 @@
 [push]
 	default = simple
 [alias]
-# glog     = log --all --pretty='ormat:%d %Cgreen%h%Creset %an - %s'
-  lgg      = log --all --full-history --graph --decorate --pretty='format:%x2b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'
-  lg       = log --date=short --all --branches --full-history --graph --decorate
+  pr       = pull --rebase
+  pushf    = push -f
+  lg       = log --date=format:'%Y-%m-%d %H:%M' --all --branches --decorate --graph --pretty='format:%Cblue%ad%Creset %C(bold green)<%an>%Creset%n %Cred%h%Creset - %C(yellow)%d%Creset %s '
   ci       = commit
   mod      = show --pretty="format:" --name-only
   diffname = diff --name-status

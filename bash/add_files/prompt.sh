@@ -86,20 +86,19 @@ __my_prompt() {
   local fancyx="\342\234\227"
   # unicode "?"
   local checkmark="\342\234\223"
-  if [[ $last_cmd == 0 ]]; then
-    __ps1_last_cmd="\[$COLOR_LIGHTGREEN\]\[$checkmark \]\[$COLOR_WHITE\]($last_cmd) "
-  else
-    __ps1_last_cmd="\[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_WHITE\]($last_cmd) "
-  fi
   local PROMPT_SYMBOL='\\$ '
   local apple_ch=''
   if [[ "$OSTYPE" == darwin* ]]; then
     apple_ch=' '
   fi
-  local lenght=${#last_cmd}
-  let lenght+=7
+  local jobs="$(__suspended_jobs)"
   PS1="\[$apple_ch\[$COLOR_LIGHTGREEN\]\[\u \]\[[\]\[$COLOR_YELLOW\]\[$(__my_pwd)\]\[$COLOR_LIGHTGREEN\]\[]\]"
-  PS1+="\[$(position_write_end_of_line $lenght "$__ps1_last_cmd $(__suspended_jobs) ")\]"
+  PS1+="\[${jobs+$jobs}\]"
+  if [[ $last_cmd == 0 ]]; then
+    PS1+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTGREEN\]\[$checkmark \]\[$COLOR_NONE\]"
+  else
+    PS1+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_NONE\]"
+  fi
   PS1+="\n"
   PS1+="\[$COLOR_LIGHTGREEN\]${PROMPT_SYMBOL}\[$COLOR_NONE\]"
 }
