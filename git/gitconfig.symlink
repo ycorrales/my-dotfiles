@@ -17,7 +17,7 @@
 	default = simple
 [alias]
   pr       = pull --rebase
-  pushf    = push -f
+  pf       = push -f
   lg       = log --date=format:'%Y-%m-%d %H:%M' --all --branches --decorate --graph --pretty='format:%Cblue%ad%Creset %C(bold green)<%an>%Creset%n %Cred%h%Creset - %C(yellow)%d%Creset %s '
   ci       = commit
   mod      = show --pretty="format:" --name-only
