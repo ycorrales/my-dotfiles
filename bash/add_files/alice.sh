@@ -1,13 +1,27 @@
-export ALIBUILD_WORK_DIR="$HOME/Alice/AliSoft/sw"
+if [ -z $ALICE_WORK ]; then
+  export ALICE_WORK="$HOME/Work/Alice"
+fi
+export ALISOFT="$ALICE_WORK/AliSoft"
+export ALIBUILD_WORK_DIR="$ALISOFT/sw"
   eval "`alienv shell-helper`"
 
-export ALICE_ITSUP_AN_SW="$HOME/Alice/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/git_test-and-analysis"
+export ALICE_ITSUP_AN_SW="$ALICE_WORK/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/git_test-and-analysis"
 
-alias ali-build='aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6'
 alias   ali-cmd="alienv setenv '$( alienv q | grep AliPhysics | grep -v latest )'  -c $@"
 alias ali-enter="alienv enter  '$( alienv q | grep AliPhysics | grep -v latest )'"
 alias ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
+alias root='ali-cmd root -l'
+
+ali-init() {
+  aliBuild -z ali-master init AliRoot,AliPhysics
+}
+ali-build() {
+  local ali_master_path="$ALISOFT/ali-master"
+  cd ${ali_master_path}
+  aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6
+  cd -
+}
 ali-load() {
   alienv load "$( alienv q | grep AliPhysics | grep -v latest )"
   if [[ $? == 0 ]]; then
@@ -20,9 +34,9 @@ ali-load() {
 ali-clean() {
   alienv unload "$( alienv q | grep AliPhysics | grep -v latest )"
    if [[ $? == 0 ]]; then
-    unset root
-    unset aliroot
-    unset alitoken
+    unalias root; alias root='ali-cmd root -l'
+    unalias aliroot
+    unalias ali-token
   fi
 }
 
@@ -37,7 +51,7 @@ ali-find() {
 }
 
 ali-print() {
-  ali-cmd aliroot -b -q "$HOME/Alice/MyMacros/PrintFileKeys.C\(\"$1\"\)"
+  ali-cmd aliroot -b -q "$ALICE_WORK/MyMacros/PrintFileKeys.C\(\"$1\"\)"
 }
 
 kill_all_jobs() {

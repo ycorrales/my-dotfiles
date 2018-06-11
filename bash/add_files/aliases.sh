@@ -1,3 +1,6 @@
+if [ -z $ALICE_WORK ]; then
+  echo "aliases.sh: ALICE_WORK env var not defined"
+fi
 #reaload bash config
 alias reload='source ~/.bashrc'
 
@@ -79,22 +82,22 @@ alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall
 alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #
-alias ssh_ali139='ssh ali139xl'
-alias ssh_its099='ssh its099xl'
+alias itstesthic='ssh itstesthic'
+alias itstesths='ssh itstesths'
 
 #WORKING_DIR
-alias  goAliPhysics='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/'
-alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
-alias  goTaskITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
-alias  goITSup="clr; cd $HOME/Alice/ITS_Upgrade/"
-alias  goITSupTest="clr; cd $HOME/Alice/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/"
-alias  goITSupTestHIC="clr; cd $HOME/Alice/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"
-alias  goITSupTestHS="clr; cd $HOME/Alice/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/OB-HS_Test"
-alias  goSpectra="clr; cd $HOME/Alice/PWGLF_SPECTRA/"
-alias  goSpecRun1="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun1"
-alias  goSpecRun2="clr; cd $HOME/Alice/PWGLF_SPECTRA/SpectraAnalysisRun2"
-alias  goBjet="clr; cd $HOME/Alice/PWGHF_HFCJ/Bjets"
+#alias  goAliPhysics='/ali-master/AliPhysics/'
+#alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
+#alias  goTaskITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
+alias  goITSup="clr; cd $ALICE_WORK/ITS_Upgrade/"
+alias  goITSupTest="clr; cd $ALICE_WORK/ITS_Upgrade/OB-HS_Assembly/OB-HIC-HS_Test/"
+alias  goITSupTestHIC="clr; cd $ALICE_WORK/ITS_Upgrade/OB-HS_Assembly/OB-HIC-HS_Test/OB-HIC_Test"
+alias  goITSupTestHS="clr; cd $ALICE_WORK/ITS_Upgrade/OB-HS_Assembly/OB-HIC-HS_Test/OB-HS_Test"
+alias  goSpectra="clr; cd $ALICE_WORK/PWGLF_SPECTRA/"
+alias  goSpecRun1="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun1"
+alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
+alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
 
 #SECRET TOKEN
-alias   getGoogle='oathtool --totp -b 4tylumrlosezfsqlwol2heahoekqsfne'
+alias   getGoogle='oathtool --totp -b i5rvzkqsocfeox4qyqlpqczgeqc3ec3e'
 alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'

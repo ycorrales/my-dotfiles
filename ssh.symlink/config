@@ -7,7 +7,16 @@ Host zoroastro
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
-Host its099xl
+Host itsdb
+  HostName           its098xl.to.infn.it
+  User               aliceitstorino
+  ControlMaster      auto
+  ControlPath        ~/.ssh/sockets/%r@%h-%p
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
+Host itstesths
   HostName           its099xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto
@@ -16,7 +25,7 @@ Host its099xl
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
-Host ali139xl
+Host itstesthic
   HostName           ali139xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto
@@ -27,7 +36,7 @@ Host ali139xl
   ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
 Host ali42xl
   HostName           ali42xl.to.infn.it
-  User               ycorrales
+  User               aliceitstorino
   ControlMaster      auto
   ControlPath        ~/.ssh/sockets/%r@%h-%p
   ControlPersist     600
