@@ -25,7 +25,7 @@ Host itstesths
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh -qax zoroastro /usr/bin/nc %h %p
-Host itstesthic
+Host itsteststave
   HostName           ali139xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto

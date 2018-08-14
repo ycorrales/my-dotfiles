@@ -19,7 +19,7 @@ alias .....="cd ../../../.."
 
 alias   l="gls -lah ${colorflag}"
 alias  la="gls -AF  ${colorflag}"
-alias  ll="gls -lFh ${colorflag} --group-directories-first "
+alias  ll="gls -lFhrt ${colorflag} --group-directories-first "
 alias lld="gls -l   ${colorflag} | grep ^d"
 alias  dds='ll'
 alias rmv="rm -rfv"
@@ -82,8 +82,8 @@ alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall
 alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #
-alias itstesthic='ssh itstesthic'
 alias itstesths='ssh itstesths'
+alias itsteststave='ssh itsteststave'
 
 #WORKING_DIR
 #alias  goAliPhysics='/ali-master/AliPhysics/'
@@ -99,5 +99,5 @@ alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
 
 #SECRET TOKEN
-alias   getGoogle='oathtool --totp -b i5rvzkqsocfeox4qyqlpqczgeqc3ec3e'
+alias   getGoogle='oathtool --totp -b xvkjuinfzztepik2tfm2fntdby2v4ywe'
 alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'
