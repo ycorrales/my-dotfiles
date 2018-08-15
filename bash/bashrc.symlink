@@ -74,7 +74,7 @@ fi
 
 # source all .sh files inside of the sh/ directory
 export DOTFILES="$HOME/Software/dotfiles/"
-for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh );do
+for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   source $BASH_FILE;
 done
 

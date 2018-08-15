@@ -19,16 +19,16 @@ function __my_pwd() {
 # If there is a job in the background, display a ✱
 __suspended_jobs()
 {
-  local sj
-  sj=$(jobs 2>/dev/null | tail -n 1)
-  local MSG
-  if [[ $sj == "" ]]; then
-    MSG=' '
+  local __sj __msg
+  __sj=$(jobs 2>/dev/null | tail -n 1)
+  local __msg
+  if [[ $__sj == "" ]]; then
+    __msg=' '
   else
-    MSG='*'
+    __msg='*'
   fi
 
-  printf "${c_green}%-10s${c_clear}" "$MSG"
+  printf "%-10s" "$__msg"
 }
 
 position_get_cursor_position(){
@@ -91,17 +91,17 @@ __my_prompt() {
   if [[ "$OSTYPE" == darwin* ]]; then
     apple_ch=' '
   fi
-  local jobs="$(__suspended_jobs)"
-  PS1="\[$apple_ch\[$COLOR_LIGHTGREEN\]\[\u \]\[[\]\[$COLOR_YELLOW\]\[$(__my_pwd)\]\[$COLOR_LIGHTGREEN\]\[]\]"
-  PS1+="\[${jobs+$jobs}\]"
+  local __ps1_start __ps1_end
+  __ps1_start="\[$apple_ch\[$COLOR_LIGHTGREEN\]\[\u \]\[[\]\[$COLOR_YELLOW\]\[$(__my_pwd)\]\[$COLOR_LIGHTGREEN\]\[]\]"
+  __ps1_start+="\[$(__suspended_jobs)\]"
   if [[ $last_cmd == 0 ]]; then
-    PS1+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTGREEN\]\[$checkmark \]\[$COLOR_NONE\]"
+    __ps1_start+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTGREEN\]\[$checkmark \]\[$COLOR_NONE\]"
   else
-    PS1+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_NONE\]"
+    __ps1_start+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_NONE\]"
   fi
-  PS1+="\n"
-  PS1+="\[$COLOR_LIGHTGREEN\]${PROMPT_SYMBOL}\[$COLOR_NONE\]"
+  __ps1_start+="\n"
+  __ps1_end="\[$COLOR_LIGHTGREEN${PROMPT_SYMBOL}$COLOR_NONE\]"
+  __git_ps1 "$__ps1_start" "$__ps1_end" "\[$COLOR_LIGHTGREEN(%s)$COLOR_NONE\]"
 }
-
 
 safe_append_prompt_command '__my_prompt'
