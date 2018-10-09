@@ -100,8 +100,8 @@ __my_prompt() {
     __ps1_start+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_NONE\]"
   fi
   __ps1_start+="\n"
-  __ps1_end="\[$COLOR_LIGHTGREEN${PROMPT_SYMBOL}$COLOR_NONE\]"
-  __git_ps1 "$__ps1_start" "$__ps1_end" "\[$COLOR_LIGHTGREEN(%s)$COLOR_NONE\]"
+  __ps1_end="\[$COLOR_LIGHTGREEN\]$PROMPT_SYMBOL\[$COLOR_NONE\]"
+  __git_ps1 "$__ps1_start" "$__ps1_end" "\[$COLOR_LIGHTGREEN\](%s)\[$COLOR_NONE\]"
 }
 
 safe_append_prompt_command '__my_prompt'

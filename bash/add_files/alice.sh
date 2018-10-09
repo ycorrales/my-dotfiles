@@ -2,6 +2,7 @@ if [ -z $ALICE_WORK ]; then
   export ALICE_WORK="$HOME/Work/Alice"
 fi
 export ALISOFT="$ALICE_WORK/AliSoft"
+export ALICESW="$ALISOFT/alice_sw"
 export ALIBUILD_WORK_DIR="$ALISOFT/sw"
   eval "`alienv shell-helper`"
 
@@ -11,22 +12,23 @@ alias   ali-cmd="alienv setenv '$( alienv q | grep AliPhysics | grep -v latest )
 alias ali-enter="alienv enter  '$( alienv q | grep AliPhysics | grep -v latest )'"
 alias ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-alias root='ali-cmd root -l'
+alias root="root -l"
+alias ali='ali-cmd root'
+alias o2='alienv setenv VO_ALICE@O2::latest -c root -l'
 
 ali-init() {
-  aliBuild -z ali-master init AliRoot,AliPhysics
+  aliBuild -z alice_sw init AliRoot,AliPhysics
 }
+
 ali-build() {
-  local ali_master_path="$ALISOFT/ali-master"
-  cd ${ali_master_path}
+  cd ${ALICESW}
   aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6
   cd -
 }
+
 ali-load() {
   alienv load "$( alienv q | grep AliPhysics | grep -v latest )"
   if [[ $? == 0 ]]; then
-    alias     root="root -l"
-    alias  aliroot="root -l"
     alias ali-token="alien-token-init ycorrale"
   fi
 }
@@ -34,23 +36,34 @@ ali-load() {
 ali-clean() {
   alienv unload "$( alienv q | grep AliPhysics | grep -v latest )"
    if [[ $? == 0 ]]; then
-    unalias root; alias root='ali-cmd root -l'
-    unalias aliroot
     unalias ali-token
   fi
 }
 
 ali-find() {
   if [ ! -z $1 ]; then
-    find -H ~/Alice/AliSoft/ali-master/ -iname $@
+    find -H ${ALICESW} -iname $@
   else
     echo "ali-find: missing argument"
     return 1
   fi
-
 }
 
-ali-print() {
+o2-build(){
+ cd ${ALICESW}
+ aliBuild -d --defaults o2 build O2
+ cd -
+}
+
+o2-load() {
+  alienv load "VO_ALICE@O2::latest"
+}
+
+o2-clean(){
+  alienv unload "VO_ALICE@O2::latest"
+}
+
+root-print() {
   ali-cmd aliroot -b -q "$ALICE_WORK/MyMacros/PrintFileKeys.C\(\"$1\"\)"
 }
 

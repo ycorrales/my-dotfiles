@@ -101,3 +101,7 @@ alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
 #SECRET TOKEN
 alias   getGoogle='oathtool --totp -b xvkjuinfzztepik2tfm2fntdby2v4ywe'
 alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'
+
+#VNC
+alias ssh_tunnel_hs_on='ssh -L 5900:localhost:5900 -N -f itstesths'
+alias ssh_tunnel_stave_on='ssh -L 5900:localhost:5900 -N -f itsteststave'
