@@ -7,7 +7,7 @@ Host zoroastro
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
-Host itsdb
+Host its_db
   HostName           its098xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto
@@ -15,7 +15,7 @@ Host itsdb
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host itstesths
+Host its_hs
   HostName           its099xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto
@@ -23,7 +23,7 @@ Host itstesths
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host itsteststave
+Host its_stave
   HostName           ali139xl.to.infn.it
   User               aliceitstorino
   ControlMaster      auto
@@ -33,16 +33,16 @@ Host itsteststave
   ProxyCommand       ssh zoroastro -W%h:%p
 Host ali42xl
   HostName           ali42xl.to.infn.it
-  User               aliceitstorino
+  User               ycorrales
   ControlMaster      auto
   ControlPersist     600
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host alz110nas
-  HostName           alz110nas.to.infn.it
-  User               ycor
-  ControlMaster      yes
+Host ali55xl
+  HostName           ali55xl.to.infn.it
+  User               ycorrales
+  ControlMaster      auto
   ControlPersist     600
   ForwardX11         yes
   ForwardX11Trusted  yes
@@ -55,3 +55,23 @@ Host superfarm
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+Host lxplus
+  HostName           lxplus.cern.ch
+  User               ycorrale
+  ControlMaster      yes
+Host rcf_gateway
+  HostName           rssh.rhic.bnl.gov
+  User               ycmorales
+  ControlMaster      yes
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+Host sphenix
+  HostName           rcas2063.rcf.bnl.gov
+  User               ycmorales
+  ControlMaster      yes
+  ControlPersist     600
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh rcf_ssh -W%h:%p
+

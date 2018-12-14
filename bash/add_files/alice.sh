@@ -9,12 +9,13 @@ export ALIBUILD_WORK_DIR="$ALISOFT/sw"
 export ALICE_ITSUP_AN_SW="$ALICE_WORK/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/git_test-and-analysis"
 
 alias   ali-cmd="alienv setenv '$( alienv q | grep AliPhysics | grep -v latest )'  -c $@"
+alias    o2-cmd="alienv setenv VO_ALICE@O2::latest  -c $@"
 alias ali-enter="alienv enter  '$( alienv q | grep AliPhysics | grep -v latest )'"
 alias ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
 alias root="root -l"
 alias ali='ali-cmd root'
-alias o2='alienv setenv VO_ALICE@O2::latest -c root -l'
+alias  o2='o2-cmd  root'
 
 ali-init() {
   aliBuild -z alice_sw init AliRoot,AliPhysics

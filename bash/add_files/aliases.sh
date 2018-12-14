@@ -77,14 +77,9 @@ alias canary="/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\
 # Kill Dock
 alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
 
-#alias ssh_tunnel_zoro='sudo ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
-#alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
 alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
 alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #
-alias itstesths='ssh itstesths'
-alias itsteststave='ssh itsteststave'
-
 #WORKING_DIR
 #alias  goAliPhysics='/ali-master/AliPhysics/'
 #alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
@@ -97,11 +92,14 @@ alias  goSpectra="clr; cd $ALICE_WORK/PWGLF_SPECTRA/"
 alias  goSpecRun1="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun1"
 alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
+alias goSphenix="clr; cd ~/Work/sPHENIX/"
 
 #SECRET TOKEN
 alias   getGoogle='oathtool --totp -b xvkjuinfzztepik2tfm2fntdby2v4ywe'
 alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'
 
-#VNC
-alias ssh_tunnel_hs_on='ssh -L 5900:localhost:5900 -N -f itstesths'
-alias ssh_tunnel_stave_on='ssh -L 5900:localhost:5900 -N -f itsteststave'
+#SSH
+#alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
+#alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
+alias ssh_dynamic_tunnel='ssh -CfN -D 1080'
+alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
