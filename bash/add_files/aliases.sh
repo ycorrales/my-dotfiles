@@ -19,7 +19,7 @@ alias .....="cd ../../../.."
 
 alias   l="gls -lah ${colorflag}"
 alias  la="gls -AF  ${colorflag}"
-alias  ll="gls -lFhrt ${colorflag} --group-directories-first "
+alias  ll="gls -lFh ${colorflag} --group-directories-first "
 alias lld="gls -l   ${colorflag} | grep ^d"
 alias  dds='ll'
 alias rmv="rm -rfv"
@@ -31,7 +31,7 @@ alias du='du -h -c' # calculate disk usage for a folder
 alias dud='du -d 1 -h'
 alias dus='du -hs'
 alias vi='vim'
-alias git='hub'
+alias git='LC_ALL=en_US.UTF-8 hub'
 alias gits='git status'
 alias clr='clear'
 alias bye='exit'
@@ -92,7 +92,7 @@ alias  goSpectra="clr; cd $ALICE_WORK/PWGLF_SPECTRA/"
 alias  goSpecRun1="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun1"
 alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
-alias goSphenix="clr; cd ~/Work/sPHENIX/"
+alias gosPHENIX="clr; cd ~/Work/sPHENIX/"
 
 #SECRET TOKEN
 alias   getGoogle='oathtool --totp -b xvkjuinfzztepik2tfm2fntdby2v4ywe'
