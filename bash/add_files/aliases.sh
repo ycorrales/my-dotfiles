@@ -5,30 +5,30 @@ fi
 alias reload='source ~/.bashrc'
 
 #Detect with `ls` flavor is in use
-if gls --color > /dev/null 2>&1; then # GNU `ls`
+type gls > /dev/null 2>&1
+if [[ $? == 0 ]]; then # GNU `ls`
+  LS="gls -N"
   colorflag="--color"
+  gdirfirst="--group-directories-first"
 else # OS X `ls`
+  LS=ls
   colorflag="-G"
+  gdirfirst=""
 fi
 
 #Filesystem aliases
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-alias   l="gls -lah ${colorflag}"
-alias  la="gls -AF  ${colorflag}"
-alias  ll="gls -lFh ${colorflag} --group-directories-first "
-alias lld="gls -l   ${colorflag} | grep ^d"
-alias  dds='ll'
+alias  la="$LS -AF  ${colorflag}"
+alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
+alias  ld="ll | grep ^d"
 alias rmv="rm -rfv"
 
 # Helper
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
-alias du='du -h -c' # calculate disk usage for a folder
-alias dud='du -d 1 -h'
+alias du='du -h' # calculate disk usage for a folder
+alias dud='du -d 1'
 alias dus='du -hs'
 alias vi='vim'
 alias git='LC_ALL=en_US.UTF-8 hub'
@@ -70,9 +70,6 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
-
-alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chrome"
-alias canary="/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary"
 
 # Kill Dock
 alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
