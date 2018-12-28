@@ -2,43 +2,40 @@ if [ -z $ALICE_WORK ]; then
   export ALICE_WORK="$HOME/Work/Alice"
 fi
 export ALISOFT="$ALICE_WORK/AliSoft"
-export ALICESW="$ALISOFT/alice_sw"
 export ALIBUILD_WORK_DIR="$ALISOFT/sw"
   eval "`alienv shell-helper`"
 
-export ALICE_ITSUP_AN_SW="$ALICE_WORK/ITS_Upgrade/05_OB-HS_Assembly/OB-HIC-HS_Test/git_test-and-analysis"
+O2="VO_ALICE@O2::latest"
+ALI="VO_ALICE@AliPhysics::latest"
 
-alias   ali-cmd="alienv setenv '$( alienv q | grep AliPhysics | grep -v latest )'  -c $@"
-alias    o2-cmd="alienv setenv VO_ALICE@O2::latest  -c $@"
-alias ali-enter="alienv enter  '$( alienv q | grep AliPhysics | grep -v latest )'"
-alias ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
+alias    o2-cmd="alienv setenv $O2 -c $@"
+alias   ali-cmd="alienv setenv $ALI  -c $@"
+alias ali-enter="alienv enter  $ALI"
+alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-alias root="root -l"
+alias root='root -l'
 alias ali='ali-cmd root'
 alias  o2='o2-cmd  root'
 
 ali-init() {
-  aliBuild -z alice_sw init AliRoot,AliPhysics
+  aliBuild -z alice_sw init AliRoot,AliPhysics,AliDPG
 }
 
 ali-build() {
-  cd ${ALICESW}
+  pushd ${ALICESW}
   aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6
-  cd -
+  aliBuild build AliDPG -d -w ../sw/
+  popd
 }
 
 ali-load() {
   alienv load "$( alienv q | grep AliPhysics | grep -v latest )"
-  if [[ $? == 0 ]]; then
-    alias ali-token="alien-token-init ycorrale"
-  fi
+  type ali-token >/dev/null 2>&1 || alias ali-token="alien-token-init ycorrale"
 }
 
 ali-clean() {
   alienv unload "$( alienv q | grep AliPhysics | grep -v latest )"
-   if [[ $? == 0 ]]; then
-    unalias ali-token
-  fi
+  type ali-token >/dev/null 2>&1 && unalias ali-token
 }
 
 ali-find() {
