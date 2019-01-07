@@ -1,4 +1,8 @@
+b_tm=$(gdate +%s.%N)
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
-
+e_tm=$(gdate +%s.%N)
+if [ $(echo "$( echo "$e_tm - $b_tm" | bc -l ) > 1" | bc) -eq 1 ]; then
+  echo "Shell initialization too slow, time higher than 1 sec."
+fi

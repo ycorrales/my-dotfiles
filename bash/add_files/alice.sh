@@ -22,25 +22,26 @@ ali-init() {
 }
 
 ali-build() {
-  pushd ${ALICESW}
+  pushd ${ALISOFT}/alice_sw
   aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6
   aliBuild build AliDPG -d -w ../sw/
+  aliBuild clean
   popd
 }
 
 ali-load() {
-  alienv load "$( alienv q | grep AliPhysics | grep -v latest )"
+  alienv load "$ALI"
   type ali-token >/dev/null 2>&1 || alias ali-token="alien-token-init ycorrale"
 }
 
 ali-clean() {
-  alienv unload "$( alienv q | grep AliPhysics | grep -v latest )"
+  alienv unload "$ALI"
   type ali-token >/dev/null 2>&1 && unalias ali-token
 }
 
 ali-find() {
   if [ ! -z $1 ]; then
-    find -H ${ALICESW} -iname $@
+    find -H ${ALISOFT}/alice_sw -iname $@
   else
     echo "ali-find: missing argument"
     return 1
@@ -48,17 +49,18 @@ ali-find() {
 }
 
 o2-build(){
- cd ${ALICESW}
+ pushd ${ALISOFT}/alice_sw
  aliBuild -d --defaults o2 build O2
- cd -
+ aliBuild clean
+ popd
 }
 
 o2-load() {
-  alienv load "VO_ALICE@O2::latest"
+  alienv load "$O2"
 }
 
 o2-clean(){
-  alienv unload "VO_ALICE@O2::latest"
+  alienv unload "$O2"
 }
 
 root-print() {

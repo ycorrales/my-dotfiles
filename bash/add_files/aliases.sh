@@ -23,6 +23,8 @@ alias  la="$LS -AF  ${colorflag}"
 alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
 alias  ld="ll | grep ^d"
 alias rmv="rm -rfv"
+#allow OpenBSD tmux support UTF-8
+alias tmux='tmux -u'
 
 # Helper
 alias grep='grep --color=auto'
@@ -92,8 +94,8 @@ alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
 alias gosPHENIX="clr; cd ~/Work/sPHENIX/"
 
 #SECRET TOKEN
-alias   getGoogle='oathtool --totp -b xvkjuinfzztepik2tfm2fntdby2v4ywe'
-alias getLastPass='oathtool --totp -b gcf6nqnmwozgzlzh'
+alias   getGoogle='oathtool --totp -b $(cat ~/Software/dotfiles/backup_codes/google_key.cd)'
+alias getLastPass='oathtool --totp -b $(cat ~/Software/dotfiles/backup_codes/lastPass.cd)'
 
 #SSH
 #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
