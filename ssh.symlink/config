@@ -1,8 +1,6 @@
 Host *
   ControlMaster      yes
   ControlPersist     600
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   AddKeysToAgent     yes
   IgnoreUnknown UseKeychain
   UseKeychain yes
@@ -10,41 +8,63 @@ Host *
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
 Host its_db
   HostName           its098xl.to.infn.it
   User               aliceitstorino
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host its_hs
   HostName           its099xl.to.infn.it
   User               aliceitstorino
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host its_stave
   HostName           ali139xl.to.infn.it
   User               aliceitstorino
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host ali42xl
   HostName           ali42xl.to.infn.it
   User               ycorrales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host ali55xl
   HostName           ali55xl.to.infn.it
   User               ycorrales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host superfarm
   HostName           cloud-gw-215.to.infn.it
   User               corrales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 Host lxplus
   HostName           lxplus.cern.ch
   User               ycorrale
+  ForwardX11         yes
+  ForwardX11Trusted  yes
 Host rcf_gateway
   HostName           rssh.rhic.bnl.gov
   User               ycmorales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
 Host sphenix
   HostName           rcas2063.rcf.bnl.gov
   User               ycmorales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh rcf_gateway -W%h:%p
 Host nx02
   HostName           nx02.rcf.bnl.gov
   User               ycmorales
+  ForwardX11         yes
+  ForwardX11Trusted  yes
   ProxyCommand       ssh rcf_gateway -W%h:%p

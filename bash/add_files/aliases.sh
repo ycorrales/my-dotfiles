@@ -21,7 +21,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias  la="$LS -AF  ${colorflag}"
 alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
-alias  ld="ll | grep ^d"
+alias  lld="ll | grep ^d"
 alias rmv="rm -rfv"
 #allow OpenBSD tmux support UTF-8
 alias tmux='tmux -u'
@@ -33,7 +33,7 @@ alias du='du -h' # calculate disk usage for a folder
 alias dud='du -d 1'
 alias dus='du -hs'
 alias vi='vim'
-alias git='LC_ALL=en_US.UTF-8 hub'
+alias git='hub'
 alias gits='git status'
 alias clr='clear'
 alias bye='exit'
@@ -83,6 +83,7 @@ alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #alias  goAliPhysics='/ali-master/AliPhysics/'
 #alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
 #alias  goTaskITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
+alias  goDotfiles='clr; cd ~/Software/dotfiles'
 alias  goITSup="clr; cd $ALICE_WORK/ITS_Upgrade/"
 alias  goITSupTest="clr; cd $ALICE_WORK/ITS_Upgrade/assembly_OB/test_OB/"
 alias  goITSupTestHIC="clr; cd $ALICE_WORK/ITS_Upgrade/assembly_OB/test_OB/results/OBHIC-XXXXX"
@@ -91,7 +92,7 @@ alias  goSpectra="clr; cd $ALICE_WORK/PWGLF_SPECTRA/"
 alias  goSpecRun1="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun1"
 alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
 alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
-alias gosPHENIX="clr; cd ~/Work/sPHENIX/"
+alias  gosPHENIX="clr; cd ~/Work/sPHENIX/"
 
 #SECRET TOKEN
 alias   getGoogle='oathtool --totp -b $(cat ~/Software/dotfiles/backup_codes/google_key.cd)'

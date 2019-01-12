@@ -73,8 +73,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # source all .sh files inside of the sh/ directory
-export DOTFILES="$HOME/Software/dotfiles/"
+export LC_ALL='en_US.UTF-8'
+DOTFILES="$HOME/Software/dotfiles/"
 for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   source $BASH_FILE;
+  unset BASH_FILE
 done
+unset DOTFILES
 
