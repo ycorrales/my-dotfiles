@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+(
 DOTFILES=${DOTFILES?"err_msg"}
 
 echo -e "\nCreating symlinks"
@@ -54,3 +54,4 @@ for __file in "${VIMFILES[@]}"; do
     ln -s ${VALUE} ${KEY}
   fi
 done
+)
