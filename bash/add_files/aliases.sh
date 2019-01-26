@@ -35,6 +35,7 @@ alias dus='du -hs'
 alias vi='vim'
 alias git='hub'
 alias gits='git status'
+alias g++='clang++'
 alias clr='clear'
 alias bye='exit'
 
@@ -84,14 +85,14 @@ alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 #alias  goAliRoot='cd $HOME/Alice/AliSoft/ali-master/AliRoot/'
 #alias  goTaskITSsa='cd $HOME/Alice/AliSoft/ali-master/AliPhysics/PWGLF/SPECTRA/PiKaPr/ITSsa'
 alias  goDotfiles='clr; cd ~/Software/dotfiles'
-alias  goITSup="clr; cd $ALICE_WORK/ITS_Upgrade/"
-alias  goITSupTest="clr; cd $ALICE_WORK/ITS_Upgrade/assembly_OB/test_OB/"
-alias  goITSupTestHIC="clr; cd $ALICE_WORK/ITS_Upgrade/assembly_OB/test_OB/results/OBHIC-XXXXX"
-alias  goITSupTestHS="clr; cd $ALICE_WORK/ITS_Upgrade/assembly_OB/test_OB/results/OBHalfStave"
-alias  goSpectra="clr; cd $ALICE_WORK/PWGLF_SPECTRA/"
-alias  goSpecRun1="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun1"
-alias  goSpecRun2="clr; cd $ALICE_WORK/PWGLF_SPECTRA/SpectraAnalysisRun2"
-alias  goBjet="clr; cd $ALICE_WORK/PWGHF_HFCJ/Bjets"
+alias  goITSup="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/"
+alias  goITSupTest="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/"
+alias  goITSupTestHIC="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/results/OBHIC-XXXXX"
+alias  goITSupTestHS="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/results/OBHalfStave"
+alias  goSpectra="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/"
+alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
+alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
+alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
 alias  gosPHENIX="clr; cd ~/Work/sPHENIX/"
 
 #SECRET TOKEN

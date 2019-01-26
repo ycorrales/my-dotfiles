@@ -1,8 +1,6 @@
-if [ -z $ALICE_WORK ]; then
-  export ALICE_WORK="$HOME/Work/Alice"
-fi
-export ALISOFT="$ALICE_WORK/AliSoft"
-export ALIBUILD_WORK_DIR="$ALISOFT/sw"
+export ALICE_WORK=${ALICE_WORK:-"$HOME/Work/Alice"}
+export ALISOFT=${ALISOFT:-"$ALICE_WORK/AliSoft"}
+export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
   eval "`alienv shell-helper`"
 
 O2="VO_ALICE@O2::latest"

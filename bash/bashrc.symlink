@@ -80,4 +80,3 @@ for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   unset BASH_FILE
 done
 unset DOTFILES
-
