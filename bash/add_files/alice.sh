@@ -15,13 +15,20 @@ alias root='root -l'
 alias ali='ali-cmd root'
 alias  o2='o2-cmd  root'
 
+alien-create-cert()
+{
+  local _path=${1:-"*.p12"}
+  openssl pkcs12 -clcerts -nokeys -in $_path -out usercert.pem
+  openssl pkcs12 -nocerts         -in $_path -out userkey.pem
+}
+
 ali-init() {
-  aliBuild -z alice_sw init AliRoot,AliPhysics,AliDPG
+  aliBuild -z alice_sw init AliPhysics,AliDPG
 }
 
 ali-build() {
   pushd ${ALISOFT}/alice_sw
-  aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6
+  aliBuild build AliPhysics -d -z r6 -w ../sw/ --default root6 && \
   aliBuild build AliDPG -d -w ../sw/
   aliBuild clean
   popd
