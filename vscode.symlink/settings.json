@@ -1,1 +1,25 @@
-/Users/ycorrales/Library/Application Support/Code/User/settings.json
+{
+  "window.restoreWindows": "none",
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "vs-minimal",
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.activityBar.visible": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "workbench.colorCustomizations": 
+  {
+    "[Default Dark+]": {
+      "statusBar.noFolderBackground": "#dc7d3d",
+      "statusBar.background": "#3d98dc"
+    },
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "editor.wordWrap": "on",
+  "team.showWelcomeMessage": false,
+  "git.confirmSync": false,
+  "editor.tabCompletion": "onlySnippets",
+  "workbench.statusBar.feedback.visible": false,
+  "explorer.confirmDelete": false
+}
