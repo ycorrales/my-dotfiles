@@ -10,25 +10,28 @@ Host zoroastro
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
+#ITS upgrade Camera (most of the time in Windows)
 Host its_db
   HostName           its098xl.to.infn.it
   User               aliceitstorino
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host its_hs
+#ITS upgrade test setup 1 (HS)
+Host its_t1
   HostName           its099xl.to.infn.it
   User               aliceitstorino
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host its_stave
+#ITS upgrade test setup 2 (Stave)
+Host its_t2
   HostName           ali139xl.to.infn.it
   User               aliceitstorino
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host ali42xl
+Host ali42xL
   HostName           ali42xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
