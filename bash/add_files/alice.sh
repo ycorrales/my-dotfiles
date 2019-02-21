@@ -72,7 +72,7 @@ root-print() {
   ali-cmd aliroot -b -q "$ALICE_WORK/MyMacros/PrintFileKeys.C\(\"$1\"\)"
 }
 
-kill_all_jobs() {
+alien_kill_all_jobs() {
   local MAX=$1
   for JOBID in $( ali-cmd alien_ps | grep -v '-' | grep 'ycorrale' | awk '{print $2}' | sed 's/.*\(..........\)/\1/' ); do
     if [ -z "$MAX" ]; then
@@ -83,3 +83,46 @@ kill_all_jobs() {
   done
 }
 
+alien_merge_rbyr() {
+
+  function LastField() {
+    local LINE="$1"
+    local FIELD
+    local i=1
+    while [ "${FIELD}x" == 'x' ]; do
+      FIELD=$(echo "$LINE" | rev | cut -d"/" -f"$i" | rev)
+      let i=$i+1
+    done
+    echo "$FIELD"
+  }
+
+  local MIN_NUM_ARG=1
+  if [[ $# -lt ${MIN_NUM_ARG} ]]; then
+    echo "Only $# number of arguments. Must be at least 2"
+    return;
+  fi
+  local DIRBASE=$1
+  local FILESTOMERGE=$2
+  local re='^[0-9]+$'
+  [[ ${FILESTOMERGE} =~ $re ]] || FILESTOMERGE="-1"
+  local CMD="alien_ls"
+  local ALIEN_HOME_PATH="/alice/cern.ch/user/y/ycorrale"
+  local FULL_PATH=${ALIEN_HOME_PATH}/${DIRBASE}/output/
+  local FOLDER=$( LastField "${DIRBASE}")
+  echo "Creating and entering the main folder $FOLDER"
+  mkdir -p $FOLDER
+  pushd $FOLDER
+  for RUN_NUM in $(aliCmd ${CMD} $FULL_PATH | grep -E '^[0-9]+' ); do
+    local DIR_NAME=${RUN_NUM}
+    mkdir -p ${DIR_NAME}
+    echo "Entering to $DIR_NAME"
+    cd $DIR_NAME
+ali -l -b <<END
+gMyUtils->MergeFromFind("$FULL_PATH/$DIR_NAME","AnalysisResults.root", 1, ${FILESTOMERGE})
+.q
+END
+    cd ..
+  done
+  echo "Exiting main folder ..."
+  popd
+}
