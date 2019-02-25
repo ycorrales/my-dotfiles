@@ -2,35 +2,28 @@
 (
 DOTFILES=${DOTFILES?"err_msg"}
 
-echo -e "\nCreating symlinks"
-echo "=============================="
-__linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
-for __file in $__linkables ; do
-  __target="$HOME/.$( basename $__file '.symlink' )"
-  if [ -e $__target ]; then
-    echo "~${__target#$HOME} already exists... Skipping."
-  else
-    echo "Creating symlink for $__file"
-    ln -s $__file $__target
-  fi
-done
+source ${DOTFILES}/bash/add_files/colors.sh
 
-echo -e "\n\ninstalling to ~/.config"
-echo "=============================="
-if [ ! -d $HOME/.config ]; then
-  echo "Creating ~/.config"
-  mkdir -p $HOME/.config
-fi
+#function for symlink
+function do_symlink(){
 
-for __config in $DOTFILES/config/*; do
-    __target=$HOME/.config/$( basename $__config )
-  if [ -e $__target ]; then
-    echo "~${__target#$HOME} already exists... Skipping."
-  else
-    echo "Creating symlink for $__config"
-    ln -s $__config $__target
-  fi
-done
+  local __dir=".${1:+"$1/"}" #".( basename $1 )"
+  local __linkables=$2
+  local __ext=${3:-''}
+  echo -e "\n $COLOR_YELLOW Creating symlinks"
+  echo -e "================================ $COLOR_NONE"
+  [ ! -d $HOME/$__dir ] && { echo -e "$COLOR_BLUE Creating ~/$__dir $COLOR_NONE"; mkdir -p $HOME/$__dir; }
+  for __link in $__linkables; do
+  __target="$HOME/$__dir$( basename $__link $__ext )"
+  [ -e $__target ] && \
+  { echo -e "$COLOR_RED ~${__target#HOME} already exists... Skipping. $COLOR_NONE"; } || \
+  { echo -e "Creating symlink for $__link"; ln -s $__link $__target; }
+  done
+}
+
+do_symlink '' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
+do_symlink "ssh" "$DOTFILES/ssh/*" 
+do_symlink "config" "$DOTFILES/config/*"
 
 # create vim symlinks
 # As I have moved off of vim as my full time editor in favor of neovim,
@@ -39,19 +32,15 @@ done
 # like to configure vim, so lets symlink ~/.vimrc and ~/.vim over to their
 # neovim equivalent.
 
-echo -e "\n\nCreating vim symlinks"
-echo "=============================="
+echo -e "\n $COLOR_YELLOW Creating vim symlinks"
+echo -e "============================== $COLOR_NONE"
 VIMFILES=( "$HOME/.vim:$DOTFILES/config/nvim" \
            "$HOME/.vimrc:$DOTFILES/config/nvim/init.vim" )
-
 for __file in "${VIMFILES[@]}"; do
-  KEY=${file%%:*}
-  VALUE=${file#*:}
-  if [ -e ${KEY} ]; then
-    echo "${KEY} already exists... skipping."
-  else
-    echo "Creating symlink for $KEY"
-    ln -s ${VALUE} ${KEY}
-  fi
+  KEY=${__file%%:*}
+  VALUE=${__file#*:}
+  [ -e ${KEY} ] && \
+  { echo -e "$COLOR_RED ${KEY} already exists... skipping. $COLOR_NONE"; } || \
+  { echo "Creating symlink for $KEY";  ln -s ${VALUE} ${KEY}; }
 done
 )

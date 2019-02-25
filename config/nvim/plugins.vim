@@ -29,7 +29,7 @@ Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-rhubarb' " hub extension for fugitive
 
 " plugin from vim
-"Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'timakro/vim-searchant'
 Plug 'vim-scripts/peaksea'
@@ -39,7 +39,7 @@ Plug 'mkitt/tabline.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'kassio/neoterm'
-"
+Plug 'ryanpcmcquen/fix-vim-pasting'
 
 call plug#end()
 

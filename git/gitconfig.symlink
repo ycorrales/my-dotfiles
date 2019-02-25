@@ -27,4 +27,4 @@
 	status = auto
 	branch = auto
 [core]
-	editor = nvim
+	editor = vim

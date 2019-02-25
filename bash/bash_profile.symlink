@@ -1,12 +1,1 @@
-b_tm=$(gdate +%s.%N)
 [[ -f ~/.bashrc ]] && source ~/.bashrc
-e_tm=$(gdate +%s.%N)
-[[ $(echo "$( echo "$e_tm - $b_tm" | bc -l ) > 1" | bc) -eq 1 ]] && \
-  echo "Shell initialization too slow, time higher than 1 sec."
-
-# Execute alidock within the appropriate Python virtual environment
-function alidock() {
-  (
-    source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
-  )
-}

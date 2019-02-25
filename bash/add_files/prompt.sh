@@ -1,5 +1,3 @@
-# Using \[ and \] around colors is necessary to prevent
-# issues with command line editing/browsing/completion!
 
 # remove trailing slash in folder name completation
 # bind 'set mark-directories off'
@@ -13,7 +11,6 @@ function __my_pwd() {
   done
   echo -en "${PRE:=""}${__pwd}"
 }
-
 
 # indicate a job (for example, vim) has been backgrounded
 # If there is a job in the background, display a ✱
@@ -87,21 +84,24 @@ __my_prompt() {
   # unicode "?"
   local checkmark="\342\234\223"
   local PROMPT_SYMBOL='\\$ '
-  local apple_ch=''
+  local logo_ch=''
   if [[ "$OSTYPE" == darwin* ]]; then
-    apple_ch=' '
+    logo_ch='  '
+  elif [[ "$OSTYPE" == linux* ]]; then
+    logo_ch='\360\237\220\247 '
   fi
+
   local __ps1_start __ps1_end
-  __ps1_start="\[$apple_ch\[$COLOR_LIGHTGREEN\]\[\u \]\[[\]\[$COLOR_YELLOW\]\[$(__my_pwd)\]\[$COLOR_LIGHTGREEN\]\[]\]"
+  __ps1_start="${logo_ch}${COLOR_LIGHTGREEN}\[\u\] [${COLOR_YELLOW}$(__my_pwd)${COLOR_LIGHTGREEN}]"
   __ps1_start+="\[$(__suspended_jobs)\]"
-  if [[ $last_cmd == 0 ]]; then
-    __ps1_start+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTGREEN\]\[$checkmark \]\[$COLOR_NONE\]"
+  if [[ $last_cmd == "0" ]]; then
+    __ps1_start+="${COLOR_WHITE}($last_cmd) ${COLOR_LIGHTGREEN}${checkmark} ${COLOR_NONE}"
   else
-    __ps1_start+="\[$COLOR_WHITE\]($last_cmd) \[$COLOR_LIGHTRED\]\[$fancyx \]\[$COLOR_NONE\]"
+    __ps1_start+="${COLOR_WHITE}($last_cmd) ${COLOR_LIGHTRED}${fancyx} ${COLOR_NONE}"
   fi
   __ps1_start+="\n"
-  __ps1_end="\[$COLOR_LIGHTGREEN\]$PROMPT_SYMBOL\[$COLOR_NONE\]"
-  __git_ps1 "$__ps1_start" "$__ps1_end" "\[$COLOR_LIGHTGREEN\](%s)\[$COLOR_NONE\]"
+  __ps1_end="${COLOR_LIGHTGREEN}${PROMPT_SYMBOL}${COLOR_NONE}"
+  __git_ps1 "$__ps1_start" "$__ps1_end" "${COLOR_LIGHTGREEN}(%s)${COLOR_NONE}"
 }
 
 safe_append_prompt_command '__my_prompt'

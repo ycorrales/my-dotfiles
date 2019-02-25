@@ -12,7 +12,6 @@
 
   function _config_myMac()
   {
-    echo ""
     echo "MacOS operating system found. Configuring Mac..."
     sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO
     sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server \
@@ -24,8 +23,8 @@
   function Main()
   {
     # sourcing script to create the symbolic link
-    test -f $DOTFILES/install/link.sh && source $DOTFILES/install/link.sh
-    test $OS = "osx_x86-64" && _config_myMac
+    [ -f $DOTFILES/install/link.sh ] && source $DOTFILES/install/link.sh
+    [ $OS = "osx_x86-64" ] && _config_myMac || :
   }
 
   Main $@

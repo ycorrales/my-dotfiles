@@ -1,5 +1,4 @@
-if $USER == 'ycorrales'
-"
+if $USER == 'ycorrales' || $USER == 'ycmorales'
 " Section General {{{
 set nocompatible            " not compatible with vi
 set autoread                " detect when a file is changed
@@ -18,12 +17,13 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
-"
 let $LANG='en_US'
 
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
+" Format the status line 
+"*** Deprecated
+" "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+"*** using airline for a fancy statusline
+"
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " }}}
@@ -36,8 +36,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 if has("mac") || has("macunix")
   "set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ M\ DZ:h13
 elseif has("win16") || has("win32")
-  set gfn=Hack:h14,Source\ Code\ Pro:h12,
-  itstream\ Vera\ Sans\ Mono:h11
+  set gfn=Hack:h14,Source\ Code\ Pro:h12,itstream\ Vera\ Sans\ Mono:h11
 elseif has("gui_gtk2")
   set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("linux")
@@ -121,8 +120,7 @@ set foldenable              " don't fold by default
 set foldlevel=1
 set foldcolumn=1            " Add a bit extra margin to the left
 
-
-"set clipboard=unnamed
+set clipboard=unnamed
 
 set ttyfast                 " faster redrawing
 set diffopt+=vertical
@@ -185,8 +183,8 @@ vnoremap <LeftRelease> "*ygv
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => autocomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap <D-[> <C-P>
-inoremap <D-]> <C-N>
+"inoremap <D-[> <C-P>
+"inoremap <D-]> <C-N>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket
@@ -198,7 +196,7 @@ vnoremap <leader>'  <esc>`>a'<esc>`<i'<esc>
 vnoremap <leader>"  <esc>`>a"<esc>`<i"<esc>
 
 "remap esc
-inoremap jk <esc>
+"inoremap jk <esc>
 
 " shortcut to save
 nmap <leader>w :w!<cr>
@@ -207,24 +205,23 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-" shortcut to save and exit
-nmap <leader>wq :wq<cr>
-
 " set paste toggle
-set pastetoggle=<leader>v
-
+"*** deprecated
+"set pastetoggle=<leader>v
 " toggle paste mode
-map <leader>v :set paste!<cr>
+"map <leader>v :set paste!<cr>
+"*** using plugin fix-vim-paste
 
 " Disable highlight when <leader><cr> is pressed
-"map <silent> <leader><cr>    :nohlsearch<Bar>:echo<cr>
+map <silent> <leader><cr>    :nohlsearch<Bar>:echo<cr>
 map <silent> <leader><Space> :set hlsearch! hlsearch?<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>oc :tabe! ~/.config/nvim/my_configs.vim<cr>
-map <leader>op :tabe! ~/.config/nvim/plugins.vim<cr>
+map <leader>fc :tabe! ~/.config/nvim/my_configs.vim<cr>
+map <leader>fp :tabe! ~/.config/nvim/plugins.vim<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,8 +239,6 @@ cno $q <C-\>eDeleteTillSlash()<cr>
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
-map <c-space> ?
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -257,11 +252,11 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 "move in insert mode
-inoremap <D-Left>  <esc>^<esc>i
-inoremap <D-Right> <esc>g_<esc>a
+inoremap <C-A> <esc>^<esc>i
+inoremap <C-E> <esc>g_<esc>a
 "move in normal mode
-noremap <D-Left> ^
-noremap <D-Right> g_
+noremap <C-A> ^
+noremap <C-E> g_
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -269,11 +264,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-map <leader>f :bnext<cr>
-map <leader>h :bprevious<cr>
+map <leader>bn :bnext<cr>
+map <leader>bp :bprevious<cr>
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-
+" Delete current bufer
+map <leader>bd :bdelete<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -297,6 +293,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>o o<esc>
+nmap <leader>O O<esc>
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -305,13 +303,13 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+  nmap <leader>j <M-j>
+  nmap <leader>k <M-k>
+  vmap <leader>j <M-j>
+  vmap <leader>k <M-k>
 endif
-
-
+"
+"
 " Map auto complete of (, [, {, <,", ',
 inoremap <leader>) ()<esc>i
 inoremap <leader>] []<esc>i
@@ -343,8 +341,8 @@ map <leader>cc :s/^/#/<CR><leader><CR>
 map <leader>u :s/^\/\///<CR><leader><CR>
 map <leader>uu :s/\s\s\/\///<CR><leader><CR>
 
-map <D-]> :s/^/  /<CR><Leader><CR>
-map <D-[> :s/\s\s//<CR><Leader><CR>
+map <leader>] :s/^/  /<CR><Leader><CR>
+map <leader>[ :s/\s\s//<CR><Leader><CR>
 
 "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
 
@@ -354,7 +352,7 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing \ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
@@ -534,24 +532,23 @@ let g:lightline = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatprg=astyle
-au FileType c,cpp setlocal comments-=:// comments+=f:// "remove auto comment in line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set formatprg=astyle
+"au FileType c,cpp setlocal comments-=:// comments+=f:// "remove auto comment in line
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Whitespace fixes
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight ExtraWhitespace ctermfg=0 ctermbg=12 guifg=#000000 guibg=#ff0000
 autocmd VimEnter,BufEnter,WinEnter * call ExtraWhitespaceColor()
 fun! ExtraWhitespaceColor()
   let &nuw=len(line('$'))+2               " Nicer line numbers
   call matchadd('ExtraWhitespace', '\zs\(\S\zs\s\{1,}$\)')
 endfun
-"match ExtraWhitespace /\s\+$/
+match ExtraWhitespace /\s\+$/
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " move tabs to the end for new, single buffers (exclude splits)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd BufNew * if winnr('$') == 1 | tablast | endif
@@ -567,7 +564,6 @@ endfun
 "catch
 "endtry
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -577,7 +573,7 @@ fun! CleanExtraSpaces()
     let old_query = getreg('/')
     silent! %s/\s\+$//e
     call setpos('.', save_cursor)
-    call setreg('/', old_query)
+   call setreg('/', old_query)
 endfun
 
 if has("autocmd")
@@ -688,7 +684,7 @@ au FileType python set indentkeys-=0#
 
 """"""""""""""""""""""""""""""
 " => JavaScript section
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au FileType javascript setl nocindent

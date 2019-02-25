@@ -1,7 +1,7 @@
 Host *
   ControlMaster      yes
   ControlPersist     600
-  AddKeysToAgent     yes
+#  AddKeysToAgent     yes
   IgnoreUnknown UseKeychain
   UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
