@@ -25,7 +25,7 @@
   {
     # sourcing script to create the symbolic link
     test -f $DOTFILES/install/link.sh && source $DOTFILES/install/link.sh
-    test $OS="osx_x86-64" && _config_myMac
+    test $OS = "osx_x86-64" && _config_myMac
   }
 
   Main $@
