@@ -24,7 +24,9 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
   }
 
   ali-init() {
-    aliBuild -z alice_sw init AliPhysics,AliDPG
+    pushd ${ALISOFT}
+    aliBuild -z alice_sw init AliPhysics
+    popd
   }
 
   ali-build() {
@@ -54,9 +56,15 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
     fi
   }
 
+  o2-init() {
+    pushd ${ALISOFT}
+    aliBuild init O2@dev -d -z alice_sw --default o2
+    popd
+  }
+
   o2-build(){
   pushd ${ALISOFT}/alice_sw
-  aliBuild -d --defaults o2 build O2
+  aliBuild build O2 -d -w ../sw --defaults o2
   aliBuild clean
   popd
   }

@@ -68,20 +68,13 @@ esac
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    . /etc/bash_completion
+#fi
 
 #
 #Put custom code from HERE
 #
-if [[ $OSTYPE = "darwin"* ]]; then
-  export OS="osx_x86-64"
-elif [[ $OSTYPE = "linux-gnu" ]]; then
-  export OS="linux"
-else
-  export OS="unkonw"
-fi
 GDATE='date'
 type gdate > /dev/null 2>&1 && GDATE='gdate'
 b_tm=$($GDATE +%s.%N)
