@@ -88,7 +88,6 @@ fi #end ALISOFT
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
   alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
-  alias l-sphenix-r6='l-sphenix root6'
   TRASH_FILE='0'
 fi #end SPHENIX RCF
 
