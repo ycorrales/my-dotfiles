@@ -87,7 +87,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi #end ALISOFT
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
-  alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
+  export MYINSTALL="$HOME/sPHENIX_SW/install"
+  alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n && \
+                   source /opt/sphenix/core/bin/setup_root6.sh $MYINSTALL && \
+                   export LD_LIBRARY_PATH="$MYINSTALL/lib:$LD_LIBRARY_PATH"'
   TRASH_FILE='0'
 fi #end SPHENIX RCF
 
