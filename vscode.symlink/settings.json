@@ -16,8 +16,11 @@
     "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f"
   },
+<<<<<<< Updated upstream
   "editor.wordWrap": "on",
   "team.showWelcomeMessage": false,
+=======
+>>>>>>> Stashed changes
   "git.confirmSync": false,
   "editor.tabCompletion": "onlySnippets",
   "workbench.statusBar.feedback.visible": false,
@@ -42,8 +45,14 @@
     // Controls the delay in ms after which quick suggestions will show up
     "editor.quickSuggestionsDelay": 90,
 
+<<<<<<< Updated upstream
     // Enables parameter hints
     "editor.parameterHints": false,
+=======
+    // Controls if suggestions should automatically show up when typing trigger characters
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.tabCompletion": "on",
+>>>>>>> Stashed changes
 
     // Controls if the editor should automatically close brackets after opening them
     "editor.autoClosingBrackets": false,
@@ -54,6 +63,40 @@
     // Controls if suggestions should automatically show up when typing trigger characters
     "editor.suggestOnTriggerCharacters": false,
 
+<<<<<<< Updated upstream
     // Controls if suggestions should be accepted 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions.
     "editor.acceptSuggestionOnEnter": false
   }
+=======
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["<leader>", "w"],
+        "after": ["<Esc>", ":", "w", "enter"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "<enter>"],
+        "commands": [":nohl"]
+      },
+      { 
+        "before": ["<leader>", "w"],
+        "commands": [":w"]
+      }
+    ],
+    "vim.leader": "\\",
+    "vim.handleKeys": {
+      "<C-a>": false,
+      "<C-f>": false
+    },
+
+    "C_Cpp.clang_format_fallbackStyle": 
+      "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}"
+  }
+>>>>>>> Stashed changes

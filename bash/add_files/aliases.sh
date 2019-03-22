@@ -74,8 +74,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias  gosPHENIX="clr; cd ~/Work/sPHENIX/"
 
   #SECRET TOKEN
-  alias   getGoogle='oathtool --totp -b $(cat ~/$DOTFILES/backup_codes/google_key.cd)'
-  alias getLastPass='oathtool --totp -b $(cat ~/$DOTFILES/backup_codes/lastPass.cd)'
+  alias   getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'
+  alias getLastPass='oathtool --totp -b $(cat $DOTFILES/backup_codes/lastPass.cd)'
 
   #SSH
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'

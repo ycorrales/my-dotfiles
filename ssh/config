@@ -2,8 +2,8 @@ Host *
   ControlMaster      yes
   ControlPersist     600
 #  AddKeysToAgent     yes
-  IgnoreUnknown UseKeychain
-  UseKeychain yes
+#  IgnoreUnknown UseKeychain
+#  UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
 Host zoroastro
   HostName           zoroastro.to.infn.it
