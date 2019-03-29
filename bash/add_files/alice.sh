@@ -6,15 +6,16 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   O2="VO_ALICE@O2::latest"
   ALI="VO_ALICE@AliPhysics::latest"
+  ROOT="VO_ALICE@ROOT::latest"
 
   alias    o2-cmd="alienv setenv $O2 -c $@"
   alias   ali-cmd="alienv setenv $ALI  -c $@"
   alias ali-enter="alienv enter  $ALI"
   alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias root='root -l'
-  alias ali='ali-cmd root'
-  alias  o2='o2-cmd  root'
+  alias root='alienv setenv $ROOT -c root -l'
+  alias  ali='ali-cmd root'
+  alias   o2='o2-cmd  root'
 
   alien-create-cert()
   {
