@@ -136,5 +136,13 @@ END
     echo "Exiting main folder ..."
     popd
   }
+fi
 
+# Execute alidock within the appropriate Python virtual environment
+if [[ -d $HOME/.virtualenvs/alidock ]]; then
+  function alidock() {
+    (
+      source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
+    )
+  }
 fi

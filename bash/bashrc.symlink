@@ -89,15 +89,6 @@ for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   unset BASH_FILE
 done
 
-# Execute alidock within the appropriate Python virtual environment
-if [[ -d $HOME/.virtualenvs/alidock ]]; then
-  function alidock() {
-    (
-      source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
-    )
-  }
-fi
-
 #
 # 'Til HERE
 #
