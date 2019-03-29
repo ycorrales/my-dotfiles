@@ -1,0 +1,9 @@
+---
+dockName: "aliPhysics"
+imageName: "ycorrales/alipier:latest"
+dontUpdateImage: True
+dirOutside: "~/Work/Alice/AliSoft/alidock/"
+mount:
+  - "~/Cernbox"
+  - "~/Software"
+  - "~/Work"
