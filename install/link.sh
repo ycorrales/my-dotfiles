@@ -7,7 +7,7 @@ source ${DOTFILES}/bash/add_files/colors.sh
 #function for symlink
 function do_symlink(){
 
-  local __dir=".${1:+"$1/"}" #".( basename $1 )"
+  local __dir="$1" #".( basename $1 )"
   local __linkables=$2
   local __ext=${3:-''}
   echo -e "\n $COLOR_YELLOW Creating symlinks"
@@ -21,10 +21,10 @@ function do_symlink(){
   done
 }
 
-do_symlink '' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
-do_symlink "ssh" "$DOTFILES/ssh/*" 
-do_symlink "config" "$DOTFILES/config/*"
-
+do_symlink '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
+do_symlink ".ssh/" "$DOTFILES/ssh/*"
+do_symlink ".config/" "$DOTFILES/config/*"
+do_symlink '' "$DOTFILES/root/rootlogon.C"
 # create vim symlinks
 # As I have moved off of vim as my full time editor in favor of neovim,
 # I feel it doesn't make sense to leave my vimrc intact in the dotfiles repo
