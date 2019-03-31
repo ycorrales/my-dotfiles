@@ -13,6 +13,7 @@ type gls &> /dev/null && LS='gls -N' || { colorflag="-G"; gdirfirst=""; } # GNU 
 #Filesystem aliases
 alias  la="$LS -AF  ${colorflag}"
 alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
+alias  llt='ll -hrt'
 alias  lld="ll | grep ^d"
 
 # Helper

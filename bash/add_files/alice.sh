@@ -26,14 +26,14 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   ali-init() {
     pushd ${ALISOFT}
-    aliBuild -z alice_sw init AliPhysics
+    aliBuild -z alice_sw init AliPhysics@master
     popd
   }
 
   ali-build() {
     pushd ${ALISOFT}/alice_sw
-    aliBuild build AliPhysics -d -z r6 -w ../sw/ --default user-next-root6 && \
-    aliBuild build AliDPG -d -w ../sw/
+    aliBuild build AliPhysics -d -z r6 -w $ALIBUILD_WORK_DIR --default user-next-root6 && \
+    aliBuild build AliDPG -d -w $ALIBUILD_WORK_DIR
     aliBuild clean
     popd
   }
@@ -65,7 +65,7 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   o2-build(){
   pushd ${ALISOFT}/alice_sw
-  aliBuild build O2 -d -w ../sw --defaults o2
+  aliBuild build O2 -d -w $ALIBUILD_WORK_DIR --defaults o2
   aliBuild clean
   popd
   }
