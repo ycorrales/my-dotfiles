@@ -84,7 +84,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias ssh_dynamic_tunnel='ssh -CfN -D 1080'
   alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
 
-  TRASH_FILE='.DS_Store'
 fi #end ALISOFT
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
@@ -92,15 +91,16 @@ if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
   alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n && \
                    source /opt/sphenix/core/bin/setup_root6.sh $MYINSTALL && \
                    export LD_LIBRARY_PATH="$MYINSTALL/lib:$LD_LIBRARY_PATH"'
-  TRASH_FILE='0'
 fi #end SPHENIX RCF
 
 # Recursively delete `.DS_Store` files
 function cleanup()
 {
   local DIR=${1:-"./"}
+  TRASH_FILE='0 .DS_Store'
   local f
   for f in ${TRASH_FILE[@]}; do
-    find $DIR -name $f -type f -ls -delete
+    plog "Removing all files $f"
+    find $DIR -name $f -type f -ls -delete 2> /dev/null
   done
 }
