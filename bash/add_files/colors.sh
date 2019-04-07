@@ -1,6 +1,19 @@
 # Using \[ and \] around colors is necessary to prevent
 # issues with command line editing/browsing/completion
 
+function plog(){
+  echo -e "$COLOR_YELLOW $1 $COLOR_NONE" | gsed 's/\(\\\[\|\\\]\)//g'
+}
+function pinfo(){
+  echo -e "$COLOR_LIGHTGREEN $1 $COLOR_NONE" | gsed 's/\(\\\[\|\\\]\)//g'
+}
+function pdebug(){
+  echo -e "$COLOR_BLUE $1 $COLOR_NONE" | gsed 's/\(\\\[\|\\\]\)//g'
+}
+function perror(){
+  echo -e "$COLOR_RED $1 $COLOR_NONE" | gsed 's/\(\\\[\|\\\]\)//g'
+}
+
 COLOR_BLACK="\[\033[0;30m\]"
 COLOR_BLUE="\[\033[0;34m\]"
 COLOR_GREEN="\[\033[0;32m\]"
