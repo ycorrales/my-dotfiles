@@ -8,7 +8,7 @@ alias reload='source ~/.bashrc' #reaload bash config
 LS='ls'
 colorflag='--color'
 gdirfirst='--group-directories-first'
-type gls &> /dev/null && LS='gls -N' || { colorflag="-G"; gdirfirst=""; } # GNU `ls`
+type gls &> /dev/null && LS='gls -N' # GNU `ls`
 
 #Filesystem aliases
 alias  la="$LS -AF  ${colorflag}"
