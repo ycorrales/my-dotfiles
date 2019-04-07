@@ -1,6 +1,6 @@
 ---
 dockName: "aliPhysics"
-imageName: "ycorrales/alipier:latest"
+imageName: "alipier/singularity:alidock.cc7"
 dontUpdateImage: True
 dirOutside: "~/Work/Alice/AliSoft/alidock/"
 mount:
