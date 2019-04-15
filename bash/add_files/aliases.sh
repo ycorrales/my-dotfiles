@@ -10,6 +10,7 @@ colorflag='--color'
 gdirfirst='--group-directories-first'
 type gls &> /dev/null && LS='gls -N' # GNU `ls`
 
+type gsed &> /dev/null && alias sed='gsed'
 #Filesystem aliases
 alias  la="$LS -AF  ${colorflag}"
 alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
