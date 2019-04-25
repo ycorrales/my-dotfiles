@@ -3,6 +3,7 @@ dockName: "aliPhysics"
 imageName: "alipier/singularity:alidock.cc7"
 dontUpdateImage: True
 dirOutside: "~/Work/Alice/AliSoft/alidock/"
+cvmfs: True
 mount:
   - "~/Cernbox"
   - "~/Software"
