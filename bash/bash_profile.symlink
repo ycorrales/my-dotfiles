@@ -1,1 +1,2 @@
-[[ -f ~/.bashrc ]] && source ~/.bashrc
+[[ -r ~/.bashrc ]] && source ~/.bashrc
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
