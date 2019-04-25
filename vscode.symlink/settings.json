@@ -17,10 +17,11 @@
     "statusBar.debuggingBackground": "#005f5f"
   },
   "git.confirmSync": false,
-  "editor.tabCompletion": "onlySnippets",
   "workbench.statusBar.feedback.visible": false,
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": true,
+//Remove trailing whitespace
+  "files.trimTrailingWhitespace": true,
 
 // Turn off autocomplete in Visual Studio Code
 // http://code.visualstudio.com/
@@ -29,7 +30,7 @@
 
     // OPTIONAL WORD WRAPPING
     // Controls if lines should wrap. The lines will wrap at min(editor.wrappingColumn, viewportWidthInColumns).
-    "editor.wordWrap": true,
+    "editor.wordWrap": "wordWrapColumn",
     // Controls the indentation of wrapped lines. Can be one of 'none', 'same' or 'indent'.
     "editor.wrappingIndent": "indent",
 
@@ -45,13 +46,10 @@
     "editor.tabCompletion": "on",
 
     // Controls if the editor should automatically close brackets after opening them
-    "editor.autoClosingBrackets": false,
+    "editor.autoClosingBrackets": "never",
 
     // Controls if the editor should automatically format the line after typing
     "editor.formatOnType": false,
-
-    // Controls if suggestions should automatically show up when typing trigger characters
-    "editor.suggestOnTriggerCharacters": false,
 
     "vim.easymotion": true,
     "vim.sneak": true,
@@ -59,6 +57,8 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.insertModeKeyBindings": [
       {
         "before": ["<leader>", "w"],
@@ -66,6 +66,10 @@
       }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<Space>"],
+        "after": ["/"]
+      },
       {
         "before": ["<leader>", "<enter>"],
         "commands": [":nohl"]
