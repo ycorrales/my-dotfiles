@@ -31,11 +31,17 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
   }
 
   ali-build() {
+    local sw_path=~/.sw
+    local old_alibuild_path=$ALIBUILD_WORK_DIR
+    ln -s $ALIBUILD_WORK_DIR $sw_path
+    ALIBUILD_WORK_DIR=$sw_path
     pushd ${ALISOFT}/alice_sw
-    aliBuild build AliPhysics -d -z r6 -w $ALIBUILD_WORK_DIR --default user-next-root6 && \
-    aliBuild build AliDPG -d -w $ALIBUILD_WORK_DIR
+    aliBuild build AliPhysics -d -z r6 -w $ALIBUILD_WORK_DIR --default user-next-root6
+    #&& aliBuild build AliDPG -d -w $ALIBUILD_WORK_DIR
     aliBuild clean
+    rm -rfv $sw_path
     popd
+    ALIBUILD_WORK_DIR=$old_alibuild_path
   }
 
   ali-load() {

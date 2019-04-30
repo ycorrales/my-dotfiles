@@ -30,7 +30,8 @@
 
     // OPTIONAL WORD WRAPPING
     // Controls if lines should wrap. The lines will wrap at min(editor.wrappingColumn, viewportWidthInColumns).
-    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120,
+    "editor.wordWrap": "bounded",
     // Controls the indentation of wrapped lines. Can be one of 'none', 'same' or 'indent'.
     "editor.wrappingIndent": "indent",
 
@@ -86,5 +87,5 @@
     },
 
     "C_Cpp.clang_format_fallbackStyle":
-      "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}"
+      "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}",
   }
