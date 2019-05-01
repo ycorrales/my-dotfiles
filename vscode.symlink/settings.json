@@ -88,4 +88,6 @@
 
     "C_Cpp.clang_format_fallbackStyle":
       "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}",
+    "C_Cpp.intelliSenseCachePath": "${env:HOME}/.vscode",
+    "C_Cpp.intelliSenseCacheSize": 1024
   }
