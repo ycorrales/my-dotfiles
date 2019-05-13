@@ -82,7 +82,7 @@ b_tm=$($GDATE +%s.%N)
 export LC_ALL='en_US.UTF-8'
 export SPHENIX_RCF='rcf.bnl.gov'$
 DOTFILES="$HOME/Software/dotfiles/"
-[[ $HOSTNAME =~ $SPHENIX_RCF ]] && DOTFILES="$HOME/dotfiles/"
+[[ $HOSTNAME =~ $SPHENIX_RCF || $HOSTNAME = 'vagrant']] && DOTFILES="$HOME/dotfiles/"
 export DOTFILES
 for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   source $BASH_FILE;

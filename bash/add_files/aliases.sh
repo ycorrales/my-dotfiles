@@ -85,7 +85,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias ssh_dynamic_tunnel='ssh -CfN -D 1080'
   alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
 
-fi #end ALISOFT
+  #alias for sPHENIX singularity frameworrk
+  alias load-sPHENIX="cd ~/Work/sPHENIX/Singularity-vm && vagrant up && vagrant ssh"
+fi #end MacOnly
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
   export MYINSTALL="$HOME/sPHENIX_SW/install"
