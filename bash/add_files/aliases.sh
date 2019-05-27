@@ -96,10 +96,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi #end MacOnly
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
-  export MYINSTALL="$HOME/sPHENIX_SW/install"
+  export MYINSTALL="$HOME/sPHENIX_SW/INSTALL"
   alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n && \
-                   source /opt/sphenix/core/bin/setup_root6.sh $MYINSTALL && \
-                   export LD_LIBRARY_PATH="$MYINSTALL/lib:$LD_LIBRARY_PATH"'
+                   source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL'
 fi #end SPHENIX RCF
 
 if [[ $HOSTNAME =~ $ALIDOCK ]]; then
