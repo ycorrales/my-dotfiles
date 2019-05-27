@@ -39,7 +39,7 @@ Host ali42xL
   ProxyCommand       ssh zoroastro -W%h:%p
 Host ali55xl
   HostName           ali55xl.to.infn.it
-  User               ycorrales
+  User               aliceitstorino
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
@@ -71,3 +71,9 @@ Host nx02
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh rcf_gateway -W%h:%p
+Host *.fnal.gov
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+
+Host 192.168.60.*
+  ProxyCommand ssh  ycorrale@ftbfbnl01.fnal.gov  -W%h:%p

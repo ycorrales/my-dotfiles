@@ -26,7 +26,6 @@ alias  bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8
 alias vimc='vim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
 type hub     &> /dev/null && alias git='hub'
-type clang++ &> /dev/null && alias g++='clang++'
 type nvim    &> /dev/null && alias vim='nvim' # Using mvim as vim in terminal
 [[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 
@@ -84,9 +83,16 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh_dynamic_tunnel='ssh -CfN -D 1080'
   alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
+  function ssh_fnal_tunnel()
+  {
+    ssh -l ftbf_user ftbfbnl01.fnal.gov \
+      -L 17815:localhost:7815 \
+      -L 10080:192.168.60.80:8081 \
+      -L 10081:192.168.60.149:8081 \
+      -L 10082:192.168.60.149:8082 \
+      -L 10007:192.168.60.7:80
+  }
 
-  #alias for sPHENIX singularity frameworrk
-  alias load-sPHENIX="cd ~/Work/sPHENIX/Singularity-vm && vagrant up && vagrant ssh"
 fi #end MacOnly
 
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
@@ -95,6 +101,20 @@ if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
                    source /opt/sphenix/core/bin/setup_root6.sh $MYINSTALL && \
                    export LD_LIBRARY_PATH="$MYINSTALL/lib:$LD_LIBRARY_PATH"'
 fi #end SPHENIX RCF
+
+if [[ $HOSTNAME =~ $ALIDOCK ]]; then
+  #alias for sPHENIX singularity framework
+  l-sph-singularity()
+  {
+    (
+      cp ~/.Xauthority ~/sph_sing_home/.
+      cd /mnt/Work/sPHENIX;
+      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:/home/alidock/sph_sing_home/Software,/mnt/Work/sPHENIX:/home/alidock/sph_sing_home/sPHENIX"
+      singularity shell -H ~/sph_sing_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
+      exit $?
+    )
+  }
+fi
 
 # Recursively delete `.DS_Store` files
 function cleanup()

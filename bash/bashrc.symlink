@@ -81,9 +81,16 @@ b_tm=$($GDATE +%s.%N)
 # source all .sh files inside of the sh/ directory
 export LC_ALL='en_US.UTF-8'
 export SPHENIX_RCF='rcf.bnl.gov'$
+export ALIDOCK='^aliPhysic'
+
 DOTFILES="$HOME/Software/dotfiles/"
-[[ $HOSTNAME =~ $SPHENIX_RCF || $HOSTNAME = 'vagrant']] && DOTFILES="$HOME/dotfiles/"
+if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
+  DOTFILES="$HOME/dotfiles/"
+elif [[ $HOSTNAME =~ $ALIDOCK ]]; then
+  DOTFILES="/mnt/Software/dotfiles/"
+fi
 export DOTFILES
+
 for BASH_FILE in $( ls -r $DOTFILES/bash/add_files/*.sh ); do
   source $BASH_FILE;
   unset BASH_FILE
@@ -95,3 +102,5 @@ done
 e_tm=$($GDATE +%s.%N)
 [[ $(echo "$( echo "$e_tm - $b_tm" | bc -l ) > 1" | bc) != 1 ]] || \
   echo "Shell initialization too slow, time higher than 1 sec."
+# Execute alidock within the appropriate Python virtual environment
+function alidock() {( source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?; )}
