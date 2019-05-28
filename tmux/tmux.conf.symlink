@@ -8,7 +8,7 @@ unbind C-b
 
 # Version-specific commands [grumble, grumble]
 # See: https://github.com/tmux/tmux/blob/master/CHANGES
-run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6-)"
+run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6- | tr -d [a-z,A-Z])"
 
 if-shell -b '[ "$(echo "$TMUX_VERSION < 2.1" | bc)" = 1 ]' \
   "set -g mouse-select-pane on; set -g mode-mouse on; \
