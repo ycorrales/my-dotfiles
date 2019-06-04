@@ -10,3 +10,5 @@ config/nvim/autoload/plug.vim
 vim/vim.symlink/spell/
 vim/vim.symlink/plugged/
 *known_hosts
+*ipch
+
