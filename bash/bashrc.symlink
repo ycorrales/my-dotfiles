@@ -87,7 +87,9 @@ DOTFILES="$HOME/Software/dotfiles/"
 if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
   DOTFILES="$HOME/dotfiles/"
 elif [[ $HOSTNAME =~ $ALIDOCK ]]; then
-  DOTFILES="/mnt/Software/dotfiles/"
+  DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
+  DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
+  [ -n SINGULARITY_NAME ] && export SW_WORK_DIR="${HOME}/sPHENIX/Projects/01.MVTX/02.Testbeam/TB-2019_FTBF_4stave-telescope/sw"
 fi
 export DOTFILES
 

@@ -87,7 +87,10 @@ void rootlogon()
 #endif
   if(gSystem->Getenv("TMPDIR"))
     gSystem->SetBuildDir(gSystem->Getenv("TMPDIR"));
-  if(kBaseDir != "") gROOT->ProcessLine(Form(".L %s/MyUtils.cxx+", kBaseDir.data()));
+  bool load_myutils = (kBaseDir != "") ?
+  !gSystem->AccessPathName(gSystem->ExpandPathName(Form("%s/MyUtils.cxx", kBaseDir.data()))) : false;
+  if (load_myutils)
+    gROOT->ProcessLine(Form(".L %s/MyUtils.cxx+", kBaseDir.data()));
 
   return;
 }

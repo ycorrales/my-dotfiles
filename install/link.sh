@@ -2,10 +2,10 @@
 (
 DOTFILES=${DOTFILES?"err_msg"}
 
-source ${DOTFILES}/bash/add_files/colors.sh
+pinfo "" > /dev/null || source ${DOTFILES}/bash/add_files/utils.sh
 
 #function for symlink
-function do_symlink()
+do_symlink()
 {
   local __dir="$1" #".( basename $1 )"
   local __linkables=$2

@@ -1,4 +1,15 @@
 
+# this is specific to the location of the current version of git, installed by homebrew
+[[ $(uname) =~ "Darwin" ]] && \
+  git_path="/usr/local/etc/bash_completion.d"
+
+echo ${git_path:=/usr/share/git-core/contrib/completion} > /dev/null
+
+[[ -f $git_path/"git-prompt.sh"  ]]  && source $git_path/"git-prompt.sh"
+[[ -f $git_path/"git-completion.bash" ]] && source $git_path/"git-completion.bash"
+
+unset git_path
+
 # remove trailing slash in folder name completation
 # bind 'set mark-directories off'
 function __my_pwd() {
@@ -88,7 +99,8 @@ __my_prompt() {
   if [[ "$OSTYPE" == darwin* ]]; then
     logo_ch='  '
   elif [[ "$OSTYPE" == linux* ]]; then
-    logo_ch='\360\237\220\247 '
+    logo_ch=${SINGULARITY_NAME:+'\342\247\214 '}
+    logo_ch=${logo_ch:-'\360\237\220\247 '}
   fi
 
   local __ps1_start __ps1_end
