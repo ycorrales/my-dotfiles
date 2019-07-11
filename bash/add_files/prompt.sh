@@ -12,7 +12,8 @@ unset git_path
 
 # remove trailing slash in folder name completation
 # bind 'set mark-directories off'
-function __my_pwd() {
+function __my_pwd()
+{
   __pwd=$PWD
   [[ "$__pwd" =~ ^"$HOME"(/|$) ]] && __pwd="~${__pwd#$HOME}"
   let WIDTH=${COLUMNS}/3
@@ -39,7 +40,8 @@ __suspended_jobs()
   printf "%-10s" "$__msg"
 }
 
-position_get_cursor_position(){
+position_get_cursor_position()
+{
     # based on a script from http://invisible-island.net/xterm/xterm.faq.html
     exec < /dev/tty
     oldstty=$(stty -g)
@@ -53,8 +55,9 @@ position_get_cursor_position(){
     position_row=$((${pos[0]:2} - 1))    # strip off the esc-[
     position_col=$((${pos[1]} - 1))
 }
-#
-position_write_end_of_line(){
+
+position_write_end_of_line()
+{
     local end_of_line fixed_str
     position_get_cursor_position
 
@@ -88,6 +91,13 @@ safe_append_prompt_command() {
   fi
 }
 
+__parse_git_dirty()
+{
+  local IS_DIRTY=${COLOR_LIGHTGREEN}
+  [[ -n  "$(git status -s 2> /dev/null)" ]] && IS_DIRTY=${COLOR_RED}
+  echo -e $IS_DIRTY
+}
+
 __my_prompt() {
   local last_cmd="$?"
   # unicode "?"
@@ -113,7 +123,7 @@ __my_prompt() {
   fi
   __ps1_start+="\n"
   __ps1_end="\[${COLOR_LIGHTGREEN}\]${PROMPT_SYMBOL}\[${COLOR_NONE}\]"
-  __git_ps1 "$__ps1_start" "$__ps1_end" "\[${COLOR_LIGHTGREEN}\](%s)\[${COLOR_NONE}\]"
+  __git_ps1 "$__ps1_start" "$__ps1_end" "\[$(__parse_git_dirty)\](%s)\[${COLOR_NONE}\]"
 }
 
 safe_append_prompt_command '__my_prompt'

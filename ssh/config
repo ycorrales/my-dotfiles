@@ -31,7 +31,7 @@ Host its_t2
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host ali42xL
+Host ali42xl
   HostName           ali42xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
@@ -40,6 +40,12 @@ Host ali42xL
 Host ali55xl
   HostName           ali55xl.to.infn.it
   User               aliceitstorino
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh zoroastro -W%h:%p
+Host ali66xl
+  HostName           ali66xl.to.infn.it
+  User               ycorrales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p

@@ -85,7 +85,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
   function ssh_fnal_tunnel()
   {
-    ssh -l ftbf_user ftbfbnl01.fnal.gov \
+    ssh -fN -l ftbf_user ftbfbnl01.fnal.gov \
       -L 17815:localhost:7815 \
       -L 10080:192.168.60.80:8081 \
       -L 10081:192.168.60.149:8081 \
