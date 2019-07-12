@@ -13,7 +13,7 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
   alias ali-enter="alienv enter  $ALI"
   alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias   r6='alienv setenv $ROOT -c root -l'
+  alias   rl='alienv setenv $ROOT -c root -l'
   alias  ali='ali-cmd root -l'
   alias   o2='o2-cmd  root -l'
 
@@ -84,8 +84,12 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
     alienv unload "$O2"
   }
 
-  root-print() {
-    ali-cmd aliroot -b -q "$ALICE_WORK/MyMacros/PrintFileKeys.C\(\"$1\"\)"
+  rl-ls()
+  {
+    rl <<EOF
+    gMyUtils->ShowFileKeys("$1")
+    .q
+EOF
   }
 
   alien_kill_all_jobs() {

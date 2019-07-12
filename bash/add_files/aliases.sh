@@ -19,12 +19,9 @@ alias  lld="ll | grep ^d"
 
 #GIT
 alias gaa='git add -A'
-alias gcm='git commit -m'
-alias gcma='git commit -a -m'
 alias gwait='git reset HEAD'
 alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
 alias gundo='git reset --soft HEAD' #Undoes the last commit and moves the files in the commit to staging
-alias gco='git checkout'
 alias gprbs='git pull --rebase'
 alias gmod='git show --pretty="format:" --name-only'
 alias gdname='git diff --name-status'

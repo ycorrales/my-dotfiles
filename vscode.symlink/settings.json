@@ -17,7 +17,7 @@
     "statusBar.debuggingBackground": "#005f5f"
   },
   "git.confirmSync": false,
-  "workbench.statusBar.feedback.visible": false,
+  //"workbench.statusBar.feedback.visible": false,
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": true,
 //Remove trailing whitespace
@@ -83,7 +83,7 @@
     "vim.leader": "\\",
     "vim.handleKeys": {
       "<C-a>": false,
-      "<C-f>": false
+ //     "<C-f>": false
     },
 
     "C_Cpp.clang_format_fallbackStyle":

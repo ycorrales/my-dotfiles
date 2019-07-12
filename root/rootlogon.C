@@ -90,7 +90,11 @@ void rootlogon()
   bool load_myutils = (kBaseDir != "") ?
   !gSystem->AccessPathName(gSystem->ExpandPathName(Form("%s/MyUtils.cxx", kBaseDir.data()))) : false;
   if (load_myutils)
+  {
+    string tmp_build_dir = gSystem->GetBuildDir();
+    gSystem->SetBuildDir(string(kBaseDir + "/../build").data());
     gROOT->ProcessLine(Form(".L %s/MyUtils.cxx+", kBaseDir.data()));
-
+    gSystem->SetBuildDir(tmp_build_dir.data());
+  }
   return;
 }
