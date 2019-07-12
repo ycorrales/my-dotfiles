@@ -17,12 +17,24 @@ alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
 alias  llt='ll -hrt'
 alias  lld="ll | grep ^d"
 
+#GIT
+alias gaa='git add -A'
+alias gcm='git commit -m'
+alias gcma='git commit -a -m'
+alias gwait='git reset HEAD'
+alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
+alias gundo='git reset --soft HEAD' #Undoes the last commit and moves the files in the commit to staging
+alias gco='git checkout'
+alias gprbs='git pull --rebase'
+alias gmod='git show --pretty="format:" --name-only'
+alias gdname='git diff --name-status'
+
 # Helper
 alias grep='grep --color=auto'
-alias   vi='vim'
+alias vi='vim'
 alias gits='git status'
-alias  clr='clear'
-alias  bye='exit'
+alias clr='clear'
+alias bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8
 alias vimc='vim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
 type hub     &> /dev/null && alias git='hub'
