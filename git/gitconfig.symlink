@@ -16,7 +16,11 @@
 [push]
 	default = simple
 [alias]
-  pf = push -f
+  aa   = add -A
+  ca   = commit --amend
+  pf   = push -f
+  wait = reset HEAD
+  undo = reset --soft HEAD
 [color]
 	ui = auto
 	status = auto

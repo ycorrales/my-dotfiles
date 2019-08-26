@@ -18,11 +18,8 @@ alias  llt='ll -hrt'
 alias  lld="ll | grep ^d"
 
 #GIT
-alias gaa='git add -A'
-alias gwait='git reset HEAD'
-alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
-alias gundo='git reset --soft HEAD' #Undoes the last commit and moves the files in the commit to staging
-alias gprbs='git pull --rebase'
+alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) \
+  %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
 alias gmod='git show --pretty="format:" --name-only'
 alias gdname='git diff --name-status'
 
@@ -104,21 +101,22 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 fi #end MacOnly
 
-if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
+if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
   export MYINSTALL="$HOME/sPHENIX_SW/INSTALL"
   alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n && \
                    source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL'
 fi #end SPHENIX RCF
 
-if [[ $HOSTNAME =~ $ALIDOCK ]]; then
+if [[ -n "$_ALIDOCK_ENV" ]]; then
   #alias for sPHENIX singularity framework
   l-sph-singularity()
   {
     (
-      cp ~/.Xauthority ~/sph_sing_home/.
+      _ALIDOCK_HOME="/home/alidock/sing_sphenix_home"
+      cp ~/.Xauthority ~/sing_sphenix_home/.
       cd /mnt/Work/sPHENIX;
-      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:/home/alidock/sph_sing_home/Software,/mnt/Work/sPHENIX:/home/alidock/sph_sing_home/sPHENIX"
-      singularity shell -H ~/sph_sing_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
+      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work/sPHENIX:$_ALIDOCK_HOME/sPHENIX"
+      singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
       exit $?
     )
   }

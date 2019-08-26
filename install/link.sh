@@ -18,7 +18,7 @@ do_symlink()
   __target="$HOME/$__dir$( basename $__link $__ext )"
   [ -e $__target ] && \
   { perror "~${__target#HOME} already exists... Skipping.";} || \
-  { pinfo  "Creating symlink for $__link"; ln -s $__link $__target; }
+  { pinfo  "Creating symlink for $__link"; ln -sfn $__link $__target; }
   done
 }
 
@@ -42,6 +42,6 @@ for __file in "${VIMFILES[@]}"; do
   VALUE=${__file#*:}
   [ -e ${KEY} ] && \
   { perror "${KEY} already exists... skipping."; } || \
-  { pinfo  "Creating symlink for $KEY";  ln -s ${VALUE} ${KEY}; }
+  { pinfo  "Creating symlink for $KEY";  ln -sfn ${VALUE} ${KEY}; }
 done
 )

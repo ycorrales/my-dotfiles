@@ -80,13 +80,11 @@ type gdate > /dev/null 2>&1 && GDATE='gdate'
 b_tm=$($GDATE +%s.%N)
 # source all .sh files inside of the sh/ directory
 export LC_ALL='en_US.UTF-8'
-export SPHENIX_RCF='rcf.bnl.gov'$
-export ALIDOCK='^aliPhysic'
 
 DOTFILES="$HOME/Software/dotfiles/"
-if [[ $HOSTNAME =~ $SPHENIX_RCF ]]; then
+if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
   DOTFILES="$HOME/dotfiles/"
-elif [[ $HOSTNAME =~ $ALIDOCK ]]; then
+elif [[ -n "$_ALIDOCK_ENV" ]]; then
   DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
   DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
   [ -n SINGULARITY_NAME ] && export SW_WORK_DIR="${HOME}/sPHENIX/Projects/01.MVTX/02.Testbeam/TB-2019_FTBF_4stave-telescope/sw"

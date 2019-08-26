@@ -26,16 +26,16 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   ali-init() {
     pushd ${ALISOFT}
-    aliBuild -z alice_sw init AliPhysics@master
+    aliBuild -d -z ./ init AliPhysics@master
     popd
   }
 
   ali-build() {
     local sw_path=~/.sw
     local old_alibuild_path=$ALIBUILD_WORK_DIR
-    ln -s $ALIBUILD_WORK_DIR $sw_path
+    ln -s $ALIBUILD_WORK_DIR $sw_path || exit 1
     ALIBUILD_WORK_DIR=$sw_path
-    pushd ${ALISOFT}/alice_sw
+    pushd ${ALISOFT} || exit 2
     aliBuild build AliPhysics -d -z r6 -w $ALIBUILD_WORK_DIR --default user-next-root6
     #&& aliBuild build AliDPG -d -w $ALIBUILD_WORK_DIR
     aliBuild clean
@@ -56,7 +56,7 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   ali-find() {
     if [ ! -z $1 ]; then
-      find -H ${ALISOFT}/alice_sw -iname $@
+      find -H ${ALISOFT} -iname $@
     else
       echo "ali-find: missing argument"
       return 1
@@ -65,12 +65,12 @@ if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
 
   o2-init() {
     pushd ${ALISOFT}
-    aliBuild init O2@dev -d -z alice_sw --default o2
+    aliBuild -d -z ./ init O2@dev --default o2
     popd
   }
 
   o2-build(){
-  pushd ${ALISOFT}/alice_sw
+  pushd ${ALISOFT}
   aliBuild build O2 -d -w $ALIBUILD_WORK_DIR --defaults o2
   aliBuild clean
   popd

@@ -110,9 +110,9 @@ __my_prompt() {
     logo_ch='\033[1m  \033[0m'
   elif [[ "$OSTYPE" == linux* ]]; then
     logo_ch=${SINGULARITY_NAME:+'\033[1m\342\223\242  \033[0m'}
+    logo_ch=${logo_ch:-${_ALIDOCK_ENV:+'\033[1m\360\237\220\263  \033[0m'}}
     logo_ch=${logo_ch:-'\033[1m\360\237\220\247  \033[0m'}
   fi
-
   local __ps1_start __ps1_end
   __ps1_start="\[${logo_ch}\]\[${COLOR_LIGHTGREEN}\]\[\u\] [\[${COLOR_YELLOW}\]$(__my_pwd)\[${COLOR_LIGHTGREEN}\]]"
   __ps1_start+="\[$(__suspended_jobs)\]"

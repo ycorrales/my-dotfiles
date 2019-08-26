@@ -19,7 +19,7 @@ endif
 
 let $LANG='en_US'
 
-" Format the status line 
+" Format the status line
 "*** Deprecated
 " "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 "*** using airline for a fancy statusline
@@ -322,7 +322,6 @@ inoremap <leader>$ $$<esc>i
 " C++
 inoremap #I #include <esc>a
 inoremap #_ //_____________________________________________________________________________
-inoremap #- ->
 
 "
 nmap ;; :%s:::g<Left><Left><Left>
@@ -341,8 +340,8 @@ map <leader>cc :s/^/#/<CR><leader><CR>
 map <leader>u :s/^\/\///<CR><leader><CR>
 map <leader>uu :s/\s\s\/\///<CR><leader><CR>
 
-map <leader>] :s/^/  /<CR><Leader><CR>
-map <leader>[ :s/\s\s//<CR><Leader><CR>
+"map <leader>] :s/^/  /<CR><Leader><CR>
+"map <leader>[ :s/\s\s//<CR><Leader><CR>
 
 "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
 
@@ -457,7 +456,7 @@ noremap = :silent <C-u>ClangFormat<CR>
 " => Netrw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Explore
-noremap <leader>nn :<C-u>Explore<CR>
+noremap <leader>e :<C-u>Lexplore<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree and Nerd Tree Tab
@@ -659,6 +658,12 @@ endfunction
 " }}}
 " Section Filetypes {{{
 """"""""""""""""""""""""""""""
+" => C++ section
+""""""""""""""""""""""""""""""
+au FileType cpp set colorcolumn=80,100
+
+
+""""""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
 let python_highlight_all = 1
@@ -727,4 +732,5 @@ if exists('$TMUX')
 endif
 " }}}
 end
- "vim:foldmethod=marker:foldlevel=0
+
+" vim:foldmethod=marker:foldlevel=0
