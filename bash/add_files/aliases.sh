@@ -103,8 +103,8 @@ fi #end MacOnly
 
 if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
   export MYINSTALL="$HOME/sPHENIX_SW/INSTALL"
-  alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh -n && \
-                   source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL'
+  alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh play -n && \
+                   source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL ~/bin'
 fi #end SPHENIX RCF
 
 if [[ -n "$_ALIDOCK_ENV" ]]; then
