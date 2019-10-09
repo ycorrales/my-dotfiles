@@ -3,7 +3,7 @@
 #
 
 # General
-alias reload='source ~/.bashrc' #reaload bash config
+alias reload='source ~/.zshrc' #reaload zsh config
 #Detect with `ls` flavor is in use
 LS='ls'
 colorflag='--color'
@@ -27,6 +27,7 @@ alias gdname='git diff --name-status'
 alias grep='grep --color=auto'
 alias vi='vim'
 alias gits='git status'
+alias clear='clear && printf "\e[3J"'
 alias clr='clear'
 alias bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8

@@ -35,9 +35,3 @@ function pdebug(){
 function perror(){
   echo -e "$COLOR_RED $1 $COLOR_NONE"
 }
-
-export -f plog
-export -f pinfo
-export -f pdebug
-export -f perror
-
