@@ -1,4 +1,4 @@
-if [[ ! -z "$(type alienv 2> /dev/null)" ]]; then
+if type alienv &> /dev/null; then
   export ALICE_WORK=${ALICE_WORK:-"$HOME/Work/Alice"}
   export ALISOFT=${ALISOFT:-"$ALICE_WORK/AliSoft"}
   export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
