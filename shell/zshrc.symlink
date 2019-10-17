@@ -35,6 +35,7 @@ autoload -U promptinit; promptinit
 prompt myprompt
 
 setopt appendhistory autocd extendedglob nomatch notify KSH_ARRAYS
+setopt INTERACTIVE_COMMENTS
 #bindkey -v
 
 
