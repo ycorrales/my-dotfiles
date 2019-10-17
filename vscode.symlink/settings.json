@@ -92,5 +92,6 @@
     "C_Cpp.intelliSenseCacheSize": 1024,
     "files.associations": {
       "*.C": "cpp"
-  }
+  },
+  "team.showWelcomeMessage": false
   }
