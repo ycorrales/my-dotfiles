@@ -47,7 +47,7 @@ type gdate > /dev/null 2>&1 && GDATE='gdate'
 b_tm=$($GDATE +%s.%N)
 export LC_ALL='en_US.UTF-8'
 
-DOTFILES="$HOME/Software/dotfiles/"
+DOTFILES="$HOME/Software/_git/my_dotfiles/"
 if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
   DOTFILES="$HOME/dotfiles/"
 elif [[ -n "$_ALIDOCK_ENV" ]]; then
