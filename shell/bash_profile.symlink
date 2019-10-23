@@ -1,4 +1,2 @@
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
 [[ -r ~/.bashrc ]] && source ~/.bashrc
-# Execute alidock within the appropriate Python virtual environment
-function alidock() {( source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?; )}
