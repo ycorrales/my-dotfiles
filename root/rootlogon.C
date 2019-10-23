@@ -25,8 +25,8 @@ void rootlogon()
   const string inc = pwd;
   //
   const string kBaseDir    = gSystem->Getenv("ROOTSYS")       ?
-                             "$HOME/Work/git_myROOTmacros/main"   : "";
-  const string fastjet     = gSystem->Getenv("FASTJET")       ?                               \
+                             "$HOME/Work/_git/my_root_macros/main" : "";
+  const string fastjet     = gSystem->Getenv("FASTJET")       ?
                               "$FASTJET/include"              : "";
   const string aliroot     = gSystem->Getenv("ALICE_ROOT")    ?
                               "$ALICE_ROOT/include"           : "";
