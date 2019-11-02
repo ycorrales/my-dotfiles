@@ -132,8 +132,8 @@ elif [[ -n "$_ALIDOCK_ENV" ]]; then
 fi
 export DOTFILES
 
-# source all .sh files inside of the sh/ directory
-for SHELL_FILE in $( ls -r $DOTFILES/shell/add_files/*.*sh ); do
+# source all .shell files inside of the sh/ directory
+for SHELL_FILE in $( ls -r $DOTFILES/shell/add_files/*.shell ); do
   source $SHELL_FILE;
   unset SHELL_FILE
 done
