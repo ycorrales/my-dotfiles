@@ -27,7 +27,7 @@ Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-rhubarb' " hub extension for fugitive
-
+Plug 'hashrocket/vim-macdown' " plugin for markdown
 " plugin from vim
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/vim-clang-format'
