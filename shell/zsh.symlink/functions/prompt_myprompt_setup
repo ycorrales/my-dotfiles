@@ -223,14 +223,14 @@ myprompt_logo()
 {
   local logo_ch=''
   if [[ "$OSTYPE" == darwin* ]]; then
-    logo_ch=' '
+    logo_ch=''
   elif [[ "$OSTYPE" == linux* ]]; then
     logo_ch=${SINGULARITY_NAME:+'\342\223\242  '}
     logo_ch=${logo_ch:-${_ALIDOCK_ENV:+'\360\237\220\263  '}}
     logo_ch=${logo_ch:-$(printf '\360\237\220\247   ')}
   fi
 
-  myprompt::section "white" $logo_ch
+  myprompt::section "white" "$logo_ch "
 }
 
 # Compose whole prompt from sections

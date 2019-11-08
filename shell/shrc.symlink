@@ -25,6 +25,9 @@ if [[ -n $ZSH_VERSION ]]; then
   # removes blank lines from history
   setopt HIST_REDUCE_BLANKS
 
+  # User bash split word
+  setopt shwordsplit
+
   # The following lines were added by compinstall
   #zstyle :compinstall filename '$HOME/.zshrc'
   # `compinit` scans $fpath, so do this before calling it.
