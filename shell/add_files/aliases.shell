@@ -3,7 +3,7 @@
 #
 
 # General
-alias reload='source ~/.zshrc' #reaload zsh config
+alias reload='source ~/.shrc' #reaload zsh config
 #Detect with `ls` flavor is in use
 LS='ls'
 colorflag='--color'
@@ -133,4 +133,14 @@ function cleanup()
     plog "Removing all files $f"
     find $DIR -name $f -type f -ls -delete 2> /dev/null
   done
+}
+
+# mount rhic sshfs file-system
+function mount_rhic()
+{
+  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/rhic_sphenix'
+  pushd $BASE_DIR
+  sshfs sphenix:/sphenix/u/ycmorales -o auto_cache user
+  sshfs sphenix:/sphenix/user/ycmorales -o auto_cache data
+  popd
 }
