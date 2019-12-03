@@ -526,6 +526,12 @@ let g:lightline = {
       \ 'separator': { 'left': ' ', 'right': ' ' },
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
+
+"""""""""""""""""""
+" vim-markdown
+"""""""""""""""""""
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<C-m>'
 " }}}
 " Section Extra {{{
 
@@ -710,7 +716,6 @@ function! JavaScriptFold()
     endfunction
     setl foldtext=FoldText()
 endfunction
-
 
 """"""""""""""""""""""""""""""
 " => CoffeeScript section
