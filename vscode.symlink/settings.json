@@ -93,5 +93,6 @@
     "files.associations": {
       "*.C": "cpp"
   },
-  "team.showWelcomeMessage": false
+  "team.showWelcomeMessage": false,
+  "C_Cpp.updateChannel": "Insiders"
   }
