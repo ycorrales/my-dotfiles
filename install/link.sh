@@ -2,7 +2,7 @@
 (
 DOTFILES=${DOTFILES?"err_msg"}
 
-pinfo "" > /dev/null || source ${DOTFILES}/shell/add_files/utils.zsh
+pinfo "" > /dev/null || source ${DOTFILES}/shell/add_files/utils.shell
 
 #function for symlink
 do_symlink()
