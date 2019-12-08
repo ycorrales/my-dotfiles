@@ -3,6 +3,7 @@
 #
 
 # General
+alias l-vivado='source /tools/Xilinx/Vivado/2019.2/settings64.sh'
 alias reload='source ~/.shrc' #reaload zsh config
 #Detect with `ls` flavor is in use
 LS='ls'
