@@ -582,7 +582,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.C,*.h,*.c,*.cpp :call CleanExtraSpaces()
+    autocmd BufWritePre *.tcl,*.vhd,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.C,*.h,*.c,*.cpp :call CleanExtraSpaces()
 endif
 
 func! DeleteTillSlash()
