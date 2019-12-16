@@ -79,7 +79,7 @@ void rootlogon()
   // ===========
    if(sPHENIX != "") {
     string macro_path = gROOT->GetMacroPath();
-    macro_path += string(":") + gSystem->ExpandPathName("$HOME/sPHENIX_SW/macros/macros/g4simulations/");
+    macro_path += string(":") + gSystem->ExpandPathName("$HOME/sPHENIX/sPHENIX_SW/SOURCES/macros/macros/g4simulations/");
     gROOT->SetMacroPath(macro_path.c_str());
   }
 

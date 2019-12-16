@@ -16,6 +16,7 @@ type gsed &> /dev/null && alias sed='gsed'
 alias  la="$LS -AF  ${colorflag}"
 alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
 alias  llt='ll -hrt'
+alias  dds="$LS -Fh ${colorflag} ${gdirfirst} "
 alias  lld="ll | grep ^d"
 
 #GIT
@@ -136,12 +137,11 @@ function cleanup()
   done
 }
 
-# mount rhic sshfs file-system
-function mount_rhic()
+# mount rhic sPHENIX_SW sshfs file-system
+function mount-sPHENIX_SW()
 {
-  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/rhic_sphenix'
+  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
   pushd $BASE_DIR
-  sshfs sphenix:/sphenix/u/ycmorales -o auto_cache user
-  sshfs sphenix:/sphenix/user/ycmorales -o auto_cache data
+  sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
   popd
 }
