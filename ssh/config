@@ -55,7 +55,7 @@ Host superfarm
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-Host lxplus
+Host lxplus.cern.ch
   HostName           lxplus.cern.ch
   User               ycorrale
   ForwardX11         yes

@@ -138,10 +138,10 @@ function cleanup()
 }
 
 # mount rhic sPHENIX_SW sshfs file-system
-function mount-sPHENIX_SW()
-{
-  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
-  pushd $BASE_DIR
-  sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
-  popd
-}
+#function mount-sPHENIX_SW()
+#{
+#  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
+#  pushd $BASE_DIR
+#  sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
+#  popd
+#}
