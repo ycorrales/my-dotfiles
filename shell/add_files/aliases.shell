@@ -39,7 +39,7 @@ type nvim    &> /dev/null && alias vim='nvim' # Using mvim as vim in terminal
 [[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 
 #WORKING_DIR
-alias goDotfiles='clr; cd $DOTFILES'
+alias godotfiles='clr; cd $DOTFILES'
 
 alias flush="dscacheutil -flushcache" # Flush Directory Service cache
 
@@ -81,7 +81,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
   alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
   alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
-  alias  gosPHENIX="clr; cd ~/Work/sPHENIX/"
+  export sPHENIX="$HOME/Work/sPHENIX"
+  alias  gosPHENIX="clr; cd $sPHENIX"
 
   #SECRET TOKEN
   alias   getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'
@@ -118,7 +119,7 @@ if [[ -n "$_ALIDOCK_ENV" ]]; then
       _ALIDOCK_HOME="/home/alidock/sing_sphenix_home"
       cp ~/.Xauthority ~/sing_sphenix_home/.
       cd /mnt/Work/sPHENIX;
-      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work/sPHENIX:$_ALIDOCK_HOME/sPHENIX"
+      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work:$_ALIDOCK_HOME/Work"
       singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
       exit $?
     )
@@ -142,7 +143,7 @@ function mount-sPHENIX_SW()
 {
   local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
   pushd $BASE_DIR > /dev/null
-  #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX 
+  #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
   sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
   [[ "$?" == "0" ]] && echo "done."
   popd > /dev/null
