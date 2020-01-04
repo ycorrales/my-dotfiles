@@ -141,10 +141,22 @@ function cleanup()
 # mount rhic sPHENIX_SW sshfs file-system
 function mount-sPHENIX_SW()
 {
+  local PAR=${1:-'-m'}
+  local UNMOUNT=0
+  case "$PAR" in
+    -u | -U)  UNMOUNT=1;;
+    -m | -M)  UNMOUNT=0;;
+          *)  perror "unknow parameter $1" && return ;;
+  esac
+
   local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
   pushd $BASE_DIR > /dev/null
   #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
-  sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
+  if [[ "$UNMOUNT" == "1" ]]; then
+    diskutil umount force sPHENIX_SW
+  else
+    sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
+  fi
   [[ "$?" == "0" ]] && echo "done."
   popd > /dev/null
 }
