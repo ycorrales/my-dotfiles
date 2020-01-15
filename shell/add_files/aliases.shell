@@ -139,7 +139,7 @@ function cleanup()
 }
 
 # mount rhic sPHENIX_SW sshfs file-system
-function mount-sPHENIX_SW()
+function mount-sPHENIX()
 {
   local PAR=${1:-'-m'}
   local UNMOUNT=0
@@ -154,9 +154,20 @@ function mount-sPHENIX_SW()
   #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
   if [[ "$UNMOUNT" == "1" ]]; then
     diskutil umount force sPHENIX_SW
+    diskutil umount force RCF_Work
   else
-    sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/sPHENIX_SW -o auto_cache sPHENIX_SW
+    sshfs sphenix:/sphenix/u/ycmorales/sPHENIX_SW -o auto_cache sPHENIX_SW
+    sshfs sphenix:/gpfs02/sphenix/user/ycmorales/sPHENIX/ -o auto_cache RCF_Work
   fi
   [[ "$?" == "0" ]] && echo "done."
   popd > /dev/null
+}
+
+#emulate watch linux command
+#@param 1, executable command
+#@param 2, [optional] time in seconds
+function watch()
+{
+  trap "echo exit...; return" INT
+  while :; do clear; $1; sleep ${2:-2}; done
 }
