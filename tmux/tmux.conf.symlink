@@ -6,12 +6,14 @@ set -g prefix C-a
 bind C-a send-prefix
 unbind C-b
 
-# open spli-windows in current directory
-bind '"' split-window -c "#{pane_current_path}"
-bind '%' split-window -h -c "#{pane_current_path}"
 # Version-specific commands [grumble, grumble]
 # See: https://github.com/tmux/tmux/blob/master/CHANGES
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6- | tr -d [a-z,A-Z])"
+
+# open spli-windows in current directory
+if-shell -b '[ "$(echo "$TMUX_VERSION >= 1.9" | bc)" = 1 ]' \
+  "bind '\"' split-window -c \"#{pane_current_path}\"; \
+   bind '%' split-window -h -c \"#{pane_current_path}\" "
 
 if-shell -b '[ "$(echo "$TMUX_VERSION < 2.1" | bc)" = 1 ]' \
   "set -g mouse-select-pane on; set -g mode-mouse on; \
