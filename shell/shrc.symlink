@@ -128,6 +128,13 @@ export LC_ALL='en_US.UTF-8'
 DOTFILES="$HOME/Software/_git/my_dotfiles/"
 if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
   DOTFILES="$HOME/dotfiles/"
+elif [[ $HOSTNAME =~ 'pn1714380.lanl.gov' ]]; then
+  DOTFILES="$HOME/dotfiles/"
+  #some workaound for linux lanl machine
+  unset SSH_ASKPASS
+  if [[ -f '/etc/bash_completion.d/git' ]]; then
+   source '/etc/bash_completion.d/git'
+  fi
 elif [[ -n "$_ALIDOCK_ENV" ]]; then
   DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
   DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
