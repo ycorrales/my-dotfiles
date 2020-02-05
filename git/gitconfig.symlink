@@ -32,8 +32,3 @@
 #	helper = cache --timeout 86400 --socket /var/git-creds-501/socket
 [hub]
 	protocol = ssh
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
