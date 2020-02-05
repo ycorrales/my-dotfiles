@@ -105,10 +105,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 fi #end MacOnly
 
-if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]; then
-  export MYINSTALL="$HOME/sPHENIX_SW/INSTALL"
-  alias l-sphenix='source /opt/sphenix/core/bin/sphenix_setup.sh play -n && \
-                   source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL ~/bin'
+if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ -n $SINGULARITY_NAME ]]; then
+  alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh'
+  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
 fi #end SPHENIX RCF
 
 if [[ -n "$_ALIDOCK_ENV" ]]; then
