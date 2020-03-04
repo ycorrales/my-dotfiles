@@ -5,6 +5,20 @@ Host *
 #  IgnoreUnknown UseKeychain
 #  UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
+
+Host felix
+  HostName           204.121.146.103
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+
+Host nuc
+  HostName           192.168.100.2
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh felix -W%h:%p
+
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
