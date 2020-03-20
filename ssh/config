@@ -6,6 +6,19 @@ Host *
 #  UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
 
+Host ming_nuc
+  Hostname          darkphoton.ddns.net
+  User              maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+
+Host ming_felix
+  Hostname          192.168.100.65
+  User              maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh ming_nuc -W%h:%p
+
 Host felix
   HostName           204.121.146.103
   User               maps
@@ -24,6 +37,7 @@ Host zoroastro
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
+
 #ITS upgrade Camera (most of the time in Windows)
 Host its_db
   HostName           its098xl.to.infn.it
@@ -31,6 +45,7 @@ Host its_db
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 #ITS upgrade test setup 1 (HS)
 Host its_t1
   HostName           its099xl.to.infn.it
@@ -38,6 +53,7 @@ Host its_t1
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 #ITS upgrade test setup 2 (Stave)
 Host its_t2
   HostName           ali139xl.to.infn.it
@@ -45,55 +61,65 @@ Host its_t2
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 Host ali42xl
   HostName           ali42xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 Host ali55xl
   HostName           ali55xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 Host ali66xl
   HostName           ali66xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 Host superfarm
   HostName           cloud-gw-215.to.infn.it
   User               corrales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
+
 Host lxplus.cern.ch
   HostName           lxplus.cern.ch
   User               ycorrale
   ForwardX11         yes
   ForwardX11Trusted  yes
+
 Host rcf_gateway
   HostName           rssh.rhic.bnl.gov
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
+
 Host sphenix
   HostName           rcas2067.rcf.bnl.gov
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh rcf_gateway -W%h:%p
+
 Host nx02
   HostName           nx02.rcf.bnl.gov
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh rcf_gateway -W%h:%p
+
 Host *.fnal.gov
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
+
 Host ftbfbnl01
   HostName           ftbfbnl01.fnal.gov
   User               ftbf_user
@@ -101,5 +127,6 @@ Host ftbfbnl01
   ForwardX11Trusted  yes
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
+
 Host 192.168.60.*
   ProxyCommand ssh  ftbf_user@ftbfbnl01.fnal.gov  -W%h:%p
