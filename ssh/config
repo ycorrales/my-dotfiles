@@ -6,18 +6,19 @@ Host *
 #  UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
 
-Host ming_nuc
+Host ming_felix
   Hostname          darkphoton.ddns.net
+  Port              37023
   User              maps
   ForwardX11         yes
   ForwardX11Trusted  yes
 
-Host ming_felix
-  Hostname          192.168.100.65
+Host ming_nuc
+  Hostname          192.168.100.2
   User              maps
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh ming_nuc -W%h:%p
+  ProxyCommand       ssh ming_felix -q -W%h:%p
 
 Host felix
   HostName           204.121.146.103

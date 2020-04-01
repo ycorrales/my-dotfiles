@@ -25,21 +25,21 @@ void rootlogon()
   const string inc = pwd;
   //
   const string kBaseDir    = gSystem->Getenv("ROOTSYS")       ?
-                             "$HOME/Work/_git/my_root_macros/main" : "";
+                             gSystem->ExpandPathName("$HOME/Work/_git/my_root_macros/main") : "";
   const string fastjet     = gSystem->Getenv("FASTJET")       ?
-                              "$FASTJET/include"              : "";
+                             gSystem->ExpandPathName("$FASTJET/include")                    : "";
   const string aliroot     = gSystem->Getenv("ALICE_ROOT")    ?
-                              "$ALICE_ROOT/include"           : "";
+                             gSystem->ExpandPathName("$ALICE_ROOT/include")                 : "";
   const string aliphysics  = gSystem->Getenv("ALICE_PHYSICS") ?
-                              "$ALICE_PHYSICS/include"        : "";
+                             gSystem->ExpandPathName("$ALICE_PHYSICS/include")              : "";
   const string fairmq_base = gSystem->Getenv("FAIRMQ_ROOT")   ?
-                              "$FAIRMQ_ROOT/include"          : "";
+                             gSystem->ExpandPathName("$FAIRMQ_ROOT/include")                : "";
   const string fairmq_full = gSystem->Getenv("FAIRMQ_ROOT")   ?
-                              "$FAIRMQ_ROOT/include/fairmq"   : "";
+                             gSystem->ExpandPathName("$FAIRMQ_ROOT/include/fairmq")         : "";
   const string o2_develo   = gSystem->Getenv("O2_ROOT")       ?
-                              "$O2_ROOT"                      : "";
+                             gSystem->ExpandPathName("$O2_ROOT")                            : "";
   const string sPHENIX     = gSystem->Getenv("OPT_SPHENIX")   ?
-                              "$OPT_SPHENIX"                  : "";
+                             gSystem->ExpandPathName("$OPT_SPHENIX")                        : "";
   // Include paths
   // =============
   // There are 2 separate paths: one for ACLiC, and one for CINT or CLING.
@@ -88,7 +88,7 @@ void rootlogon()
   if(gSystem->Getenv("TMPDIR"))
     gSystem->SetBuildDir(gSystem->Getenv("TMPDIR"));
   bool load_myutils = (kBaseDir != "") ?
-  !gSystem->AccessPathName(gSystem->ExpandPathName(Form("%s/MyUtils.cxx", kBaseDir.data()))) : false;
+  !gSystem->AccessPathName(Form("%s/MyUtils.cxx", kBaseDir.data())) : false;
   if (load_myutils)
   {
     string tmp_build_dir = gSystem->GetBuildDir();

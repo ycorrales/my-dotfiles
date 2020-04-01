@@ -1,0 +1,9 @@
+﻿
+[ming_felix]
+SPA_SERVER_PROTO            udp
+SPA_SERVER_PORT             30722
+ACCESS                      tcp/37023
+SPA_SERVER                  174.56.100.120
+KEY_BASE64                  0gkz0R2x6iq4HixFqG1NyQq8HH5bRPqD8WBDcwnRIp0=
+HMAC_KEY_BASE64             xWo7FNLLq3INxE5JFC8rdCbKZ6n3A92KElhF/cEQFhqHh3oeJyYs1I+7/SJOEGYG1+fdb2LpBAYLgh1buRjVGA==
+USE_HMAC                    Y
