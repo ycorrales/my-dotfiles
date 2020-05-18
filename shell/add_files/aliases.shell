@@ -95,9 +95,29 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #SSH
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
-  alias ssh_dynamic_tunnel='ssh -CfN -D 1080'
-  alias ssh_vnc_tunnel='ssh -fN -L 5900:localhost:5900'
-  function ssh_fnal_tunnel()
+  alias ssh_tunnel_dynamic='ssh -CfN -D 1080'
+  alias bnl_ssh_email='ssh -fN -L 1993:mail.rhic.bnl.gov:993 ycmorales@rssh.rhic.bnl.gov'
+
+#ssh local tunnel for vnc
+#@param 1, ssh hostname
+#@param 2, [optional] remote port (default 5901)
+  vnc_ssh()
+  {
+    local host=${1}
+    local port=${2:-5901}
+    ssh -fN -L 5900:localhost:$port $host
+  }
+
+#
+  ming_fwknop()
+  {
+    local cmd="$@"
+    fwknop -s -n ming_felix || return 1
+    sleep 2
+    $cmd
+  }
+
+  ssh_fnal_tunnel()
   {
     ssh -fN -l ftbf_user ftbfbnl01.fnal.gov \
       -L 17815:localhost:7815 \
@@ -130,7 +150,7 @@ if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
 fi
 
 # Recursively delete `.DS_Store` files
-function cleanup()
+cleanup()
 {
   local DIR=${1:-"./"}
   TRASH_FILE='0 .DS_Store'
@@ -142,7 +162,7 @@ function cleanup()
 }
 
 # mount rhic sPHENIX_SW sshfs file-system
-function mount-sPHENIX()
+mount-sPHENIX()
 {
   local PAR=${1:-'-m'}
   local UNMOUNT=0
@@ -170,7 +190,7 @@ function mount-sPHENIX()
 #emulate watch linux command
 #@param 1, executable command
 #@param 2, [optional] time in seconds
-function watch()
+watch()
 {
   trap "echo exit...; return" INT
   while :; do clear; $1; sleep ${2:-2}; done

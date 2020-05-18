@@ -7,6 +7,7 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 
 Host ming_felix
+  #Hostname          98.249.124.99
   Hostname          darkphoton.ddns.net
   Port              37023
   User              maps
@@ -97,7 +98,27 @@ Host lxplus.cern.ch
   ForwardX11         yes
   ForwardX11Trusted  yes
 
-Host rcf_gateway
+Host ph_rcf_gateway
+  HostName           rssh.rhic.bnl.gov
+  User               ycorrale
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+
+Host phenix
+  HostName           rcas2067.rcf.bnl.gov
+  User               ycorrale
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh ph_rcf_gateway -W%h:%p
+
+Host ph_nx02
+  HostName           nx02.rcf.bnl.gov
+  User               ycorrale
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh ph_rcf_gateway -W%h:%p
+
+Host sph_rcf_gateway
   HostName           rssh.rhic.bnl.gov
   User               ycmorales
   ForwardX11         yes
@@ -108,14 +129,14 @@ Host sphenix
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh rcf_gateway -W%h:%p
+  ProxyCommand       ssh sph_rcf_gateway -W%h:%p
 
-Host nx02
+Host sph_nx02
   HostName           nx02.rcf.bnl.gov
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh rcf_gateway -W%h:%p
+  ProxyCommand       ssh sph_rcf_gateway -W%h:%p
 
 Host *.fnal.gov
   GSSAPIAuthentication yes
