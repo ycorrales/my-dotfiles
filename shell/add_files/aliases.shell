@@ -132,6 +132,7 @@ fi #end MacOnly
 if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ -n $SINGULARITY_NAME ]]; then
   alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh'
   alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
+  alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
 fi #end SPHENIX RCF
 
 if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
