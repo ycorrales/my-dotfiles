@@ -7,8 +7,8 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 
 Host ming_felix
-  #Hostname          98.249.124.99
-  Hostname          darkphoton.ddns.net
+  Hostname          98.249.124.99
+  #Hostname          darkphoton.ddns.net
   Port              37023
   User              maps
   ForwardX11         yes
