@@ -129,7 +129,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 fi #end MacOnly
 
-if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ -n $SINGULARITY_NAME ]]; then
+if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ $HOSTNAME =~ 'sdcc.bnl.gov'$ ]] \
+  || [[ -n $SINGULARITY_NAME ]]; then
   alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh'
   alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
   alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
@@ -186,6 +187,16 @@ mount-sPHENIX()
 
   [[ "$?" == "0" ]] && echo "done."
   popd > /dev/null
+}
+
+mount-felix_sshfs()
+{
+  cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
+  ming_fwknop sshfs ming_felix:ycorrales sshfs_ming_felix
+  if [[  $? != 0 ]]; then
+    diskutil unmount force sshfs_ming_felix
+    ming_fwknop sshfs ming_felix:ycorrales sshfs_ming_felix
+  fi
 }
 
 #emulate watch linux command

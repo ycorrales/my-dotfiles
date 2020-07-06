@@ -125,7 +125,7 @@ Host sph_rcf_gateway
   ForwardX11Trusted  yes
 
 Host sphenix
-  HostName           rcas2067.rcf.bnl.gov
+  HostName           sphnx01.sdcc.bnl.gov
   User               ycmorales
   ForwardX11         yes
   ForwardX11Trusted  yes
