@@ -38,8 +38,8 @@ void rootlogon()
                              gSystem->ExpandPathName("$FAIRMQ_ROOT/include/fairmq")         : "";
   const string o2_develo   = gSystem->Getenv("O2_ROOT")       ?
                              gSystem->ExpandPathName("$O2_ROOT")                            : "";
-  const string sPHENIX     = gSystem->Getenv("OPT_SPHENIX")   ?
-                             gSystem->ExpandPathName("$OPT_SPHENIX")                        : "";
+  const string macros_path = gSystem->Getenv("MACROS_PATH")   ?
+                             gSystem->ExpandPathName("$MACROS_PATH")                         : "";
   // Include paths
   // =============
   // There are 2 separate paths: one for ACLiC, and one for CINT or CLING.
@@ -77,10 +77,10 @@ void rootlogon()
 
   // Macros path
   // ===========
-   if(sPHENIX != "") {
-    string macro_path = gROOT->GetMacroPath();
-    macro_path += string(":") + gSystem->ExpandPathName("$HOME/sPHENIX/sPHENIX_SW/SOURCES/macros/macros/g4simulations/");
-    gROOT->SetMacroPath(macro_path.c_str());
+   if(macros_path != "") {
+    string new_macros_path = gROOT->GetMacroPath();
+    new_macros_path += string(":") + macros_path;
+    gROOT->SetMacroPath(new_macros_path.c_str());
   }
 
 #if defined(__CLING__)
