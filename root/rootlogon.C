@@ -45,12 +45,12 @@ void rootlogon()
   // There are 2 separate paths: one for ACLiC, and one for CINT or CLING.
   // 1. ACLiC include path
   gSystem->AddIncludePath(Form("-I%s ", inc.data()));
-  if(kBaseDir    != "") gSystem->AddIncludePath(Form("-I%s/", kBaseDir.data()));
-  if(fastjet     != "") gSystem->AddIncludePath(Form("-I%s ", fastjet.data()));
-  if(aliroot     != "") gSystem->AddIncludePath(Form("-I%s ", aliroot.data()));
-  if(aliphysics  != "") gSystem->AddIncludePath(Form("-I%s ", aliphysics.data()));
-  if(fairmq_base != "") gSystem->AddIncludePath(Form("-I%s ", fairmq_base.data()));
-  if(fairmq_full != "") gSystem->AddIncludePath(Form("-I%s ", fairmq_full.data()));
+  //if(kBaseDir    != "") gSystem->AddIncludePath(Form("-I%s/", kBaseDir.data()));
+  //if(fastjet     != "") gSystem->AddIncludePath(Form("-I%s ", fastjet.data()));
+  //if(aliroot     != "") gSystem->AddIncludePath(Form("-I%s ", aliroot.data()));
+  //if(aliphysics  != "") gSystem->AddIncludePath(Form("-I%s ", aliphysics.data()));
+  //if(fairmq_base != "") gSystem->AddIncludePath(Form("-I%s ", fairmq_base.data()));
+  //if(fairmq_full != "") gSystem->AddIncludePath(Form("-I%s ", fairmq_full.data()));
 
   // 2. Interpreter include path
   // Type .include (ROOT 5) or .I (ROOT 6) at the ROOT REPL to see a listing
