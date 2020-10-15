@@ -7,19 +7,27 @@ Host *
   IdentityFile ~/.ssh/id_rsa
 
 Host ming_felix
-  Hostname          98.249.124.99
-  #Hostname          darkphoton.ddns.net
-  Port              37023
-  User              maps
+  Hostname           98.249.124.99
+  #Hostname           darkphoton.ddns.net
+  Port               37023
+  User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
 
 Host ming_nuc
-  Hostname          192.168.100.2
-  User              maps
+  Hostname           192.168.100.2
+  User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh ming_felix -q -W%h:%p
+
+Host amd_felix
+  Hostname           localhost
+  Port               8022
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh ming_felix -W%h:%p
 
 Host felix
   HostName           204.121.146.103
