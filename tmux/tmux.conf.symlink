@@ -1,9 +1,9 @@
 # if run as "tmux attach", create a session if one does not already exist
 #new-session -n $HOST
 # remap prefix to Control + a
-set -g prefix C-a
+#set -g prefix C-a
 # bind 'C-a C-a' to type 'C-a'
-bind C-a send-prefix
+#bind C-a send-prefix
 unbind C-b
 
 # Version-specific commands [grumble, grumble]
