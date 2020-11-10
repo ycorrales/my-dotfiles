@@ -29,6 +29,14 @@ Host amd_felix
   ForwardX11Trusted  yes
   ProxyCommand       ssh ming_felix -W%h:%p
 
+Host amd_to
+  Hostname           localhost
+  Port               8022
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh zoroastro -W%h:%p
+
 Host felix
   HostName           204.121.146.103
   User               maps
@@ -74,20 +82,6 @@ Host its_t2
 
 Host ali42xl
   HostName           ali42xl.to.infn.it
-  User               ycorrales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh zoroastro -W%h:%p
-
-Host ali55xl
-  HostName           ali55xl.to.infn.it
-  User               ycorrales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh zoroastro -W%h:%p
-
-Host ali66xl
-  HostName           ali66xl.to.infn.it
   User               ycorrales
   ForwardX11         yes
   ForwardX11Trusted  yes
