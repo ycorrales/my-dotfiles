@@ -31,7 +31,7 @@ Host amd_felix
 
 Host amd_to
   Hostname           localhost
-  Port               8022
+  Port               60022
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
