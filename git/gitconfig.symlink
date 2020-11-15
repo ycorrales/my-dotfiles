@@ -21,6 +21,7 @@
   pf   = push -f
   wait = reset HEAD
   undo = reset --soft HEAD
+  ladog= log --all --decorate --oneline --graph
 [color]
 	ui = auto
 	status = auto
