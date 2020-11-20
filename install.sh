@@ -1,14 +1,5 @@
 #! /usr/bin/env bash
 (
-  DOTFILES=${DOTFILES:-"$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"}
-
-  if test $OSTYPE = "darwin"*; then
-    OS="osx_x86-64"
-  elif test $OSTYPE = "linux-gnu"; then
-    OS="linux"
-  else
-    OS="unkonw"
-  fi
 
   function _config_myMac()
   {
@@ -22,8 +13,22 @@
 
   function Main()
   {
+    DOTFILES=${DOTFILES:-"$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"}
+
+    if test $OSTYPE = "darwin"*; then
+      OS="osx_x86-64"
+    elif test $OSTYPE = "linux-gnu"; then
+      OS="linux"
+    else
+      OS="unkonw"
+    fi
+
     # sourcing script to create the symbolic link
-    [ -f $DOTFILES/install/link.sh ] && source $DOTFILES/install/link.sh
+    files=( "shell/add_files/util.shell" "install/link.sh" )
+    for file in ${files[@]}; do
+      FILE_PATH=${DOTFILES}/$file
+      [ -f ${FILE_PATH} ] && source ${FILE_PATH}
+    done
     [ $OS = "osx_x86-64" ] && _config_myMac || :
   }
 
