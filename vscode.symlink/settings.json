@@ -58,8 +58,6 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
-    "vim.enableNeovim": true,
-    "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.insertModeKeyBindings": [
       {
         "before": ["<leader>", "w"],
@@ -94,5 +92,11 @@
       "*.C": "cpp"
   },
   "team.showWelcomeMessage": false,
-  "C_Cpp.updateChannel": "Insiders"
+  "C_Cpp.updateChannel": "Insiders",
+  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "$HOME/.vimrc",
+  "update.mode": "manual",
+  "python.pythonPath": "/usr/bin/python3",
+  "python.showStartPage": false
   }
