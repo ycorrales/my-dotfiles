@@ -97,7 +97,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh_tunnel_dynamic='ssh -CfN -D 1080'
-  alias bnl_email_ssh='ssh -fN -l ycmorales rssh.rhic.bnl.gov -L 1993:mail.rhic.bnl.gov:993'
+  alias bnl_email_ssh='ssh -fN -l ycmorales ssh.sdcc.bnl.gov -L 1993:mail.rhic.bnl.gov:993'
   alias bnl_www_ssh='ssh -fN -l ycorrale cssh.rhic.bnl.gov -L 3128:batch3.phy.bnl.gov:3128'
 
 #ssh local tunnel for vnc
