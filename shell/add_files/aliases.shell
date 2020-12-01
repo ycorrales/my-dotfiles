@@ -193,11 +193,21 @@ mount-sPHENIX()
 
 mount-felix_sshfs()
 {
+  local cmd=${1:-"amd_to"}
   cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
-  ming_fwknop sshfs ming_felix:./ sshfs_ming_felix
-  if [[  $? != 0 ]]; then
-    diskutil unmount force sshfs_ming_felix
-    ming_fwknop sshfs ming_felix:./ sshfs_ming_felix
+  if [[ -z $(ls -A sshfs_flx) ]]; then
+    if [[ "x${cmd}x" == "xamd_tox" ]]; then
+      sshfs amd_to:./mvtx_readout -o auto_cache sshfs_flx
+    elif [[ "x${cmd}x" == "xming_felixx" ]]; then
+      ming_fwknop sshfs ming_felix:./ sshfs_flx
+    else
+      echo "ERROR: Wrong mount_point server"
+    fi
+
+    if [[  $? != 0 ]]; then
+      diskutil unmount force sshfs_flx
+      mount-felix_sshfs ${cmd}
+    fi
   fi
 }
 

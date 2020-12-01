@@ -21,14 +21,6 @@ Host ming_nuc
   ForwardX11Trusted  yes
   ProxyCommand       ssh ming_felix -q -W%h:%p
 
-Host amd_felix
-  Hostname           localhost
-  Port               8022
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh ming_felix -W%h:%p
-
 Host amd_to
   Hostname           localhost
   Port               60022
