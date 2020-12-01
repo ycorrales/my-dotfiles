@@ -1,111 +1,84 @@
-Host *
-  ControlMaster      yes
-  ControlPersist     600
-#  AddKeysToAgent     yes
-#  IgnoreUnknown UseKeychain
-#  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
-
-Host ming_felix
+Host flx-ming
   Hostname           98.249.124.99
   #Hostname           darkphoton.ddns.net
   Port               37023
   User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
 
-Host ming_nuc
+Host nuc-ming
   Hostname           192.168.100.2
+  User               maps
+  ProxyCommand       ssh flx-ming -q -W%h:%p
+
+Host flx-amd-ming
+  Hostname           localhost
+  Port               8022
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh ming_felix -q -W%h:%p
+  ProxyCommand       ssh flx-ming -q -W%h:%p
 
-Host amd_to
+Host flx-amd-to
   Hostname           localhost
-  Port               60022
+  Port               8022
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
-
-Host felix
-  HostName           204.121.146.103
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-
-Host nuc
-  HostName           192.168.100.2
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh felix -W%h:%p
 
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
 
 Host superfarm
   HostName           cloud-gw-215.to.infn.it
   User               corrales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -W%h:%p
 
-Host lxplus.cern.ch
+Host lxplus
   HostName           lxplus.cern.ch
   User               ycorrale
-  ForwardX11         yes
-  ForwardX11Trusted  yes
 
 Host sdcc_gateway
   HostName           ssh.sdcc.bnl.gov
   User               ycorrale
-  ForwardX11         yes
-  ForwardX11Trusted  yes
 
 Host phenix
   HostName           rcas2067.rcf.bnl.gov
   User               ycorrale
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
 Host ph_nx02
   HostName           nx02.rcf.bnl.gov
   User               ycorrale
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
 Host sphenix
   HostName           sphnx01.sdcc.bnl.gov
   User               ycmorales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
 Host sph_nx02
   HostName           nx02.rcf.bnl.gov
   User               ycmorales
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyCommand       ssh sdcc_gateway -W%h:%p
+
+Host ftbfbnl01
+  HostName           ftbfbnl01.fnal.gov
+  User               ftbf_user
+#  GSSAPIAuthentication yes
+#  GSSAPIDelegateCredentials yes
+
+Host 192.168.60.*
+  ProxyCommand       ssh ftbfbnl01 -W%h:%p
 
 Host *.fnal.gov
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
 
-Host ftbfbnl01
-  HostName           ftbfbnl01.fnal.gov
-  User               ftbf_user
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  GSSAPIAuthentication yes
-  GSSAPIDelegateCredentials yes
-
-Host 192.168.60.*
-  ProxyCommand ssh  ftbf_user@ftbfbnl01.fnal.gov  -W%h:%p
+Host *
+  ControlMaster      yes
+  ControlPersist     600
+  IdentityFile       ~/.ssh/id_rsa
+#  AddKeysToAgent     yes
+#  IgnoreUnknown UseKeychain
+#  UseKeychain yes

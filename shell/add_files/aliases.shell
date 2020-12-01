@@ -39,11 +39,11 @@ alias bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8
 alias vimc='vim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
 type hub     &> /dev/null && alias git='hub'
-type nvim    &> /dev/null && alias vim='nvim' # Using mvim as vim in terminal
+type nvim    &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
 [[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 
 #WORKING_DIR
-alias godotfiles='clr; cd $DOTFILES'
+alias goDotfiles='clr; cd $DOTFILES'
 
 alias flush="dscacheutil -flushcache" # Flush Directory Service cache
 
@@ -107,7 +107,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   {
     local host=${1}
     local port=${2:-5901}
-    ssh -fN -L 5900:localhost:$port $host
+    ssh -fNT -L 5900:localhost:$port $host
   }
 
 #
@@ -121,7 +121,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   ssh_fnal_tunnel()
   {
-    ssh -fN -l ftbf_user ftbfbnl01.fnal.gov \
+    ssh -fNT ftbfbnl01 \
       -L 17815:localhost:7815 \
       -L 10080:192.168.60.80:8081 \
       -L 10081:192.168.60.149:8081 \
@@ -191,23 +191,31 @@ mount-sPHENIX()
   popd > /dev/null
 }
 
-mount-felix_sshfs()
+mount-flx()
 {
-  local cmd=${1:-"amd_to"}
+  unmount()
+  {
+    diskutil unmount force sshfs_flx
+    mount-flx $1¬
+  }
+
+  local host=${1:-"amd"}
   cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
-  if [[ -z $(ls -A sshfs_flx) ]]; then
-    if [[ "x${cmd}x" == "xamd_tox" ]]; then
-      sshfs amd_to:./mvtx_readout -o auto_cache sshfs_flx
-    elif [[ "x${cmd}x" == "xming_felixx" ]]; then
-      ming_fwknop sshfs ming_felix:./ sshfs_flx
+  if [[ -z $(ls -A sshfs_flx ) ]]; then
+    if [[ ${host} =~ 'amd' ]]; then
+      ming_fwknop sshfs flx-amd-ming:./ -o auto_cache sshfs_flx
+    elif [[ ${host} =~ 'ming' ]]; then
+      ming_fwknop sshfs flx-ming:./     -o auto_cache sshfs_flx
     else
       echo "ERROR: Wrong mount_point server"
     fi
 
     if [[  $? != 0 ]]; then
-      diskutil unmount force sshfs_flx
-      mount-felix_sshfs ${cmd}
+      unmount ${host}
     fi
+  else
+    echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
+    unmount ${host}
   fi
 }
 
