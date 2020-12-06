@@ -98,5 +98,6 @@
   "vim.vimrc.path": "$HOME/.vimrc",
   "update.mode": "manual",
   "python.pythonPath": "/usr/bin/python3",
-  "python.showStartPage": false
+  "python.showStartPage": false,
+  "diffEditor.ignoreTrimWhitespace": false
   }
