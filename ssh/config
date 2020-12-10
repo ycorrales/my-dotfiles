@@ -9,7 +9,7 @@ Host nuc-ming
   User               maps
   ProxyCommand       ssh flx-ming -q -W%h:%p
 
-Host flx-amd-ming
+Host flx-amd
   Hostname           localhost
   Port               8022
   User               maps
@@ -17,13 +17,13 @@ Host flx-amd-ming
   ForwardX11Trusted  yes
   ProxyCommand       ssh flx-ming -q -W%h:%p
 
-Host flx-amd-to
+Host flx-amd-zoro
   Hostname           localhost
   Port               8022
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh zoroastro -W%h:%p
+  ProxyCommand       ssh zoroastro -q -W%h:%p
 
 Host zoroastro
   HostName           zoroastro.to.infn.it
@@ -32,7 +32,7 @@ Host zoroastro
 Host superfarm
   HostName           cloud-gw-215.to.infn.it
   User               corrales
-  ProxyCommand       ssh zoroastro -W%h:%p
+  ProxyCommand       ssh zoroastro -q -W%h:%p
 
 Host lxplus
   HostName           lxplus.cern.ch
@@ -65,8 +65,6 @@ Host sph_nx02
 Host ftbfbnl01
   HostName           ftbfbnl01.fnal.gov
   User               ftbf_user
-#  GSSAPIAuthentication yes
-#  GSSAPIDelegateCredentials yes
 
 Host 192.168.60.*
   ProxyCommand       ssh ftbfbnl01 -W%h:%p

@@ -76,7 +76,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Hide/show all desktop icons (useful when presenting)
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
   alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
+  # kill vnc ssh tunnel
+  alias k_vnc="ps -ef | grep '5900:' | grep -v 'grep' | awk '{print \$2}' | xargs kill -9 "
   #WORKING_DIR
   ALICE_WORK=${ALICE_WORK?"ALICE_WORK not defined"}
   alias  goITSup="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/"
@@ -203,7 +204,7 @@ mount-flx()
   cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
   if [[ -z $(ls -A sshfs_flx ) ]]; then
     if [[ ${host} =~ 'amd' ]]; then
-      ming_fwknop sshfs flx-amd-ming:./ -o auto_cache sshfs_flx
+      ming_fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx
     elif [[ ${host} =~ 'ming' ]]; then
       ming_fwknop sshfs flx-ming:./     -o auto_cache sshfs_flx
     else
