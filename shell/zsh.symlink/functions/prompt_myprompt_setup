@@ -276,7 +276,7 @@ myprompt::exists() {
 # Check if function is defined
 # USAGE:
 #   myprompt::defined <function>
-myprompt::defined() 
+myprompt::defined()
 {
   typeset -f + "$1" &> /dev/null
 }
