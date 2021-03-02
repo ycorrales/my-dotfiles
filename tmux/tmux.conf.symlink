@@ -4,11 +4,17 @@
 #set -g prefix C-a
 # bind 'C-a C-a' to type 'C-a'
 #bind C-a send-prefix
-unbind C-b
+#unbind C-b
 
 # Version-specific commands [grumble, grumble]
 # See: https://github.com/tmux/tmux/blob/master/CHANGES
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6- | tr -d [a-z,A-Z])"
+
+#
+set -g history-file ~/.bash_history
+
+# Enable tmux vi-like binding
+set-window-option -g mode-keys vi
 
 # open spli-windows in current directory
 if-shell -b '[ "$(echo "$TMUX_VERSION >= 1.9" | bc)" = 1 ]' \
@@ -21,7 +27,8 @@ if-shell -b '[ "$(echo "$TMUX_VERSION < 2.1" | bc)" = 1 ]' \
 
 # In version 2.1 "mouse" replaced the previous 4 mouse options
 if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.1" | bc)" = 1 ]' \
-  "set -g mouse on"
+  "set -g mouse on; \
+   set-option -s set-clipboard off"
 
 # UTF8 is autodetected in 2.2 onwards, but errors if explicitly set
 if-shell -b '[ "$(echo "$TMUX_VERSION < 2.2" | bc)" = 1 ]' \
@@ -32,15 +39,16 @@ if-shell -b '[ "$(echo "$TMUX_VERSION < 2.4" | bc)" = 1 ]' \
   "bind-key -t vi-copy v   begin-selection; \
    bind-key -t vi-copy V   select-line; \
    bind-key -t vi-copy C-v rectangle-toggle; \
-   bind-key -t vi-copy y   copy-pipe 'xclip -selection clipboard -in'"
+   bind-key -t vi-copy y   copy-pipe 'pbcopy -selection clipboard -in'; \
+   bind-key -t vi-copy MouseDragEnd1Pane copy-pipe 'pbcopy -selection clipboard -in'"
 
 # Newer versions
 if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]' \
   "bind-key -T copy-mode-vi v   send -X begin-selection; \
    bind-key -T copy-mode-vi V   send -X select-line; \
    bind-key -T copy-mode-vi C-v send -X rectangle-toggle; \
-   bind-key -T copy-mode-vi y   send -X copy-pipe-and-cancel 'xclip -selection clipboard -in'"
-
+   bind-key -T copy-mode-vi y   send -X copy-pipe-and-cancel 'pbcopy -selection clipboard -in'; \
+   bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'pbcopy -selection clipboard -in'"
 
 
 #Toggle mouse on with ^<leader> m
