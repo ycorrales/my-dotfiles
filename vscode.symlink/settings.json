@@ -93,12 +93,18 @@
   },
   "team.showWelcomeMessage": false,
   "C_Cpp.updateChannel": "Insiders",
-  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.neovimPath": "/usr/local/bin/nvim",
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "$HOME/.vimrc",
   "update.mode": "manual",
   "python.pythonPath": "/usr/bin/python3",
   "python.showStartPage": false,
   "diffEditor.ignoreTrimWhitespace": false,
-  "window.zoomLevel": 0
+  "window.zoomLevel": 0,
+  "vim.neovimConfigPath": ".config/nvim/init.vim",
+  "vim.neovimUseConfigFile": true,
+  "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+  "vscode-neovim.mouseSelectionStartVisualMode": true,
+  "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
+  "editor.scrollBeyondLastLine": false
   }

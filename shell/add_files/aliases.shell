@@ -6,17 +6,18 @@
 alias l-vivado='source /tools/Xilinx/Vivado/2019.2/settings64.sh'
 alias reload='source ~/.shrc' #reaload zsh config
 #Detect with `ls` flavor is in use
-LS='ls'
+myls='ls'
 colorflag='--color'
 gdirfirst='--group-directories-first'
-type gls &> /dev/null && LS='gls -N' # GNU `ls`
-type gsed &> /dev/null && alias sed='gsed'
+type gls       &> /dev/null && myls='gls -N' # GNU `ls`
+type gsed      &> /dev/null && alias sed='gsed'
+type greadlink &> /dev/null && alias readlink='greadlink'
 
 #Filesystem aliases
-alias  la="$LS -AF  ${colorflag}"
-alias  ll="$LS -lFh ${colorflag} ${gdirfirst} "
-alias  llt='ll -hrt'
-alias  dds="$LS -Fh ${colorflag} ${gdirfirst} "
+alias  la="$myls -AF  ${colorflag}"
+alias  ll="$myls -lFh ${colorflag} ${gdirfirst} "
+alias  llt='myls -hrt'
+alias  dds="$myls -Fh ${colorflag} ${gdirfirst} "
 alias  lld="ll | grep ^d"
 
 #python
@@ -28,29 +29,22 @@ alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) \
   %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
 alias gmod='git show --pretty="format:" --name-only'
 alias gdname='git diff --name-status'
+alias gits='git status'
+type hub  &> /dev/null && alias git='hub'
 
 # Helper
 alias grep='grep --color=auto'
 alias vi='vim'
-alias gits='git status'
 alias clear='clear && printf "\e[3J"'
 alias clr='clear'
 alias bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8
 alias vimc='vim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
-type hub     &> /dev/null && alias git='hub'
 type nvim    &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
 [[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
 
 #WORKING_DIR
 alias goDotfiles='clr; cd $DOTFILES'
-
-alias flush="dscacheutil -flushcache" # Flush Directory Service cache
-
-# ip Addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Alias for mac only
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -59,33 +53,29 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias dud='du -d 1'
   alias dus='du -hs'
 
-  # Kill all the tabs in Chrome to free up memory
-  # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-  alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+  # File size
+  alias fs="stat -f \"%z bytes\""
 
   # Kill Dock
   alias killDock='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
 
   alias wgetfolder='wget -r -np -nH --cut-dirs=3 -R "index*" '
-  # File size
-  alias fs="stat -f \"%z bytes\""
 
   # Empty the Trash on all mounted volumes and the main HDD
-  alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+  alias emptytrash="rm -rfv /Volumes/\*/.Trashes; rm -rfv ~/.Trash"
 
   # Hide/show all desktop icons (useful when presenting)
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
   alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-  # kill vnc ssh tunnel
-  alias k_vnc="ps -ef | grep '5900:' | grep -v 'grep' | awk '{print \$2}' | xargs kill -9 "
+
   #WORKING_DIR
-  ALICE_WORK=${ALICE_WORK?"ALICE_WORK not defined"}
-  alias  goITSup="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/"
-  alias  goITSupTest="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/"
-  alias  goSpectra="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/"
-  alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
-  alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
-  alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
+  #ALICE_WORK=${ALICE_WORK?"ALICE_WORK not defined"}
+  #alias  goITSup="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/"
+  #alias  goITSupTest="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/"
+  #alias  goSpectra="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/"
+  #alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
+  #alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
+  #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
   export sPHENIX="$HOME/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX"
 
@@ -97,22 +87,24 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #SSH
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
-  alias ssh_tunnel_dynamic='ssh -CfN -D 1080'
-  alias bnl_email_ssh='ssh -fN -l ycmorales ssh.sdcc.bnl.gov -L 1993:mail.rhic.bnl.gov:993'
-  alias bnl_www_ssh='ssh -fN -l ycorrale cssh.rhic.bnl.gov -L 3128:batch3.phy.bnl.gov:3128'
+  alias ssh-dynamic-tunnel='ssh -CfN -D 1080'
+  alias bnl-email-ssh='ssh -fN -l ycmorales ssh.sdcc.bnl.gov -L 1993:mail.rhic.bnl.gov:993'
+  alias bnl-www-ssh='ssh -fN -l ycorrale cssh.rhic.bnl.gov -L 3128:batch3.phy.bnl.gov:3128'
 
-#ssh local tunnel for vnc
-#@param 1, ssh hostname
-#@param 2, [optional] remote port (default 5901)
-  vnc_ssh()
+  # kill vnc ssh tunnel
+  alias k-vnc-ssh="ps -ef | grep '5900:' | grep -v 'grep' | awk '{print \$2}' | xargs kill -9 "
+
+  #ssh local tunnel for vnc
+  #@param 1, ssh hostname
+  #@param 2, [optional] remote port (default 5901)
+  vnc-ssh-tunnel()
   {
     local host=${1}
     local port=${2:-5901}
     ssh -fNT -L 5900:localhost:$port $host
   }
 
-#
-  ming_fwknop()
+  ming-fwknop()
   {
     local cmd="$@"
     fwknop -s -n ming_felix || return 1
@@ -120,7 +112,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     $cmd
   }
 
-  ssh_fnal_tunnel()
+  fnal-ssh-tunnel()
   {
     ssh -fNT ftbfbnl01 \
       -L 17815:localhost:7815 \
@@ -204,9 +196,9 @@ mount-flx()
   cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
   if [[ -z $(ls -A sshfs_flx ) ]]; then
     if [[ ${host} =~ 'amd' ]]; then
-      ming_fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx
+      ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx
     elif [[ ${host} =~ 'ming' ]]; then
-      ming_fwknop sshfs flx-ming:./     -o auto_cache sshfs_flx
+      ming-fwknop sshfs flx-ming:./     -o auto_cache sshfs_flx
     else
       echo "ERROR: Wrong mount_point server"
     fi
