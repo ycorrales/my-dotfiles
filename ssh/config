@@ -51,18 +51,8 @@ Host phenix
   User               ycorrale
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
-Host ph_nx02
-  HostName           nx02.rcf.bnl.gov
-  User               ycorrale
-  ProxyCommand       ssh sdcc_gateway -W%h:%p
-
 Host sphenix
   HostName           sphnx01.sdcc.bnl.gov
-  User               ycmorales
-  ProxyCommand       ssh sdcc_gateway -W%h:%p
-
-Host sph_nx02
-  HostName           nx02.rcf.bnl.gov
   User               ycmorales
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 

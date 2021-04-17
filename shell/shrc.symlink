@@ -154,8 +154,3 @@ done
 e_tm=$($GDATE +%s.%N)
 [[ $(echo "$( echo "$e_tm - $b_tm" | bc -l ) > 1" | bc) != 1 ]] || \
   echo "Shell initialization too slow, time higher than 1 sec."
-# Execute alidock within the appropriate Python virtual environment
-function alidock() {( source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?; )}
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
