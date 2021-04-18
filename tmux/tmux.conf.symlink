@@ -11,7 +11,8 @@
 run-shell "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6- | tr -d [a-z,A-Z])"
 
 #
-set -g history-file ~/.bash_history
+if-shell -b '[ "$(echo "$TMUX_VERSION >= 1.9" | bc)" = 1 ]' \
+  "set -g history-file "$HISTFILE""
 
 # Enable tmux vi-like binding
 set-window-option -g mode-keys vi

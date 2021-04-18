@@ -7,36 +7,42 @@ pinfo "" > /dev/null 2>&1 || source ${DOTFILES}/shell/add_files/utils.shell
 #function for symlink
 do_symlink()
 {
-  local __source=$1
-  local __target=$2
+  local SRC=$1
+  local TGT=$2
+  local S_SRC="~${SRC#$HOME}"
+  local S_TGT="~${TGT#$HOME}"
 
-  [[ -e $__target && -z "$force" ]] &&\
-  { perror "~${__target#HOME} already exists... Skipping.";} || \
-  { pinfo  "Creating symlink for $__source $__target"; ln -sfn $__source $__target; }
+  if test -e $TGT &&  test -z "$DO_FORCE"; then
+    perror "$S_TGT already exists... Skipping.";
+  else
+    pinfo  "Creating symlink for $S_SRC $S_TGT";
+    #ln -sfn $__source $__target;
+  fi
 }
 
 
 prep_symlink()
 {
-  local __dir=$1
-  local __prefix=${__dir:+$__dir/}$2 #".( basename $1 )"
-  local __linkables=$3
-  local __ext=${4:-''}
+  local DIR=$1
+  local PREFIX=${DIR:+$DIR/}$2 #".( basename $1 )"
+  local LINKABLES=$3
+  local EXT=$4
 
   plog "\n Creating symlinks"
   plog "================================"
 
-  [ ! -d $HOME/$__dir ] && \
-    { pdebug "Creating ~/$__dir"; mkdir -p $HOME/$__dir; }
+  [ ! -d $HOME/$DIR ] && \
+    { pdebug "Creating ~/$DIR"; mkdir -p $HOME/$DIR; }
 
-  for __src in $__linkables; do
-   local __target="$HOME/$__prefix$( basename $__src $__ext )"
-
-    do_symlink $__src $__target
+  for SRC in $LINKABLES; do
+    SRC=$PREFIX$( basename $SRC $EXT )
+    local TGT="$HOME/$SRC"
+    do_symlink $SRC $TGT
   done
 }
 
-[[ $1 == "-f" ]] && force=1
+[ $1 = "-f" ] && DO_FORCE=1
+
 # do_symlink dir prefix links_list [force]
 prep_symlink ''        '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
 prep_symlink '.ssh'    ''  "$DOTFILES/ssh/*"

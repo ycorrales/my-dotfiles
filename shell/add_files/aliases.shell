@@ -3,7 +3,6 @@
 #
 
 # General
-alias l-vivado='source /tools/Xilinx/Vivado/2019.2/settings64.sh'
 alias reload='source ~/.shrc' #reaload zsh config
 #Detect with `ls` flavor is in use
 myls='ls'
@@ -50,8 +49,8 @@ alias goDotfiles='clr; cd $DOTFILES'
 if [[ "$OSTYPE" == darwin* ]]; then
   alias df='df -h' # disk free, in Gigabytes, not bytes
   alias du='du -h' # calculate disk usage for a folder
-  alias dud='du -d 1'
-  alias dus='du -hs'
+  alias dud='du -d 1 2> /dev/null'
+  alias dus='du -hs  2> /dev/null'
 
   # File size
   alias fs="stat -f \"%z bytes\""
