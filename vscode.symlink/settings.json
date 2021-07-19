@@ -4,8 +4,7 @@
   "workbench.iconTheme": "vs-minimal",
   "workbench.colorTheme": "Default Dark+",
   "workbench.activityBar.visible": true,
-  "editor.tabSize": 2,
-  "editor.detectIndentation": false,
+	"editor.tabSize": 2,
   "workbench.colorCustomizations":
   {
     "[Default Dark+]": {
@@ -30,7 +29,7 @@
 
     // OPTIONAL WORD WRAPPING
     // Controls if lines should wrap. The lines will wrap at min(editor.wrappingColumn, viewportWidthInColumns).
-    "editor.wordWrapColumn": 120,
+    "editor.wordWrapColumn": 150,
     "editor.wordWrap": "bounded",
     // Controls the indentation of wrapped lines. Can be one of 'none', 'same' or 'indent'.
     "editor.wrappingIndent": "indent",
@@ -45,9 +44,6 @@
     // Controls if suggestions should automatically show up when typing trigger characters
     "editor.suggestOnTriggerCharacters": false,
     "editor.tabCompletion": "on",
-
-    // Controls if the editor should automatically close brackets after opening them
-    "editor.autoClosingBrackets": "never",
 
     // Controls if the editor should automatically format the line after typing
     "editor.formatOnType": false,
@@ -89,8 +85,12 @@
     "C_Cpp.intelliSenseCachePath": "${env:HOME}/.vscode",
     "C_Cpp.intelliSenseCacheSize": 1024,
     "files.associations": {
-      "*.C": "cpp"
-  },
+      "*.C": "cpp",
+      "*.cc": "cpp",
+      "*.c": "cpp",
+      "*.h": "cpp",
+      "*.py": "Python"
+    },
   "team.showWelcomeMessage": false,
   "C_Cpp.updateChannel": "Insiders",
   "vim.neovimPath": "/usr/local/bin/nvim",
@@ -106,5 +106,10 @@
   "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
   "vscode-neovim.mouseSelectionStartVisualMode": true,
   "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
-  "editor.scrollBeyondLastLine": false
+  "editor.scrollBeyondLastLine": false,
+  "hexdump.width": 32,
+"hexdump.showAscii": false,
+"editor.cursorStyle": "line",
+"editor.lineNumbers": "on",
+"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
   }
