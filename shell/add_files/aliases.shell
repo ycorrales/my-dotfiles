@@ -76,7 +76,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
   #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
   export sPHENIX="$HOME/Work/sPHENIX"
-  alias  gosPHENIX="clr; cd $sPHENIX"
+  alias  gosPHENIX="clr; cd $sPHENIX/Projects/01.MVTX/03.Readout"
 
   #SECRET TOKEN
   alias   getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'

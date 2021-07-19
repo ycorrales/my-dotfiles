@@ -29,14 +29,20 @@ Host flx-amd-zoro
   ForwardX11Trusted  yes
   ProxyCommand       ssh zoroastro -q -W%h:%p
 
+Host flx-amd-lanl
+  Hostname           204.121.146.107
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
 
-Host superfarm
-  HostName           cloud-gw-215.to.infn.it
-  User               corrales
-  ProxyCommand       ssh zoroastro -q -W%h:%p
+#Host superfarm
+#  HostName           cloud-gw-215.to.infn.it
+#  User               corrales
+#  ProxyCommand       ssh zoroastro -q -W%h:%p
 
 Host lxplus
   HostName           lxplus.cern.ch
