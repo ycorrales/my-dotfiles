@@ -1,0 +1,12 @@
+[Unit]
+Description=Keeps a remote ssh tunnel to 'localhost' open
+After=sshd.target
+
+[Service]
+User=maps
+Type=forking
+Enviroment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -f -N -T -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 8022:localhost:22 zoroastro.to.infn.it -l corrales -i /home/maps/.ssh/id_rsa_YCM
+
+[Install]
+WantedBy=default.target

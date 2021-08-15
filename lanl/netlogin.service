@@ -1,0 +1,11 @@
+[Unit]
+Description=Create a remote ssh tunnel
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/maps/scripts/netlogin.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target

@@ -13,6 +13,13 @@ Host nuc-ming
   User               maps
   ProxyCommand       ssh flx-ming -q -W%h:%p
 
+Host eic
+  Hostname           204.121.146.105
+  User               eic
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh flx-amd-zoro -q -W%h:%p
+
 Host flx-amd
   Hostname           localhost
   Port               8022

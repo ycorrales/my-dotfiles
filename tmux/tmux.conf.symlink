@@ -48,14 +48,16 @@ if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]' \
    bind-key -T copy-mode-vi y   send -X copy-pipe-and-cancel 'pbcopy -selection clipboard -in'; \
    bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'pbcopy -selection clipboard -in'"
 
+# resize window to smallest or largest screen session
+if-shell -b '[ "$(echo "$TMUX_VERSION >= 1.8" | bc)" = 1 ]' \
+  "unbind a; \
+   bind a resize-window -a; \
+   unbind A; \
+   bind A resize-window -A"
+
 # General commands
 # Enable tmux vi-like binding
 set-window-option -g mode-keys vi
-
-# resize window to largest screen session
-unbind A
-bind A \
-  resize-window -A
 
 #
 unbind +

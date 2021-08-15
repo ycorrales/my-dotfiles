@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
-(
 
+set -euo pipefail
+
+(
   function _config_myMac()
   {
     echo "MacOS operating system found. Configuring Mac..."
@@ -24,7 +26,7 @@
     fi
 
     # sourcing script to create the symbolic link
-    files=( "install/link.sh $1" )
+    files=( "install/link.sh" )
     for file in ${files[@]}; do
       FILE_PATH=${DOTFILES}/$file
       [ -f ${FILE_PATH} ] && source "$FILE_PATH"

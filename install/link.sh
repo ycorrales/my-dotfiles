@@ -1,32 +1,35 @@
 #!/usr/bin/env bash
+
+set -euo pipefail
+
 (
 DOTFILES=${DOTFILES?"err_msg"}
 
 pinfo "" > /dev/null 2>&1 || source ${DOTFILES}/shell/add_files/utils.shell
 
 #function for symlink
-do_symlink()
+function do_symlink()
 {
-  local SRC=$1
-  local TGT=$2
-  local S_SRC="~${SRC#$HOME}"
-  local S_TGT="~${TGT#$HOME}"
+  local TARGET=${1:-}
+  local LINK=${2:-}
+  local S_TARGET="~${TARGET#$HOME}"
+  local S_LINK="~${LINK#$HOME}"
 
-  if test -e $TGT &&  test -z "$DO_FORCE"; then
-    perror "$S_TGT already exists... Skipping.";
+  if test -e $LINK &&  test -z "$DO_FORCE"; then
+    perror "$S_LINK already exists... Skipping.";
   else
-    pinfo  "Creating symlink for $S_SRC $S_TGT";
-    #ln -sfn $__source $__target;
+    pinfo  "Creating symlink $S_LINK for $S_TARGET";
+    ln -nsf $TARGET $LINK;
   fi
 }
 
 
-prep_symlink()
+function prep_symlink()
 {
-  local DIR=$1
-  local PREFIX=${DIR:+$DIR/}$2 #".( basename $1 )"
-  local LINKABLES=$3
-  local EXT=$4
+  local DIR=${1:-} #
+  local PREFIX=${DIR:+$DIR/}${2:-} #".( basename $1 )"
+  local LINKABLES=${3:-}
+  local EXT=${4:-}
 
   plog "\n Creating symlinks"
   plog "================================"
@@ -34,14 +37,13 @@ prep_symlink()
   [ ! -d $HOME/$DIR ] && \
     { pdebug "Creating ~/$DIR"; mkdir -p $HOME/$DIR; }
 
-  for SRC in $LINKABLES; do
-    SRC=$PREFIX$( basename $SRC $EXT )
-    local TGT="$HOME/$SRC"
-    do_symlink $SRC $TGT
+  for TARGET in $LINKABLES; do
+    local LINK_NAME=$HOME/$PREFIX$( basename $TARGET $EXT )
+    do_symlink $TARGET $LINK_NAME
   done
 }
 
-[ $1 = "-f" ] && DO_FORCE=1
+DO_FORCE=${1:-""}
 
 # do_symlink dir prefix links_list [force]
 prep_symlink ''        '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'

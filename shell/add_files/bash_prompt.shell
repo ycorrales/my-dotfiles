@@ -127,7 +127,7 @@ if [[ -n "$BASH_VERSION" ]]; then
     __ps1_end="\[${COLOR_LIGHTGREEN}\]${PROMPT_SYMBOL}\[${COLOR_NONE}\]"
     __git_ps1 "$__ps1_start" "$__ps1_end" "\[$(__parse_git_dirty)\](%s)\[${COLOR_NONE}\]"
   }
-  safe_append_prompt_command 'history -a; history -c; history -r' #
+  #safe_append_prompt_command 'history -a; history -c; history -r' # Append command to history after execution...
   safe_append_prompt_command '__my_prompt'
 
 fi
