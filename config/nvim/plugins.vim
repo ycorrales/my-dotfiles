@@ -22,13 +22,11 @@ Plug 'chriskempson/base16-vim'
 
 " utilities
 "Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
-Plug 'benmills/vimux' " tmux integration for vim
 Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
 Plug 'tpope/vim-rhubarb' " hub extension for fugitive
 "Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'iamcco/markdown-preview.nvim'
 " plugin from vim
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/vim-clang-format'
@@ -41,6 +39,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'kassio/neoterm'
 Plug 'ryanpcmcquen/fix-vim-pasting'
+
+if v:version > 704
+  Plug 'benmills/vimux' " tmux integration for vim
+  Plug 'iamcco/markdown-preview.nvim'
+endif
 
 call plug#end()
 
