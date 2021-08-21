@@ -82,7 +82,6 @@
 
     "C_Cpp.clang_format_fallbackStyle":
       "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}",
-    "C_Cpp.intelliSenseCachePath": "${env:HOME}/.vscode",
     "C_Cpp.intelliSenseCacheSize": 1024,
     "files.associations": {
       "*.C": "cpp",
@@ -111,5 +110,15 @@
 "hexdump.showAscii": false,
 "editor.cursorStyle": "line",
 "editor.lineNumbers": "on",
-"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
+"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+"tabnine.experimentalAutoImports": true,
+"terminal.integrated.env.osx": {
+
+},
+"C_Cpp.autocomplete": "Disabled",
+"cSpell.workspaceRootPath": "${env:HOME}/.vscode",
+"C_Cpp.default.includePath": [
+  "${workspaceFolder}/**",
+  "/Users/ycorrales/Work/Alice/AliSoft/sw/osx_x86-64/ROOT/v6-24-02-local1/include"
+]
   }

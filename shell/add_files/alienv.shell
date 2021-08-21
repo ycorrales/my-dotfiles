@@ -9,7 +9,7 @@ if type alienv &> /dev/null; then
 
   alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias   root='alienv setenv  $ROOT -c root -l'
+  alias   rt='alienv setenv  $ROOT -c root -l'
   alias   alio2='alienv setenv $O2   -c root -l'
 
   alien-create-cert()
