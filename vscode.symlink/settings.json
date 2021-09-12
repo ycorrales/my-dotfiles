@@ -88,7 +88,7 @@
       "*.cc": "cpp",
       "*.c": "cpp",
       "*.h": "cpp",
-      "*.py": "Python"
+      "*.py": "python"
     },
   "team.showWelcomeMessage": false,
   "C_Cpp.updateChannel": "Insiders",
@@ -120,5 +120,6 @@
 "C_Cpp.default.includePath": [
   "${workspaceFolder}/**",
   "/Users/ycorrales/Work/Alice/AliSoft/sw/osx_x86-64/ROOT/v6-24-02-local1/include"
-]
+],
+"python.defaultInterpreterPath": "/usr/bin/python3"
   }

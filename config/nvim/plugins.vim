@@ -17,33 +17,27 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " colorschemes
-Plug 'joshdick/onedark.vim'
-Plug 'chriskempson/base16-vim'
-
+ Plug 'KeitaNakamura/neodark.vim'
 " utilities
-"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
-Plug 'vim-airline/vim-airline' " fancy statusline
-Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
-Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
-Plug 'tpope/vim-rhubarb' " hub extension for fugitive
-"Plug 'JamshedVesuna/vim-markdown-preview'
-" plugin from vim
-Plug 'itchyny/lightline.vim'
-Plug 'rhysd/vim-clang-format'
-Plug 'timakro/vim-searchant'
-Plug 'vim-scripts/peaksea'
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'skielbasa/vim-material-monokai'
-Plug 'mkitt/tabline.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'airblade/vim-gitgutter'
-Plug 'kassio/neoterm'
-Plug 'ryanpcmcquen/fix-vim-pasting'
+" Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
+ Plug 'itchyny/lightline.vim'
+ Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
+ Plug 'tpope/vim-rhubarb' " hub extension for fugitive
+ " Plug 'JamshedVesuna/vim-markdown-preview'
+ " plugin from vim
+ Plug 'rhysd/vim-clang-format'
+ Plug 'timakro/vim-searchant'
+ Plug 'vim-scripts/peaksea'
+ Plug 'skielbasa/vim-material-monokai'
+ Plug 'mkitt/tabline.vim'
+ Plug 'vim-syntastic/syntastic'
+ Plug 'airblade/vim-gitgutter'
+ Plug 'kassio/neoterm'
+ Plug 'ryanpcmcquen/fix-vim-pasting'
 
-if v:version > 704
-  Plug 'benmills/vimux' " tmux integration for vim
-  Plug 'iamcco/markdown-preview.nvim'
-endif
+ if v:version > 704
+   Plug 'benmills/vimux' " tmux integration for vim
+   Plug 'iamcco/markdown-preview.nvim'
+ endif
 
-call plug#end()
-
+ call plug#end()
