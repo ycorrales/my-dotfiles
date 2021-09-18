@@ -5,7 +5,7 @@ set -euo pipefail
 (
 DOTFILES=${DOTFILES?"err_msg"}
 
-pinfo "" > /dev/null 2>&1 || source ${DOTFILES}/shell/add_files/utils.shell
+pinfo "" > /dev/null 2>&1 || source "${DOTFILES}"/shell/add_files/utils.shell
 
 #function for symlink
 function do_symlink()
@@ -15,11 +15,11 @@ function do_symlink()
   local S_TARGET="~${TARGET#$HOME}"
   local S_LINK="~${LINK#$HOME}"
 
-  if test -e $LINK &&  test -z "$DO_FORCE"; then
+  if test -e "$LINK" &&  test -z "$DO_FORCE"; then
     perror "$S_LINK already exists... Skipping.";
   else
     pinfo  "Creating symlink $S_LINK for $S_TARGET";
-    ln -nsf $TARGET $LINK;
+    ln -nsf "$TARGET" "$LINK";
   fi
 }
 
@@ -34,12 +34,13 @@ function prep_symlink()
   plog "\n Creating symlinks"
   plog "================================"
 
-  [ ! -d $HOME/$DIR ] && \
-    { pdebug "Creating ~/$DIR"; mkdir -p $HOME/$DIR; }
+  [ ! -d "$HOME"/"$DIR" ] && \
+    { pdebug "Creating ~/$DIR"; mkdir -p "$HOME"/"$DIR"; }
 
   for TARGET in $LINKABLES; do
-    local LINK_NAME=$HOME/$PREFIX$( basename $TARGET $EXT )
-    do_symlink $TARGET $LINK_NAME
+    local LINK_NAME
+    LINK_NAME=$HOME/$PREFIX$( basename "$TARGET" "$EXT" )
+    do_symlink "$TARGET" "$LINK_NAME"
   done
 }
 
@@ -65,6 +66,6 @@ VIMFILES=( "$HOME/.vim:$DOTFILES/config/nvim" \
 for __file in "${VIMFILES[@]}"; do
   KEY=${__file%%:*}
   VALUE=${__file#*:}
-  do_symlink $VALUE $KEY
+  do_symlink "$VALUE" "$KEY"
 done
 )

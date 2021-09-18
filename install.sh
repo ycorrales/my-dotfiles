@@ -15,11 +15,11 @@ set -euo pipefail
 
   function Main()
   {
-    DOTFILES=${DOTFILES:-"$( cd "$( dirname $(readlink -f "${BASH_SOURCE[0]}") && pwd )" > /dev/null 2>&1 && pwd )"}
+    DOTFILES=${DOTFILES:-"$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")" && pwd )" > /dev/null 2>&1 && pwd )"}
 
-    if test $OSTYPE = "darwin"*; then
+    if test "$OSTYPE" = "darwin"*; then
       OS="osx_x86-64"
-    elif test $OSTYPE = "linux-gnu"; then
+    elif test "$OSTYPE" = "linux-gnu"; then
       OS="linux"
     else
       OS="unkonw"
@@ -27,17 +27,18 @@ set -euo pipefail
 
     # sourcing script to create the symbolic link
     files=( "install/link.sh" )
-    for file in ${files[@]}; do
+    for file in "${files[@]}"; do
       FILE_PATH=${DOTFILES}/$file
-      [ -f ${FILE_PATH} ] && source "$FILE_PATH"
+      # shellcheck source=./install/link.sh
+      [ -f "${FILE_PATH}" ] && source "$FILE_PATH"
     done
-    [ $OS = "osx_x86-64" ] && _config_myMac || :
+    [ $OS = "osx_x86-64" ] && _config_myMac
   }
 
   if [ $# -gt 1 ]; then
-    echo "ERROR $(basename $0) accepts at max one option "
-    exit -1
+    echo "ERROR $(basename "$0") accepts at max one option "
+    exit 1
   fi
 
-  Main $@
+  Main "$@"
 )
