@@ -7,7 +7,8 @@
 	"editor.tabSize": 2,
   "workbench.colorCustomizations":
   {
-    "[Default Dark+]": {
+    "[Default Dark+]":
+    {
       "statusBar.noFolderBackground": "#dc7d3d",
       "statusBar.background": "#3d98dc"
     },
@@ -19,77 +20,81 @@
   //"workbench.statusBar.feedback.visible": false,
   "explorer.confirmDelete": false,
   "extensions.ignoreRecommendations": true,
-//Remove trailing whitespace
+  //Remove trailing whitespace
   "files.trimTrailingWhitespace": true,
 
-// Turn off autocomplete in Visual Studio Code
-// http://code.visualstudio.com/
+  // Turn off autocomplete in Visual Studio Code
+  // http://code.visualstudio.com/
 
-// Add the following lines to user settings
+  // Add the following lines to user settings
 
-    // OPTIONAL WORD WRAPPING
-    // Controls if lines should wrap. The lines will wrap at min(editor.wrappingColumn, viewportWidthInColumns).
-    "editor.wordWrapColumn": 150,
-    "editor.wordWrap": "bounded",
-    // Controls the indentation of wrapped lines. Can be one of 'none', 'same' or 'indent'.
-    "editor.wrappingIndent": "indent",
+  // OPTIONAL WORD WRAPPING
+  // Controls if lines should wrap. The lines will wrap at min(editor.wrappingColumn, viewportWidthInColumns).
+  "editor.wordWrapColumn": 150,
+  "editor.wordWrap": "bounded",
+  // Controls the indentation of wrapped lines. Can be one of 'none', 'same' or 'indent'.
+  "editor.wrappingIndent": "indent",
 
-    // TURN OFF AUTOCOMPLETION
-    // Controls if quick suggestions should show up or not while typing
-    "editor.quickSuggestions": false,
+  // TURN OFF AUTOCOMPLETION
+  // Controls if quick suggestions should show up or not while typing
+  "editor.quickSuggestions": false,
 
-    // Controls the delay in ms after which quick suggestions will show up
-    "editor.quickSuggestionsDelay": 90,
+  // Controls the delay in ms after which quick suggestions will show up
+  "editor.quickSuggestionsDelay": 90,
 
-    // Controls if suggestions should automatically show up when typing trigger characters
-    "editor.suggestOnTriggerCharacters": false,
-    "editor.tabCompletion": "on",
+  // Controls if suggestions should automatically show up when typing trigger characters
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.tabCompletion": "on",
 
-    // Controls if the editor should automatically format the line after typing
-    "editor.formatOnType": false,
+  // Controls if the editor should automatically format the line after typing
+  "editor.formatOnType": false,
 
-    "vim.easymotion": true,
-    "vim.sneak": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-      {
-        "before": ["<leader>", "w"],
-        "after": ["<Esc>", ":", "w", "enter"]
-      }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-      {
-        "before": ["<Space>"],
-        "after": ["/"]
-      },
-      {
-        "before": ["<leader>", "<enter>"],
-        "commands": [":nohl"]
-      },
-      {
-        "before": ["<leader>", "w"],
-        "commands": [":w"]
-      }
-    ],
-    "vim.leader": "\\",
-    "vim.handleKeys": {
-      "<C-a>": false,
- //     "<C-f>": false
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings":
+  [
+    {
+      "before": ["<leader>", "w"],
+      "after": ["<Esc>", ":", "w", "enter"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive":
+  [
+    {
+      "before": ["<Space>"],
+      "after": ["/"]
     },
-
-    "C_Cpp.clang_format_fallbackStyle":
-      "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}",
-    "C_Cpp.intelliSenseCacheSize": 1024,
-    "files.associations": {
-      "*.C": "cpp",
-      "*.cc": "cpp",
-      "*.c": "cpp",
-      "*.h": "cpp",
-      "*.py": "python"
+    {
+      "before": ["<leader>", "<enter>"],
+      "commands": [":nohl"]
     },
+    {
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
+    }
+  ],
+  "vim.leader": "\\",
+  "vim.handleKeys":
+  {
+    "<C-a>": false,
+    //"<C-f>": false
+  },
+
+  "C_Cpp.clang_format_fallbackStyle":
+    "{ BasedOnStyle: WebKit, ColumnLimit: 120, IndentWidth: 2, PointerAlignment: Left}",
+  "C_Cpp.intelliSenseCacheSize": 1024,
+  "files.associations":
+  {
+    "*.C": "cpp",
+    "*.cc": "cpp",
+    "*.c": "cpp",
+    "*.h": "cpp",
+    "*.py": "python"
+  },
   "team.showWelcomeMessage": false,
   "C_Cpp.updateChannel": "Insiders",
   "vim.neovimPath": "/usr/local/bin/nvim",
@@ -107,19 +112,18 @@
   "vscode-neovim.neovimInitVimPaths.darwin": "~/.config/nvim/init.vim",
   "editor.scrollBeyondLastLine": false,
   "hexdump.width": 32,
-"hexdump.showAscii": false,
-"editor.cursorStyle": "line",
-"editor.lineNumbers": "on",
-"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-"tabnine.experimentalAutoImports": true,
-"terminal.integrated.env.osx": {
-
-},
-"C_Cpp.autocomplete": "Disabled",
-"cSpell.workspaceRootPath": "${env:HOME}/.vscode",
-"C_Cpp.default.includePath": [
-  "${workspaceFolder}/**",
-  "/Users/ycorrales/Work/Alice/AliSoft/sw/osx_x86-64/ROOT/v6-24-02-local1/include"
-],
-"python.defaultInterpreterPath": "/usr/bin/python3"
-  }
+  "hexdump.showAscii": false,
+  "editor.cursorStyle": "line",
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "tabnine.experimentalAutoImports": true,
+  "terminal.integrated.env.osx": {},
+  "C_Cpp.autocomplete": "Disabled",
+  "cSpell.workspaceRootPath": "${env:HOME}/.vscode",
+  "C_Cpp.default.includePath":
+  [
+    "${workspaceFolder}/**",
+    "/Users/ycorrales/Work/Alice/AliSoft/sw/osx_x86-64/ROOT/v6-24-02-local1/include"
+  ],
+  "python.defaultInterpreterPath": "/usr/bin/python3"
+}
