@@ -3,22 +3,16 @@ Host lbnl_mvtx
   User               aliceits
 
 Host flx-ming
-  Hostname           98.249.124.99
-  #Hostname           darkphoton.ddns.net
+  Hostname           69.254.135.184
   Port               37023
   User               maps
-
-Host nuc-ming
-  Hostname           192.168.100.2
-  User               maps
-  ProxyCommand       ssh flx-ming -q -W%h:%p
 
 Host eic
   Hostname           204.121.146.105
   User               eic
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd-zoro -q -W%h:%p
+  ProxyCommand       ssh flx-amd -q -W%h:%p
 
 Host flx-amd
   Hostname           localhost
