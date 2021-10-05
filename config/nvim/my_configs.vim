@@ -169,8 +169,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   " Secttion Mappings {{{
 
   " set a map leader for more key combos
-  let mapleader   = ','
-  let g:mapleader = ','
+  let mapleader   = '`'
+  let g:mapleader = '`'
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
