@@ -191,12 +191,14 @@ fi
 cleanup()
 {
   local DIR=${1:-"./"}
-  TRASH_FILE='0 .DS_Store'
+  #TRASH_FILE='0 .DS_Store'
+  TRASH_FILE='.DS_Store'
   local f
   for f in ${TRASH_FILE[@]}; do
     plog "Removing all files $f"
     find $DIR -name $f -type f -ls -delete 2> /dev/null
   done
+  return 0
 }
 
 # mount rhic sPHENIX_SW sshfs file-system
@@ -223,6 +225,7 @@ mount-sPHENIX()
 
   [[ "$?" == "0" ]] && echo "done."
   popd > /dev/null
+  return 0
 }
 
 mount-flx()
@@ -251,6 +254,7 @@ mount-flx()
     echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
     unmount ${host}
   fi
+  return 0
 }
 
 #emulate watch linux command

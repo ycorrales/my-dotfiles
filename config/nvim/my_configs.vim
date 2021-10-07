@@ -210,7 +210,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " Disable highlight when <leader><cr> is pressed
   map <silent> <leader><cr>    :nohlsearch<Bar>:echo<cr>
-  "map <silent> <leader><Space> :set hlsearch! hlsearch?<CR>
+  map <silent> <leader><Space> :set hlsearch! hlsearch?<CR>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Fast editing and reloading of vimrc configs
@@ -335,8 +335,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   map <leader>u :s/^\/\///<CR><leader><CR>
   map <leader>uu :s/\s\s\/\///<CR><leader><CR>
 
-  "map <leader>] :s/^/  /<CR><Leader><CR>
-  "map <leader>[ :s/\s\s//<CR><Leader><CR>
+  map <leader>]] :s/^/  /<CR><Leader><CR>
+  map <leader>[[ :s/\s\s//<CR><Leader><CR>
 
   "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
 
