@@ -139,8 +139,10 @@ if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]    \
   #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
   #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
 
+  source /opt/sphenix/core/bin/sphenix_setup.sh -n
+  source /opt/sphenix/core/bin/setup_local.sh "$MYINSTALL" %2>&1 > /dev/null
   alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
-  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh $MYINSTALL %2>&1 > /dev/null'
+  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
   alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
 
   #alias runKFParticleTests="cd ~/software/coresoftware/offline/packages/KFParticle_sPHENIX/build/ && make && make install
