@@ -53,7 +53,7 @@ Host phenix
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
 Host sphenix
-  HostName           sphnx01.sdcc.bnl.gov
+  HostName           sphnx02.sdcc.bnl.gov
   User               ycmorales
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
