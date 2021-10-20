@@ -1,35 +1,9 @@
-Host lbnl_mvtx
-  Hostname           131.243.31.77
-  User               aliceits
+# CERN
+Host lxplus
+  HostName           lxplus.cern.ch
+  User               ycorrale
 
-Host flx-ming
-  Hostname           69.254.135.184
-  Port               37023
-  User               maps
-
-Host eic
-  Hostname           204.121.146.105
-  User               eic
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd -q -W%h:%p
-
-Host flx-amd
-  Hostname           localhost
-  Port               8022
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-ming -q -W%h:%p
-
-Host flx-amd-zoro
-  Hostname           localhost
-  Port               8022
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh zoroastro -q -W%h:%p
-
+# TO.IT
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
@@ -39,12 +13,49 @@ Host zoroastro
 #  User               corrales
 #  ProxyCommand       ssh zoroastro -q -W%h:%p
 
-Host lxplus
-  HostName           lxplus.cern.ch
-  User               ycorrale
+# LANL
+Host flx-amd-zoro
+  Hostname           localhost
+  Port               8022
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh zoroastro -q -W%h:%p
 
+Host flx-ming
+  Hostname           69.254.135.184
+  Port               37023
+  User               maps
+
+Host flx-amd
+  Hostname           localhost
+  Port               8022
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh flx-ming -q -W%h:%p
+
+Host eic
+  Hostname           204.121.146.105
+  User               eic
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh flx-amd -q -W%h:%p
+
+Host vc709
+  Hostname           204.121.146.104
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh flx-amd-zoro -q -W%h:%p
+
+# BNL
 Host sdcc_gateway
   HostName           ssh.sdcc.bnl.gov
+  User               ycmorales
+
+Host cssh_gateway
+  Hostname           cssh.rhic.bnl.gov
   User               ycorrale
 
 Host phenix
@@ -57,6 +68,7 @@ Host sphenix
   User               ycmorales
   ProxyCommand       ssh sdcc_gateway -W%h:%p
 
+# FNAL
 Host ftbfbnl01
   HostName           ftbfbnl01.fnal.gov
   User               ftbf_user
@@ -68,6 +80,12 @@ Host *.fnal.gov
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
 
+# LBNL
+Host lbnl_mvtx
+  Hostname           131.243.31.77
+  User               aliceits
+
+# ALL
 Host *
   ControlMaster      yes
   ControlPersist     600

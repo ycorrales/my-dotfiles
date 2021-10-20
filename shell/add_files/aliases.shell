@@ -89,8 +89,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh-dynamic-tunnel='ssh -CfN -D 1080'
-  alias bnl-email-ssh='ssh -fN -l ycmorales ssh.sdcc.bnl.gov -L 1993:mail.rhic.bnl.gov:993'
-  alias bnl-www-ssh='ssh -fN -l ycorrale cssh.rhic.bnl.gov -L 3128:batch3.phy.bnl.gov:3128'
+  alias bnl-email-ssh='ssh -fN sdcc_gateway -L 1993:mail.rhic.bnl.gov:993'
+  alias bnl-www-ssh='ssh -fN cssh_gateway -L 3128:batch3.phy.bnl.gov:3128'
 
   # kill vnc ssh tunnel
   alias k-vnc-ssh="ps -ef | grep '5900:' | grep -v 'grep' | awk '{print \$2}' | xargs kill -9 "
@@ -194,12 +194,8 @@ cleanup()
 {
   local DIR=${1:-"./"}
   #TRASH_FILE='0 .DS_Store'
-  TRASH_FILE='.DS_Store'
-  local f
-  for f in ${TRASH_FILE[@]}; do
-    plog "Removing all files $f"
-    find $DIR -name $f -type f -ls -delete 2> /dev/null
-  done
+  TRASH_FILE=('.DS_Store' '._.DS_Store')
+  find $DIR -type f \( -name ${TRASH_FILE[0]} -o -name ${TRASH_FILE[1]} \) -ls -delete 2> /dev/null
   return 0
 }
 

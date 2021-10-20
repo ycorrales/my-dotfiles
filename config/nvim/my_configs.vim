@@ -732,8 +732,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   endif
   " }}}
 
-  endif
+endif
 
-  set modeline
-  set modelines=2
-  " vim: fdm=marker fdl=0
+set modeline
+set modelines=2
+" vim: fdm=marker fdl=0
