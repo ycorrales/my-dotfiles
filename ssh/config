@@ -47,7 +47,14 @@ Host vc709
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd-zoro -q -W%h:%p
+  ProxyCommand       ssh flx-amd -q -W%h:%p
+
+Host kc705
+  Hostname           204.121.146.110
+  User               maps
+  ForwardX11         yes
+  ForwardX11Trusted  yes
+  ProxyCommand       ssh flx-amd -q -W%h:%p
 
 # BNL
 Host sdcc_gateway

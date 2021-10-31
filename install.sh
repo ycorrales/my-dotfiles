@@ -1,8 +1,7 @@
 #! /usr/bin/env bash
 
-#set -uo pipefail
-
 (
+  set -uo pipefail
   function _config_myMac()
   {
     echo "MacOS operating system found. Configuring Mac..."
@@ -19,13 +18,12 @@
 
     if [[ "$OSTYPE" =~ "darwin.*" ]]; then
       OS="osx_x86-64"
-    elif [[ "$OSTYPE" =~ "linux-gnui.*" ]]; then
+    elif [[ "$OSTYPE" =~ "linux-gnu.*" ]]; then
       OS="linux"
     else
       OS="unknow"
     fi
 
-    echo "$OS"
     # sourcing script to create the symbolic link
     files=( "install/link.sh" )
     for file in "${files[@]}"; do
