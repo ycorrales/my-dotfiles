@@ -7,16 +7,19 @@ alias reload='source ~/.shrc' #reaload zsh config
 #Detect with `ls` flavor is in use
 myls='ls'
 colorflag='--color'
-gdirfirst='--group-directories-first'
-type gls       &> /dev/null && myls='gls -N' # GNU `ls`
+gdirfirst=''
+if type gls &> /dev/null; then
+  myls='gls -N' # GNU `ls`
+  gdirfirst='--group-directories-first'
+fi
 type gsed      &> /dev/null && alias sed='gsed'
 type greadlink &> /dev/null && alias readlink='greadlink'
 
 #Filesystem aliases
+alias  dds="$myls -Fh ${colorflag} ${gdirfirst} "
 alias  la="$myls -AF  ${colorflag}"
 alias  ll="$myls -lFh ${colorflag} ${gdirfirst} "
-alias  llt='myls -hrt'
-alias  dds="$myls -Fh ${colorflag} ${gdirfirst} "
+alias  llt="ll -hrt "
 alias  lld="ll | grep ^d"
 
 #python

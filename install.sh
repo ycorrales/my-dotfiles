@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -euo pipefail
+#set -uo pipefail
 
 (
   function _config_myMac()
@@ -17,14 +17,15 @@ set -euo pipefail
   {
     DOTFILES=${DOTFILES:-"$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")" && pwd )" > /dev/null 2>&1 && pwd )"}
 
-    if test "$OSTYPE" = "darwin"*; then
+    if [[ "$OSTYPE" =~ "darwin.*" ]]; then
       OS="osx_x86-64"
-    elif test "$OSTYPE" = "linux-gnu"; then
+    elif [[ "$OSTYPE" =~ "linux-gnui.*" ]]; then
       OS="linux"
     else
-      OS="unkonw"
+      OS="unknow"
     fi
 
+    echo "$OS"
     # sourcing script to create the symbolic link
     files=( "install/link.sh" )
     for file in "${files[@]}"; do

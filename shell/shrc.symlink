@@ -121,8 +121,12 @@ fi
 #Put custom code from HERE
 #
 GDATE='date'
-type gdate > /dev/null 2>&1 && GDATE='gdate'
-b_tm=$($GDATE +%s.%N)
+FDATE='+%s'
+if type gdate > /dev/null 2>&1; then
+  GDATE='gdate'
+  FDATEm='+%s.%N'
+fi
+b_tm=$($GDATE $FDATE)
 export LC_ALL='en_US.UTF-8'
 
 DOTFILES="$HOME/Software/_git/my_dotfiles/"
@@ -149,8 +153,8 @@ for SHELL_FILE in $( ls -r $DOTFILES/shell/add_files/*.shell ); do
 done
 
 #
-  # 'Til HERE
+# 'Til HERE
 #
-e_tm=$($GDATE +%s.%N)
+e_tm=$($GDATE $FDATE)
 [[ $(echo "$( echo "$e_tm - $b_tm" | bc -l ) > 1" | bc) != 1 ]] || \
-  echo "Shell initialization too slow, time higher than 1 sec."
+  echo "Shell initialization too slow, time higher than 2 sec."
