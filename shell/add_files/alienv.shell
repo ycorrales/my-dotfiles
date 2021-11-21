@@ -9,8 +9,8 @@ if type alienv &> /dev/null; then
 
   alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias   rt='alienv setenv  $ROOT -c root -l'
-  alias   alio2='alienv setenv $O2   -c root -l'
+  alias   rt='alienv setenv $ROOT -c root -l'
+  alias   alio2='alienv setenv $O2 -c root -l'
 
   alien-create-cert()
   {
@@ -34,17 +34,17 @@ if type alienv &> /dev/null; then
     popd
   }
 
-  o2-load()
+  alio2-load()
   {
     alienv load "$O2"
   }
 
-  o2-clean()
+  alio2-unload()
   {
     alienv unload "$O2"
   }
 
-  root-fl-ls()
+  alio2-fl-ls()
   {
     alienv setenv $ROOT -c root -l <<EOF
     gMyUtils->ShowFileKeys("$1")
@@ -52,7 +52,8 @@ if type alienv &> /dev/null; then
 EOF
   }
 
-  alio2-find() {
+  alio2-find()
+  {
     if [ ! -z $1 ]; then
       find -H ${ALISOFT} -iname $@
     else
