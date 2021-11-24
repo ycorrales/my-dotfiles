@@ -101,12 +101,12 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #ssh local tunnel for vnc
   #@param 1, ssh hostname
   #@param 2, [optional] remote port (default 5901)
-  vnc-ssh-tunnel()
-  {
-    local host=${1}
-    local port=${2:-5901}
-    ssh -fNT -L 5900:localhost:$port $host
-  }
+#  vnc-ssh-tunnel()
+#  {
+#    local host=${1}
+#    local port=${2:-5901}
+#    ssh -fNT -L 5900:localhost:$port $host
+#  }
 
   ming-fwknop()
   {
