@@ -49,7 +49,7 @@ Host vc709
   ForwardX11Trusted  yes
   ProxyCommand       ssh flx-amd -q -W%h:%p
 
-Host kc705
+Host mosaic
   Hostname           204.121.146.110
   User               maps
   ForwardX11         yes
