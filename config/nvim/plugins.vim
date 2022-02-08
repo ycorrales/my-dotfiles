@@ -17,7 +17,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " colorschemes
- Plug 'KeitaNakamura/neodark.vim'
+" Plug 'KeitaNakamura/neodark.vim'
+ Plug 'rakr/vim-one'
 " utilities
 " Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
  Plug 'itchyny/lightline.vim'

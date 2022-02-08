@@ -55,9 +55,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " Colorscheme
   if has("gui_running")
-    colorscheme neodark
+    colorscheme one
   else
-    colorscheme neodark
+    colorscheme one
   endif
   set background=dark
 
@@ -169,8 +169,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   " Secttion Mappings {{{
 
   " set a map leader for more key combos
-  let mapleader   = '`'
-  let g:mapleader = '`'
+  let mapleader   = '\'
+  let g:mapleader = '\'
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
@@ -215,8 +215,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Fast editing and reloading of vimrc configs
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  map <leader>fc :tabe! ~/.config/nvim/my_configs.vim<cr>
-  map <leader>fp :tabe! ~/.config/nvim/plugins.vim<cr>
+  map <leader>cf :tabe! ~/.config/nvim/my_configs.vim<cr>
+  map <leader>pf :tabe! ~/.config/nvim/plugins.vim<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Command mode related
@@ -508,11 +508,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   " => lightline
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ }
-
-  let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'one',
         \ 'active': {
         \   'left': [ ['mode', 'paste'],
         \             ['fugitive', 'readonly', 'filename', 'modified'] ],
@@ -666,6 +662,20 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
       let @/ = l:pattern
       let @" = l:saved_reg
   endfunction
+
+  " Highligth current line number
+  function! CLNRSetOnly()
+    hi clear CursorLine
+    hi CursorLineNR cterm=bold
+  endfunction
+
+  " Highlight current cursor line number only
+  set cursorline
+  call CLNRSetOnly()
+  augroup CLNRSetOnly
+    autocmd! ColorScheme * call CLNRSetOnly()
+  augroup END
+
   " }}}
 
     " Section Filetypes {{{
