@@ -1,3 +1,8 @@
+# Dantong's FPGA server
+Host njit
+  HostName           hpdtl.cewit.stonybrook.edu
+  User               fpga
+
 # CERN
 Host lxplus
   HostName           lxplus.cern.ch
