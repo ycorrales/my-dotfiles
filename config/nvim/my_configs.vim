@@ -1,12 +1,13 @@
 if $USER == 'ycorrales' || $USER == 'ycmorales'
 
-  " Section General {{{
+  " Section General
+  " {{{
+
+  " top
   set nocompatible            " not compatible with vi
   set autoread                " detect when a file is changed
-
   set history=1000            " change history to 1000
   set textwidth=120
-
   "set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
   "set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
@@ -27,62 +28,19 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " Return to last edit position when opening files (You want this!)
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  " }}}
-
-  " Section User Interface {{{
-
-  " Set font according to system
-  if has("mac") || has("macunix")
-    set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ M\ DZ:h13
-  elseif has("win16") || has("win32")
-    set gfn=Hack:h14,Source\ Code\ Pro:h12,itstream\ Vera\ Sans\ Mono:h11
-  elseif has("gui_gtk2")
-    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
-  elseif has("linux")
-    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
-  elseif has("unix")
-    set gfn=Monospace\ 13
-  endif
-
-  " Disable scrollbars (real hackers don't use scrollbars for navigation!)
-  set guioptions-=r
-  set guioptions-=R
-  set guioptions-=l
-  set guioptions-=L
-
-  " Use Unix as the standard file type
-  set ffs=unix,dos,mac
-
-  " Colorscheme
-  if has("gui_running")
-    colorscheme one
-  else
-    colorscheme one
-  endif
-  set background=dark
-
+  
   " Some basic configuration
   set timeoutlen=250000
+  syntax on                     " Enable syntax highlighting
+  set t_Co=256                  " Explicitly tell vim that the terminal supports 256 colors"
 
-  syntax on     " Enable syntax highlighting
-  set t_Co=256  " Explicitly tell vim that the terminal supports 256 colors"
+  " Error bells
+  set noerrorbells
+  set visualbell
+  set t_vb=
+  set tm=500
 
-  " switch cursor to line when in insert mode, and block when not
-  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-        \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-  if &term =~ '256color'
-    " disable background color erase
-    set t_ut=
-  endif
-
-  " make the highlighting of tabs and other non-text less annoying
-  highlight SpecialKey ctermfg=238
-  highlight NonText ctermfg=238
-  highlight IncSearch cterm=NONE ctermbg=red ctermfg=0 gui=NONE guibg=#ff0000 guifg=#000000
-
-  set number                  " show line numbers
+    set number                  " show line numbers
   " set relativenumber          " show relative line numbers
 
   set wrap                    " turn on line wrapping
@@ -122,10 +80,12 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   set clipboard=unnamed
 
   set ttyfast                 " faster redrawing
+  
   if &diff
-    set diffopt-= internal
+    set diffopt-=internal
     set diffopt+=vertical
   endif
+
   set laststatus=2            " show the satus line all the time
   set so=7                    " set 7 lines to the cursors - when moving vertical
   set wildmenu                " enhanced command line completion
@@ -150,11 +110,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   set showmatch               " show matching braces
   set mat=2                   " how many tenths of a second to blink
 
-  " Error bells
-  set noerrorbells
-  set visualbell
-  set t_vb=
-  set tm=500
 
   if has('mouse')
     set mouse=a
@@ -163,10 +118,78 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " Height of the command bar
   set cmdheight=2
+  " }}}
+
+  " Section User Interface
+  " {{{
+
+  " Set font according to system
+  if has("mac") || has("macunix")
+    set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ M\ DZ:h13
+  elseif has("win16") || has("win32")
+    set gfn=Hack:h14,Source\ Code\ Pro:h12,itstream\ Vera\ Sans\ Mono:h11
+  elseif has("gui_gtk2")
+    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+  elseif has("linux")
+    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+  elseif has("unix")
+    set gfn=Monospace\ 13
+  endif
+
+  " Disable scrollbars (real hackers don't use scrollbars for navigation!)
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
+
+  " switch cursor to line when in insert mode, and block when not
+  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+  " disable background color erase
+  if &term =~ '256color'
+    set t_ut=
+  endif
+
+  " Use Unix as the standard file type
+  set ffs=unix,dos,mac
+
+  " Colorscheme
+  if has("gui_running")
+    colorscheme one
+    set background=dark
+    """"""""""""""""""""""""""""""""""""""""""
+    " => colorscheme one
+    " one#highlight(group, fg, bg, attribute)
+    """"""""""""""""""""""""""""""""""""""""""
+    call one#highlight('vimLineComment', '808080', '', '')
+  else
+    colorscheme desert
+  endif
+
+  " Highligth current line number
+  fun! HiSet()
+     " make the highlighting of tabs and other non-text less annoying
+     hi SpecialKey ctermfg=238
+     hi NonText ctermfg=238
+     hi IncSearch cterm=NONE ctermbg=red ctermfg=0 gui=NONE guibg=#ff0000 guifg=#000000
+     hi clear CursorLine
+     hi CursorLineNR ctermfg=darkgreen cterm=bold guifg=darkgreen gui=bold
+  endfun
+
+  " Highlight current cursor line number only
+  set cursorline
+  call HiSet()
+  augroup HiSet
+    autocmd! ColorScheme * call HiSet()
+  augroup END
+
 
   " }}}
 
-  " Secttion Mappings {{{
+  " Secttion Mappings
+  " {{{
 
   " set a map leader for more key combos
   let mapleader   = '\'
@@ -358,7 +381,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " }}}
 
-  " Section Plugins {{{
+  " Section Plugins
+  " {{{
+
   """""""""""""""""""""""""""""
   " => bufExplorer plugin
   """""""""""""""""""""""""""""
@@ -386,6 +411,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   ""let g:ctrlp_max_height = 20
   ""let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
   "
+
   """"""""""""""""""""""""""""""
   " => Searchant
   """"""""""""""""""""""""""""""
@@ -535,7 +561,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   let vim_markdown_preview_hotkey='<C-m>'
   " }}}
 
-  " Section Extra {{{
+  " Section Extra
+  " {{{
+
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Misc
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -546,19 +574,18 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " =>  Whitespace fixes
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  highlight ExtraWhitespace ctermfg=0 ctermbg=12 guifg=#000000 guibg=#ff0000
+  hi ExtraWhitespace ctermfg=0 ctermbg=12 guifg=#000000 guibg=#ff0000
   autocmd VimEnter,BufEnter,WinEnter * call ExtraWhitespaceColor()
   fun! ExtraWhitespaceColor()
     let &nuw=len(line('$'))+2               " Nicer line numbers
     call matchadd('ExtraWhitespace', '\zs\(\S\zs\s\{1,}$\)')
   endfun
-  match ExtraWhitespace /\s\+$/
+     
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " move tabs to the end for new, single buffers (exclude splits)
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   autocmd BufNew * if winnr('$') == 1 | tablast | endif
-
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Turn persistent undo on
@@ -579,14 +606,14 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
       let old_query = getreg('/')
       silent! %s/\s\+$//e
       call setpos('.', save_cursor)
-     call setreg('/', old_query)
+      call setreg('/', old_query)
   endfun
 
   if has("autocmd")
       autocmd BufWritePre *.tcl,*.vhd,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.C,*.h,*.c,*.cpp :call CleanExtraSpaces()
   endif
 
-  func! DeleteTillSlash()
+  fun! DeleteTillSlash()
     let g:cmd = getcmdline()
 
     if has("win16") || has("win32")
@@ -604,24 +631,24 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
     endif
 
     return g:cmd_edited
-  endfunc
+  endfun
 
   " get current file dir
-  func! CurrentFileDir(cmd)
+  fun! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
-  endfunc
+  endfun
 
   " Returns true if paste mode is enabled
-  function! HasPaste()
+  fun! HasPaste()
       if &paste
           return 'PASTE MODE  '
       endif
       return ''
-  endfunction
+  endfun
 
   " Don't close window, when deleting a buffer
   command! Bclose call <SID>BufcloseCloseIt()
-  function! <SID>BufcloseCloseIt()
+  fun! <SID>BufcloseCloseIt()
      let l:currentBufNum = bufnr("%")
      let l:alternateBufNum = bufnr("#")
 
@@ -638,15 +665,15 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
      if buflisted(l:currentBufNum)
        execute("bdelete! ".l:currentBufNum)
      endif
-  endfunction
+  endfun
 
-  function! CmdLine(str)
+  fun! CmdLine(str)
       exe "menu Foo.Bar :" . a:str
       emenu Foo.Bar
       unmenu Foo
-  endfunction
+  endfun
 
-  function! VisualSelection(direction, extra_filter) range
+  fun! VisualSelection(direction, extra_filter) range
       let l:saved_reg = @"
       execute "normal! vgvy"
 
@@ -661,66 +688,52 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
       let @/ = l:pattern
       let @" = l:saved_reg
-  endfunction
-
-  " Highligth current line number
-  function! CLNRSetOnly()
-    hi clear CursorLine
-    hi CursorLineNR cterm=bold
-  endfunction
-
-  " Highlight current cursor line number only
-  set cursorline
-  call CLNRSetOnly()
-  augroup CLNRSetOnly
-    autocmd! ColorScheme * call CLNRSetOnly()
-  augroup END
-
+  endfun
   " }}}
 
-    " Section Filetypes {{{
-    """"""""""""""""""""""""""""""
-    " => C++ section
-    """"""""""""""""""""""""""""""
-    au FileType cpp set colorcolumn=80,100
+  " Section Filetypes
+  " {{{
 
+  """"""""""""""""""""""""""""""
+  " => C++ section
+  """"""""""""""""""""""""""""""
+  au FileType cpp set colorcolumn=80,100
 
-    """"""""""""""""""""""""""""""
-    " => Python section
-    """"""""""""""""""""""""""""""
-    let python_highlight_all = 1
-    au FileType python syn keyword pythonDecorator True None False self
+  """"""""""""""""""""""""""""""
+  " => Python section
+  """"""""""""""""""""""""""""""
+  let python_highlight_all = 1
+  au FileType python syn keyword pythonDecorator True None False self
 
-    au BufNewFile,BufRead *.jinja set syntax=htmljinja
-    au BufNewFile,BufRead *.mako set ft=mako
+  au BufNewFile,BufRead *.jinja set syntax=htmljinja
+  au BufNewFile,BufRead *.mako set ft=mako
 
-    au FileType python map <buffer> F :set foldmethod=indent<cr>
+  au FileType python map <buffer> F :set foldmethod=indent<cr>
 
-    au FileType python inoremap <buffer> $r return
-    au FileType python inoremap <buffer> $i import
-    au FileType python inoremap <buffer> $p print
-    au FileType python inoremap <buffer> $f #--- <esc>a
-    au FileType python map <buffer> <leader>1 /class
-    au FileType python map <buffer> <leader>2 /def
-    au FileType python map <buffer> <leader>C ?class
-    au FileType python map <buffer> <leader>D ?def
-    au FileType python set cindent
-    au FileType python set cinkeys-=0#
-    au FileType python set indentkeys-=0#
+  au FileType python inoremap <buffer> $r return
+  au FileType python inoremap <buffer> $i import
+  au FileType python inoremap <buffer> $p print
+  au FileType python inoremap <buffer> $f #--- <esc>a
+  au FileType python map <buffer> <leader>1 /class
+  au FileType python map <buffer> <leader>2 /def
+  au FileType python map <buffer> <leader>C ?class
+  au FileType python map <buffer> <leader>D ?def
+  au FileType python set cindent
+  au FileType python set cinkeys-=0#
+  au FileType python set indentkeys-=0#
 
+  """"""""""""""""""""""""""""""
+  " => JavaScript section
+  """"""""""""""""""""""""""""""
+  au FileType javascript call JavaScriptFold()
+  au FileType javascript setl fen
+  au FileType javascript setl nocindent
 
-    """"""""""""""""""""""""""""""
-    " => JavaScript section
-    """"""""""""""""""""""""""""""
-    au FileType javascript call JavaScriptFold()
-    au FileType javascript setl fen
-    au FileType javascript setl nocindent
+  au FileType javascript imap <c-t> $log();<esc>hi
+  au FileType javascript imap <c-a> alert();<esc>hi
 
-    au FileType javascript imap <c-t> $log();<esc>hi
-    au FileType javascript imap <c-a> alert();<esc>hi
-
-    au FileType javascript inoremap <buffer> $r return
-    au FileType javascript inoremap <buffer> $f //--- PH<esc>FP2xi
+  au FileType javascript inoremap <buffer> $r return
+  au FileType javascript inoremap <buffer> $f //--- PH<esc>FP2xi
 
   function! JavaScriptFold()
       setl foldmethod=syntax
@@ -732,7 +745,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
       endfunction
       setl foldtext=FoldText()
   endfunction
-
 
   """"""""""""""""""""""""""""""
   " => Shell section
