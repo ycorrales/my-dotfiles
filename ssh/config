@@ -1,3 +1,11 @@
+# ssh commands
+# ProxyJump <proxy-host> is a shorthand for
+# old metthod
+# ProxyCommand ssh <proxy-host> -q -W %h:%p
+# or
+# very old methos
+# ProxyCommand ssh <proxy-host> nc %h %p
+
 # Dantong's FPGA server
 Host njit
   HostName           hpdtl.cewit.stonybrook.edu
@@ -16,16 +24,14 @@ Host zoroastro
 #Host superfarm
 #  HostName           cloud-gw-215.to.infn.it
 #  User               corrales
-#  ProxyCommand       ssh zoroastro -q -W%h:%p
+#  ProxyJump          zoroastro
 
 # LANL
 Host flx-amd-zoro
   Hostname           localhost
   Port               8022
   User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh zoroastro -q -W%h:%p
+  ProxyJump          zoroastro
 
 Host flx-ming
   Hostname           69.254.135.184
@@ -38,28 +44,24 @@ Host flx-amd
   User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-ming -q -W%h:%p
+  ProxyJump          flx-ming
 
 Host eic
   Hostname           204.121.146.105
   User               eic
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd -q -W%h:%p
 
 Host vc709
   Hostname           204.121.146.104
   User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd -q -W%h:%p
 
 Host mosaic
   Hostname           204.121.146.110
   User               maps
+
+Host eic vc709 mosaic
   ForwardX11         yes
   ForwardX11Trusted  yes
-  ProxyCommand       ssh flx-amd -q -W%h:%p
+  ProxyJump          flx-amd
 
 # BNL
 Host sdcc_gateway
@@ -73,12 +75,13 @@ Host cssh_gateway
 Host phenix
   HostName           rcas2067.rcf.bnl.gov
   User               ycorrale
-  ProxyCommand       ssh sdcc_gateway -W%h:%p
 
 Host sphenix
   HostName           sphnx02.sdcc.bnl.gov
   User               ycmorales
-  ProxyCommand       ssh sdcc_gateway -W%h:%p
+
+Host *.bnl.gov sphenix phenix
+  ProxyJump          sdcc_gateway
 
 # FNAL
 Host ftbfbnl01
@@ -86,10 +89,10 @@ Host ftbfbnl01
   User               ftbf_user
 
 Host 192.168.60.*
-  ProxyCommand       ssh ftbfbnl01 -W%h:%p
+  ProxyJump          ftbfbnl01
 
 Host *.fnal.gov
-  GSSAPIAuthentication yes
+  GSSAPIAuthentication      yes
   GSSAPIDelegateCredentials yes
 
 # LBNL
@@ -99,9 +102,10 @@ Host lbnl_mvtx
 
 # ALL
 Host *
+  IgnoreUnknown      AddKeysToAgent,UseKeychain
   ControlMaster      yes
   ControlPersist     600
   IdentityFile       ~/.ssh/id_rsa
-#  AddKeysToAgent     yes
-#  IgnoreUnknown UseKeychain
-#  UseKeychain yes
+  ForwardAgent       yes
+  AddKeysToAgent     yes
+  UseKeychain        yes
