@@ -38,7 +38,7 @@ call plug#begin('~/.vim/plugged')
 
  if v:version > 704
    Plug 'benmills/vimux' " tmux integration for vim
-   Plug 'iamcco/markdown-preview.nvim'
+   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
  endif
 
  call plug#end()
