@@ -4,12 +4,20 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   " {{{
 
   " top
-  set nocompatible            " not compatible with vi
-  set autoread                " detect when a file is changed
-  set history=1000            " change history to 1000
+  set nocompatible  " not compatible with vi
+  set autoread      " detect when a file is changed
+  set history=1000  " change history to 1000
+  set number                  " show line numbers
+  " set relativenumber          " show relative line numbers
   set textwidth=120
-  "set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-  "set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+  set wrap                    " turn on line wrapping
+  set wrapmargin=8            " wrap lines when coming within n characters from side
+  set linebreak               " set soft wrapping
+  set autoindent              " automatically set indent of new line
+  set smartindent
+
+  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+  set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
   " Ignore compiled files
   set wildignore=*.o,*~,*.pyc
@@ -21,14 +29,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   let $LANG='en_US'
 
-  " Format the status line
-  "*** Deprecated
-  "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-  "*** using airline for a fancy statusline
-
-  " Return to last edit position when opening files (You want this!)
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  
   " Some basic configuration
   set timeoutlen=250000
   syntax on                     " Enable syntax highlighting
@@ -40,22 +40,10 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   set t_vb=
   set tm=500
 
-    set number                  " show line numbers
-  " set relativenumber          " show relative line numbers
-
-  set wrap                    " turn on line wrapping
-  set wrapmargin=8            " wrap lines when coming within n characters from side
-  set linebreak               " set soft wrapping
-  set autoindent              " automatically set indent of new line
-  set smartindent
-
   " toggle invisible characters
   set list
   set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
   set showbreak=↪              " show ellipsis at breaking
-
-  " highlight conflicts
-  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
   " make backspace behave in a sane manner
   set backspace=indent,eol,start
@@ -76,17 +64,19 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   set foldenable              " don't fold by default
   set foldlevel=1
   set foldcolumn=1            " Add a bit extra margin to the left
+  set modeline
+  set modelines=2
 
   set clipboard=unnamed
 
   set ttyfast                 " faster redrawing
-  
+
   if &diff
     set diffopt-=internal
     set diffopt+=vertical
   endif
 
-  set laststatus=2            " show the satus line all the time
+  set laststatus=2            " show the status line all the time
   set so=7                    " set 7 lines to the cursors - when moving vertical
   set wildmenu                " enhanced command line completion
   set hidden                  " current buffer can be put into background
@@ -104,7 +94,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   set hlsearch                " highlight search results
   set incsearch               " set incremental search, like modern browsers
   set nolazyredraw            " don't redraw while executing macros
-
   set magic                   " Set magic on, for regex
 
   set showmatch               " show matching braces
@@ -122,6 +111,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
   " Section User Interface
   " {{{
+
+  " Return to last edit position when opening files (You want this!)
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
   " Set font according to system
   if has("mac") || has("macunix")
@@ -185,7 +177,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
     autocmd! ColorScheme * call HiSet()
   augroup END
 
-
+  " highlight conflicts
+  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
   " }}}
 
   " Secttion Mappings
@@ -570,17 +563,21 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   "set formatprg=astyle
   "au FileType c,cpp setlocal comments-=:// comments+=f:// "remove auto comment in line
 
-
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " =>  Whitespace fixes
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   hi ExtraWhitespace ctermfg=0 ctermbg=12 guifg=#000000 guibg=#ff0000
   autocmd VimEnter,BufEnter,WinEnter * call ExtraWhitespaceColor()
   fun! ExtraWhitespaceColor()
-    let &nuw=len(line('$'))+2               " Nicer line numbers
-    call matchadd('ExtraWhitespace', '\zs\(\S\zs\s\{1,}$\)')
+    " Nicer line number
+    let &nuw=len(line('$'))+2
+    " Highlight trailing whitespace (\s\+$) or
+    " space before tabs (\s\+\ze\t)
+    " \s finds whitespace (or tabs).
+    " \+ finds one or more occurrences.
+    " \ze end found
+    call matchadd('ExtraWhitespace', '\s\+$\|\s\+\ze\t')
   endfun
-     
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " move tabs to the end for new, single buffers (exclude splits)
@@ -604,7 +601,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   fun! CleanExtraSpaces()
       let save_cursor = getpos(".")
       let old_query = getreg('/')
-      silent! %s/\s\+$//e
+      silent! %s/\s\+$//e " e flag means no error is displayed
       call setpos('.', save_cursor)
       call setreg('/', old_query)
   endfun
@@ -756,6 +753,4 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
 
 endif
 
-set modeline
-set modelines=2
 " vim: fdm=marker fdl=0
