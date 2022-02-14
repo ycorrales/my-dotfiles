@@ -2,6 +2,7 @@
 
 (
   set -euo pipefail
+
   DOTFILES=${DOTFILES?"err_msg"}
 
   pinfo "" > /dev/null 2>&1 || source "${DOTFILES}"/shell/add_files/utils.shell
@@ -21,7 +22,6 @@
       ln -nsf "$TARGET" "$LINK";
     fi
   }
-
 
   function prep_symlink()
   {
@@ -46,7 +46,7 @@
 
   # do_symlink dir prefix links_list [force]
   prep_symlink ''        '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
-  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh"  -maxdepth 1  ! -path "$DOTFILES/ssh" )"
+  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh"  -maxdepth 1 -name '*.symlink' )" '.symlink'
   prep_symlink '.config' ''  "$( find -H "$DOTFILES/config" -maxdepth 1 ! -path "$DOTFILES/config" )"
   prep_symlink ''        ''  "$DOTFILES/root/rootlogon.C"
 
