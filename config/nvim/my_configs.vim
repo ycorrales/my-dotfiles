@@ -576,7 +576,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
     " \s finds whitespace (or tabs).
     " \+ finds one or more occurrences.
     " \ze end found
-    call matchadd('ExtraWhitespace', '\s\+$\|\s\+\ze\t')
+    call matchadd('ExtraWhitespace', '\s\+$\| \+\ze\t')
   endfun
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

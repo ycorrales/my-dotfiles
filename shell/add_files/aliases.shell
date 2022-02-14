@@ -23,8 +23,8 @@ alias  llt="ll -hrt "
 alias  lld="ll | grep ^d"
 
 #python
-alias python='/usr/local/bin/python3'
-alias pip='/usr/local/bin/pip3'
+#alias python='/usr/local/bin/python3'
+#alias pip='/usr/local/bin/pip3'
 
 #GIT
 alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) \
@@ -41,9 +41,9 @@ alias clear='clear && printf "\e[3J"'
 alias clr='clear'
 alias bye='exit'
 alias tmux='tmux -u' #allow OpenBSD tmux support UTF-8
-alias vimc='vim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
-type nvim    &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
-[[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source ~/Software/MakePDF/mkPDFdoc.sh'
+alias vimcf='mvim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config file
+type nvim &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
+[[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source $HOME/Software/MakePDF/mkPDFdoc.sh'
 
 #WORKING_DIR
 alias goDotfiles='clr; cd $DOTFILES'
@@ -84,9 +84,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias  goEIC='clr; cd $HOME/Work/EIC/'
 
   #SECRET TOKEN
-  alias   getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'
+  alias getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'
   alias getLastPass='oathtool --totp -b $(cat $DOTFILES/backup_codes/lastPass.cd)'
-  alias  getBNLmail='oathtool --totp -b $(cat $DOTFILES/backup_codes/webmail_bnl.cd)'
+  alias getBNLmail='oathtool --totp -b $(cat $DOTFILES/backup_codes/webmail_bnl.cd)'
 
   #SSH
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
@@ -125,72 +125,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
       -L 10082:192.168.60.149:8082 \
       -L 10007:192.168.60.7:80
   }
-
-fi #end MacOnly
-
-if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]]    \
-  || [[ $HOSTNAME =~ 'sdcc.bnl.gov'$ ]] \
-  || [[ -n $SINGULARITY_NAME ]]; then
-
-  # This line fixes tab directory expansion (instead of adding a forward slash)
-  shopt -s direxpand
-
-  export WORK='/gpfs02/sphenix/user/ycmorales/sphenix'
-  export AFS='/afs/rhic/phenix/users/ycorrale/'
-  export SPHENIX=/sphenix/u/ycmorales/sPHENIX_SW
-  export MYINSTALL=$SPHENIX/install
-  #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
-  #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
-
-  source /opt/sphenix/core/bin/sphenix_setup.sh -n
-  source /opt/sphenix/core/bin/setup_local.sh "$MYINSTALL" %2>&1 > /dev/null
-  alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
-  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
-  alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
-
-  #alias runKFParticleTests="cd ~/software/coresoftware/offline/packages/KFParticle_sPHENIX/build/ && make && make install
-  #&&  cd /sphenix/user/cdean/software/analysis/HF-Particle/KFParticle_sPHENIX/ && root -l -q -b
-  #Fun4All_KFParticle_condorJob.C'(\"fileList_bs2jpsiphi.txt\")'"
-
-  alias buildModule="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL && make -j install && cd ../"
-  alias buildModuleClang="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL CXX=clang++ CC=clang && make install && cd ../"
-  alias cleanModule='rm -rf aclocal.m4 autom4te.cache/ config.* configure depcomp install-sh ltmain.sh Makefile.in missing build/'
-
-  function cleanModuleFully()
-  {
-    startDir=$(pwd)
-
-    includeFolder=$(grep AC_INIT configure.ac | cut -d "(" -f2 | cut -d "" -f1)
-    libraryNames=( $(grep "\.la" Makefile.am | awk '{print $1}' | grep lib | cut -d "." -f1 | tr ' ' '\n' | sort -u | tr '\n' ' ') )
-
-    cleanThisProject
-
-    cd $MYINSTALL
-    rm -rf include/$includeFolder
-    cd lib;
-    for i in "${libraryNames[@]}"; do
-      rm ${i}.la ${i}.so*
-    done
-
-    cd $startDir
-  }
-
-fi #end SPHENIX RCF
-
-if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
-  #alias for sPHENIX singularity framework
-  l-sph-singularity()
-  {
-    (
-      _ALIDOCK_HOME="/home/alidock/sing_sphenix_home"
-      cp ~/.Xauthority ~/sing_sphenix_home/.
-      cd /mnt/Work/sPHENIX;
-      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work:$_ALIDOCK_HOME/Work"
-      singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
-      exit $?
-    )
-  }
-fi
 
 # Recursively delete `.DS_Store` files
 cleanup()
@@ -266,3 +200,68 @@ watch()
   trap "echo exit...; return" INT
   while :; do clear; $1; sleep ${2:-2}; done
 }
+fi #end MacOnly
+
+if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
+  || [[ $HOSTNAME =~ sdcc.bnl.gov$ ]] \
+  || [[ -n $SINGULARITY_NAME ]]; then
+
+  # This line fixes tab directory expansion (instead of adding a forward slash)
+  shopt -s direxpand
+
+  export WORK='/gpfs02/sphenix/user/ycmorales/sphenix'
+  export AFS='/afs/rhic/phenix/users/ycorrale/'
+  export SPHENIX=/sphenix/u/ycmorales/sPHENIX_SW
+  export MYINSTALL=$SPHENIX/install
+  #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
+  #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
+
+  [[ -f /opt/sphenix/core/bin/sphenix_setup.sh ]] && source /opt/sphenix/core/bin/sphenix_setup.sh -n
+  [[ -f /opt/sphenix/core/bin/setup_local.sh ]] && source /opt/sphenix/core/bin/setup_local.sh "$MYINSTALL" %2>&1 > /dev/null
+  alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
+  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
+  alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
+
+  #alias runKFParticleTests="cd ~/software/coresoftware/offline/packages/KFParticle_sPHENIX/build/ && make && make install
+  #&&  cd /sphenix/user/cdean/software/analysis/HF-Particle/KFParticle_sPHENIX/ && root -l -q -b
+  #Fun4All_KFParticle_condorJob.C'(\"fileList_bs2jpsiphi.txt\")'"
+
+  alias buildModule="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL && make -j install && cd ../"
+  alias buildModuleClang="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL CXX=clang++ CC=clang && make -j install && cd ../"
+  alias cleanModule='rm -rf aclocal.m4 autom4te.cache/ config.* configure depcomp install-sh ltmain.sh Makefile.in missing build/'
+
+  function cleanModuleFully()
+  {
+    startDir=$(pwd)
+
+    includeFolder=$(grep AC_INIT configure.ac | cut -d "(" -f2 | cut -d "" -f1)
+    libraryNames=( $(grep "\.la" Makefile.am | awk '{print $1}' | grep lib | cut -d "." -f1 | tr ' ' '\n' | sort -u | tr '\n' ' ') )
+
+    cleanThisProject
+
+    cd $MYINSTALL
+    rm -rf include/$includeFolder
+    cd lib;
+    for i in "${libraryNames[@]}"; do
+      rm ${i}.la ${i}.so*
+    done
+
+    cd $startDir
+  }
+
+fi #end SPHENIX RCF
+
+if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
+  #alias for sPHENIX singularity framework
+  l-sph-singularity()
+  {
+    (
+      _ALIDOCK_HOME="/home/alidock/sing_sphenix_home"
+      cp ~/.Xauthority ~/sing_sphenix_home/.
+      cd /mnt/Work/sPHENIX;
+      export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work:$_ALIDOCK_HOME/Work"
+      singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
+      exit $?
+    )
+  }
+fi
