@@ -18,14 +18,19 @@
   function Main()
   {
     # Parse options
-    local FORSE CONFIG_MAC
-    while getopts "fm" arg; do
+    local FORSE=""
+    local CONFIG_MAC=""
+    local CLEAN=""
+    while getopts "cfm" arg; do
       case $arg in
         f)
-          FORSE=1;
+          FORSE=1
           ;;
         m)
-          local CONFIG_MAC=1;
+          CONFIG_MAC=1
+          ;;
+        c)
+          CLEAN=1
           ;;
         \?)
           usage
@@ -46,6 +51,11 @@
       OS="unknow"
     fi
 
+    [[ -n "$CLEAN" ]] && { cd ~; \
+    rm .globus .vim .vscode .zsh .ssh/id_rsa* .ssh/config .config/nvim; \
+    rm .alidock-config.yaml .bash_profile .bashrc .bnlbox \.cadaverrc .fwknoprc .gitconfig .inputrc .netrc .rootrc .shrc .tmux.conf .vimrc .zshrc rootlogon.C; \
+    cd -; exit 0; }
+
     # sourcing script to create the symbolic link
     local files=( "install/link.sh" )
     for file in "${files[@]}"; do
@@ -54,7 +64,7 @@
       [ -f "${FILE_PATH}" ] && source "$FILE_PATH" "$FORSE"
     done
 
-    [[ $OS = "osx_x86-64" && -n $CONFIG_MAC ]] && _config_myMac
+    [[ $OS = "osx_x86-64" && -n "$CONFIG_MAC" ]] && _config_myMac
   }
 
   Main "$@"

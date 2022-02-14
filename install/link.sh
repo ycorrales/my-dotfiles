@@ -46,7 +46,7 @@
 
   # do_symlink dir prefix links_list [force]
   prep_symlink ''        '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
-  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh"  -maxdepth 1 -name '*.symlink' )" '.symlink'
+  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh" -type f -maxdepth 1 \( -name "config" -o -name "id_rsa*" \) )"
   prep_symlink '.config' ''  "$( find -H "$DOTFILES/config" -maxdepth 1 ! -path "$DOTFILES/config" )"
   prep_symlink ''        ''  "$DOTFILES/root/rootlogon.C"
 
