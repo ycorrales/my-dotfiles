@@ -211,7 +211,7 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
 
   export WORK='/gpfs02/sphenix/user/ycmorales/sphenix'
   export AFS='/afs/rhic/phenix/users/ycorrale/'
-  export SPHENIX=/sphenix/u/ycmorales/sPHENIX_SW
+  export SPHENIX_SW=/sphenix/u/ycmorales/sPHENIX_SW
   export MYINSTALL=$SPHENIX/install
   #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
   #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
@@ -221,33 +221,11 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
   alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
   alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
   alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
+  alias create_sw_dir="( mkdir -p sw; cd sw; ln -nsf $SPHENIX_SW/sphenix_utils/build.sh ./; )"
 
   #alias runKFParticleTests="cd ~/software/coresoftware/offline/packages/KFParticle_sPHENIX/build/ && make && make install
   #&&  cd /sphenix/user/cdean/software/analysis/HF-Particle/KFParticle_sPHENIX/ && root -l -q -b
   #Fun4All_KFParticle_condorJob.C'(\"fileList_bs2jpsiphi.txt\")'"
-
-  alias buildModule="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL && make -j install && cd ../"
-  alias buildModuleClang="mkdir build && cd build && ../autogen.sh --prefix=$MYINSTALL CXX=clang++ CC=clang && make -j install && cd ../"
-  alias cleanModule='rm -rf aclocal.m4 autom4te.cache/ config.* configure depcomp install-sh ltmain.sh Makefile.in missing build/'
-
-  function cleanModuleFully()
-  {
-    startDir=$(pwd)
-
-    includeFolder=$(grep AC_INIT configure.ac | cut -d "(" -f2 | cut -d "" -f1)
-    libraryNames=( $(grep "\.la" Makefile.am | awk '{print $1}' | grep lib | cut -d "." -f1 | tr ' ' '\n' | sort -u | tr '\n' ' ') )
-
-    cleanThisProject
-
-    cd $MYINSTALL
-    rm -rf include/$includeFolder
-    cd lib;
-    for i in "${libraryNames[@]}"; do
-      rm ${i}.la ${i}.so*
-    done
-
-    cd $startDir
-  }
 
 fi #end SPHENIX RCF
 
