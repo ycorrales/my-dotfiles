@@ -16,7 +16,7 @@ Host lxplus
   HostName           lxplus.cern.ch
   User               ycorrale
 
-# TO.IT
+# TO.INFN.IT
 Host zoroastro
   HostName           zoroastro.to.infn.it
   User               corrales
@@ -64,24 +64,29 @@ Host eic vc709 mosaic
   ProxyJump          flx-amd
 
 # BNL
-Host sdcc_gateway
+Host bnl_sdcc
   HostName           ssh.sdcc.bnl.gov
   User               ycmorales
 
-Host cssh_gateway
-  Hostname           cssh.rhic.bnl.gov
-  User               ycorrale
-
-Host phenix
+Host bnl_phenix
   HostName           rcas2067.rcf.bnl.gov
   User               ycorrale
 
-Host sphenix
+Host bnl_sphenix
   HostName           sphnx02.sdcc.bnl.gov
+
+Host *.bnl.gov bnl_sphenix bnl_phenix bnl_email
+  User               ycmorales
+  ProxyJump          bnl_sdcc
+
+Host bnl_cssh
+  Hostname           cssh.rhic.bnl.gov
   User               ycmorales
 
-Host *.bnl.gov sphenix phenix
-  ProxyJump          sdcc_gateway
+Host bnl_mosaic
+  HostName           130.199.21.155
+  User               ycmorales
+  ProxyJump          bnl_cssh
 
 # FNAL
 Host ftbfbnl01
