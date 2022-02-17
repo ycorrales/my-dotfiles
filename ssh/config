@@ -12,12 +12,12 @@ Host njit
   User               fpga
 
 # CERN
-Host lxplus
+Host lxplus*
   HostName           lxplus.cern.ch
   User               ycorrale
 
 # TO.INFN.IT
-Host zoroastro
+Host zoroastro*
   HostName           zoroastro.to.infn.it
   User               corrales
 
@@ -30,20 +30,16 @@ Host zoroastro
 Host flx-amd-zoro
   Hostname           localhost
   Port               8022
-  User               maps
   ProxyJump          zoroastro
 
 Host flx-ming
   Hostname           69.254.135.184
   Port               37023
-  User               maps
+  ProxyJump          none
 
 Host flx-amd
   Hostname           localhost
   Port               8022
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
   ProxyJump          flx-ming
 
 Host eic
@@ -52,13 +48,12 @@ Host eic
 
 Host vc709
   Hostname           204.121.146.104
-  User               maps
 
 Host mosaic
   Hostname           204.121.146.110
-  User               maps
 
-Host eic vc709 mosaic
+Host eic vc709 mosaic flx-*
+  User               maps
   ForwardX11         yes
   ForwardX11Trusted  yes
   ProxyJump          flx-amd
@@ -66,7 +61,11 @@ Host eic vc709 mosaic
 # BNL
 Host bnl_sdcc
   HostName           ssh.sdcc.bnl.gov
-  User               ycmorales
+  ProxyJump          none
+
+Host bnl_cssh
+  Hostname           cssh.rhic.bnl.gov
+  ProxyJump          none
 
 Host bnl_phenix
   HostName           rcas2067.rcf.bnl.gov
@@ -75,18 +74,14 @@ Host bnl_phenix
 Host bnl_sphenix
   HostName           sphnx02.sdcc.bnl.gov
 
-Host *.bnl.gov bnl_sphenix bnl_phenix bnl_email
-  User               ycmorales
-  ProxyJump          bnl_sdcc
-
-Host bnl_cssh
-  Hostname           cssh.rhic.bnl.gov
-  User               ycmorales
-
 Host bnl_mosaic
   HostName           130.199.21.155
-  User               ycmorales
+  User               maps
   ProxyJump          bnl_cssh
+
+Host *.bnl.gov bnl_*
+  User               ycmorales
+  ProxyJump          bnl_sdcc
 
 # FNAL
 Host ftbfbnl01
