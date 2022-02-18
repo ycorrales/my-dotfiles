@@ -1,4 +1,5 @@
 if type alienv &> /dev/null; then
+
   export ALICE_WORK=${ALICE_WORK:-"$HOME/Work/Alice"}
   export ALISOFT=${ALISOFT:-"$ALICE_WORK/AliSoft"}
   export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
@@ -9,9 +10,6 @@ if type alienv &> /dev/null; then
 
   alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias   rt='alienv setenv $ROOT -c root -l'
-  alias   alio2='alienv setenv $O2 -c root -l'
-
   alien-create-cert()
   {
     local _path=${1:-"*.p12"}
@@ -19,14 +17,14 @@ if type alienv &> /dev/null; then
     openssl pkcs12 -nocerts         -in $_path -out userkey.pem
   }
 
-  alio2-init()
+  ali-o2-init()
   {
     pushd ${ALISOFT}
     aliBuild init O2@dev -d -z ./ --default o2
     popd
   }
 
-  alio2-build()
+  ali-o2-build()
   {
     pushd ${ALISOFT}
     aliBuild build O2 -d -w $ALIBUILD_WORK_DIR --defaults o2
@@ -34,17 +32,12 @@ if type alienv &> /dev/null; then
     popd
   }
 
-  alio2-load()
-  {
-    alienv load "$O2"
-  }
+  alias ali-o2-load="alienv load "$O2""
+  alias ali-o2-unload="alienv unload "$O2""
+  alias ali-root-load="alienv load "$ROOT""
+  alias ali-root-unload="alienv unload "$ROOT""
 
-  alio2-unload()
-  {
-    alienv unload "$O2"
-  }
-
-  alio2-fl-ls()
+  ali-o2-fl-ls()
   {
     alienv setenv $ROOT -c root -l <<EOF
     gMyUtils->ShowFileKeys("$1")
