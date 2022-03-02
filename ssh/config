@@ -74,6 +74,11 @@ Host bnl_phenix
 Host bnl_sphenix
   HostName           sphnx02.sdcc.bnl.gov
 
+Host bnl_campus
+  HostName           nxcampus01.sdcc.bnl.gov
+  User               ycmorales
+  ProxyJump          bnl_cssh
+
 Host bnl_mosaic
   HostName           130.199.21.155
   User               maps
