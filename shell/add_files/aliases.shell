@@ -80,7 +80,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
   export sPHENIX="$HOME/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX/"
-  alias  gosPHENIX_MVTX_RO="clr; cd $sPHENIX/Projects/01.MVTX/03.Readout"
+  alias  gosPHENIX_MVTX_RO="clr; cd $sPHENIX/Projects/MVTX/Readout"
   alias  goEIC='clr; cd $HOME/Work/EIC/'
 
   #SECRET TOKEN
@@ -138,19 +138,11 @@ cleanup()
 # mount rhic sPHENIX_SW sshfs file-system
 mount-sPHENIX()
 {
-  local PAR=${1:-'-m'}
-  local UNMOUNT=0
-  case "$PAR" in
-    -u | -U)  UNMOUNT=1;;
-    -m | -M)  UNMOUNT=0;;
-          *)  perror "unknow parameter $1" && return ;;
-  esac
-
   local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
   pushd $BASE_DIR 2>&1 > /dev/null
   #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
   #unmounting
-  if [[ -n $(ls -A $BASE_DIR/sPHENIX_SW) ]]; then
+  if [[ -n "$(ls -A $BASE_DIR/sPHENIX_SW)" ]]; then
     diskutil umount force sPHENIX_SW
     diskutil umount force RCF_Work
   fi
@@ -170,20 +162,10 @@ mount-flx()
     mount-flx $1¬
   }
 
-  local host=${1:-"amd"}
-  cd '/Users/ycorrales/Work/sPHENIX/Projects/01.MVTX/03.Readout/'
-  if [[ -z $(ls -A sshfs_flx ) ]]; then
-    if [[ ${host} =~ 'amd' ]]; then
-      ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx
-    elif [[ ${host} =~ 'ming' ]]; then
-      ming-fwknop sshfs flx-ming:./     -o auto_cache sshfs_flx
-    else
-      echo "ERROR: Wrong mount_point server"
-    fi
-
-    if [[  $? != 0 ]]; then
-      unmount ${host}
-    fi
+  local host=${1:-"flx-amd"}
+  cd '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/'
+  if [[ -z "$(ls -A sshfs_flx)" ]]; then
+    ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx || unmount "$host"
   else
     echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
     unmount ${host}

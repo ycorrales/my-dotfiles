@@ -5,26 +5,23 @@ if type alienv &> /dev/null; then
   export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
     eval "$(alienv shell-helper)"
 
-  O2="VO_ALICE@O2::latest"
-  ROOT="VO_ALICE@ROOT::latest"
+  alias alice-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
 
-  alias  ali-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
-
-  alien-create-cert()
+  create-alien-cert()
   {
     local _path=${1:-"*.p12"}
     openssl pkcs12 -clcerts -nokeys -in $_path -out usercert.pem
     openssl pkcs12 -nocerts         -in $_path -out userkey.pem
   }
 
-  ali-o2-init()
+  o2-init()
   {
     pushd ${ALISOFT}
     aliBuild init O2@dev -d -z ./ --default o2
     popd
   }
 
-  ali-o2-build()
+  o2-build()
   {
     pushd ${ALISOFT}
     aliBuild build O2 -d -w $ALIBUILD_WORK_DIR --defaults o2
@@ -32,20 +29,18 @@ if type alienv &> /dev/null; then
     popd
   }
 
-  alias ali-o2-load="alienv load "$O2""
-  alias ali-o2-unload="alienv unload "$O2""
-  alias ali-root-load="alienv load "$ROOT""
-  alias ali-root-unload="alienv unload "$ROOT""
+  alias o2-load=" alienv load O2/latest > /dev/null 2>&1 "
+  alias o2-unload=" alienv unload O2/latest > /dev/null 2>&1 "
 
-  ali-o2-fl-ls()
+  root-fl-ls()
   {
-    alienv setenv $ROOT -c root -l <<EOF
+    root -l <<EOF
     gMyUtils->ShowFileKeys("$1")
     .q
 EOF
   }
 
-  alio2-find()
+  o2-find()
   {
     if [ ! -z $1 ]; then
       find -H ${ALISOFT} -iname $@
@@ -115,7 +110,7 @@ EOF
 fi
 
 # Execute alidock within the appropriate Python virtual environment
-if [[ -d $HOME/.virtualenvs/alidock ]]; then
+if test -d $HOME/.virtualenvs/alidock; then
   function alidock() {
     (
       source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
