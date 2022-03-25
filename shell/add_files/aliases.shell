@@ -193,14 +193,11 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
   export WORK='/gpfs02/sphenix/user/ycmorales/sphenix'
   export AFS='/afs/rhic/phenix/users/ycorrale/'
   export SPHENIX_SW=/sphenix/u/ycmorales/sPHENIX_SW
-  export MYINSTALL=$SPHENIX/install
+  export MYINSTALL=$SPHENIX_SW/install
   #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
   #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
 
-  [[ -f /opt/sphenix/core/bin/sphenix_setup.sh ]] && source /opt/sphenix/core/bin/sphenix_setup.sh -n
-  [[ -f /opt/sphenix/core/bin/setup_local.sh ]] && source /opt/sphenix/core/bin/setup_local.sh "$MYINSTALL" %2>&1 > /dev/null
-  alias l-sphenix_setup='source /opt/sphenix/core/bin/sphenix_setup.sh -n'
-  alias l-setup_local='source /opt/sphenix/core/bin/setup_local.sh'
+  alias src_sphenix="source $SPHENIX_SW/sphenix_utils/src_sphenix.sh"
   alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
   alias create_sw_dir="( mkdir -p sw; cd sw; ln -nsf $SPHENIX_SW/sphenix_utils/build.sh ./; )"
 
