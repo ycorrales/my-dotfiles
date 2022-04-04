@@ -694,7 +694,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales'
   """"""""""""""""""""""""""""""
   " => C++ section
   """"""""""""""""""""""""""""""
-  au FileType cpp set colorcolumn=80,100
+  "au FileType cpp set colorcolumn=80,100
 
   """"""""""""""""""""""""""""""
   " => Python section
