@@ -97,6 +97,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # kill vnc ssh tunnel
   alias k-vnc-ssh="ps -ef | grep '5900:' | grep -v 'grep' | awk '{print \$2}' | xargs kill -9 "
 
+  alias umbrella_en=" su l329869 -c 'sudo launchctl   load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
+  alias umbrella_dis="su l329869 -c 'sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
+  alias brew_root_en=" sudo chown -R $(whoami) /usr/local/bin /usr/local/share/man/man4 /usr/local/share/zsh /usr/local/share/  zsh/site-functions"
+  alias brew_root_dis="sudo chown -R ycorrales /usr/local/bin /usr/local/share/man/man4 /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
   #ssh local tunnel for vnc
   #@param 1, ssh hostname
   #@param 2, [optional] remote port (default 5901)
@@ -125,62 +129,63 @@ if [[ "$OSTYPE" == darwin* ]]; then
       -L 10007:192.168.60.7:80
   }
 
-# Recursively delete `.DS_Store` files
-cleanup()
-{
-  local DIR=${1:-"./"}
-  #TRASH_FILE='0 .DS_Store'
-  TRASH_FILE=('.DS_Store' '._.DS_Store')
-  find $DIR -type f \( -name ${TRASH_FILE[0]} -o -name ${TRASH_FILE[1]} \) -ls -delete 2> /dev/null
-  return 0
-}
-
-# mount rhic sPHENIX_SW sshfs file-system
-mount-sPHENIX()
-{
-  local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
-  pushd $BASE_DIR 2>&1 > /dev/null
-  #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
-  #unmounting
-  if [[ -n "$(ls -A $BASE_DIR/sPHENIX_SW)" ]]; then
-    diskutil umount force sPHENIX_SW
-    diskutil umount force RCF_Work
-  fi
-  sshfs bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW -o auto_cache sPHENIX_SW
-  sshfs bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/ -o auto_cache RCF_Work
-
-  [[ "$?" == "0" ]] && echo "done."
-  popd > /dev/null
-  return 0
-}
-
-mount-flx()
-{
-  unmount()
+  # Recursively delete `.DS_Store` files
+  cleanup()
   {
-    diskutil unmount force sshfs_flx
-    mount-flx $1¬
+    local DIR=${1:-"./"}
+    #TRASH_FILE='0 .DS_Store'
+    TRASH_FILE=('.DS_Store' '._.DS_Store')
+    find $DIR -type f \( -name ${TRASH_FILE[0]} -o -name ${TRASH_FILE[1]} \) -ls -delete 2> /dev/null
+    return 0
   }
 
-  local host=${1:-"flx-amd"}
-  cd '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/'
-  if [[ -z "$(ls -A sshfs_flx)" ]]; then
-    ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx || unmount "$host"
-  else
-    echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
-    unmount ${host}
-  fi
-  return 0
-}
+  # mount rhic sPHENIX_SW sshfs file-system
+  mount-sPHENIX()
+  {
+    local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
+    pushd $BASE_DIR 2>&1 > /dev/null
+    #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
+    #unmounting
+    if [[ -n "$(ls -A $BASE_DIR/sPHENIX_SW)" ]]; then
+      diskutil umount force sPHENIX_SW
+      diskutil umount force RCF_Work
+    fi
+    sshfs bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW -o auto_cache sPHENIX_SW
+    sshfs bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/ -o auto_cache RCF_Work
 
-#emulate watch linux command
-#@param 1, executable command
-#@param 2, [optional] time in seconds
-watch()
-{
-  trap "echo exit...; return" INT
-  while :; do clear; $1; sleep ${2:-2}; done
-}
+    [[ "$?" == "0" ]] && echo "done."
+    popd > /dev/null
+    return 0
+  }
+
+  mount-flx()
+  {
+    unmount()
+    {
+      diskutil unmount force sshfs_flx
+      mount-flx $1¬
+    }
+
+    local host=${1:-"flx-amd"}
+    cd '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/'
+    if [[ -z "$(ls -A sshfs_flx)" ]]; then
+    ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx || unmount "$host"
+    else
+      echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
+      unmount ${host}
+    fi
+    return 0
+  }
+
+  #emulate watch linux command
+  #@param 1, executable command
+  #@param 2, [optional] time in seconds
+  watch()
+  {
+    trap "echo exit...; return" INT
+    while :; do clear; $1; sleep ${2:-2}; done
+  }
+
 fi #end MacOnly
 
 if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
