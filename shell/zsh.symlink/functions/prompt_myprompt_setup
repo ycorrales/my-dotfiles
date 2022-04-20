@@ -44,7 +44,7 @@ myprompt_git_status()
 {
   [[ $MYPROMPT_GIT_STATUS_SHOW == false ]] && return
 
-  myprompt::is_git || return
+  myprompt::is_git_work_tree || return
 
   #local git_status=""
 
@@ -150,7 +150,7 @@ myprompt_git_branch()
 {
   [[ $MYPROMPT_GIT_BRANCH_SHOW == false ]] && return
 
-  local git_current_branch="$vcs_info_msg_0_"
+  local git_current_branch=$([[ $(git rev-parse --is-bare-repository) == true ]] && echo "bare" || echo "$vcs_info_msg_0_")
   [[ -z "$git_current_branch" ]] && return
 
   git_current_branch="${git_current_branch#heads/}"
@@ -162,7 +162,7 @@ myprompt_git_branch()
 myprompt_git()
 {
   [[ $MYPROMPT_GIT_BRANCH_SHOW == false ]] && return
-
+  ! myprompt::is_git && ! myprompt::is_git_work_tree && return
   local git_branch="$(myprompt_git_branch)" git_status_color="$(myprompt_git_status)"
 
   [[ -z $git_branch ]] && return
@@ -171,10 +171,6 @@ myprompt_git()
     "${git_status_color}" \
     "(${git_branch}) "
 }
-
-
-
-
 
 # indicate a job (for example, vim) has been backgrounded
 # If there is a job in the background, display a ✱
@@ -263,6 +259,15 @@ myprompt::compose_prompt()
 myprompt::is_git()
 {
   # See https://git.io/fp8Pa for related discussion
+  [[ $(command git rev-parse --is-inside-git-dir 2>/dev/null) == true ]]
+}
+
+# Check if the current directory is inside a Git work tree.
+# USAGE:
+# myprompt::is_git_work_tree
+myprompt::is_git_work_tree()
+{
+  # See https://git.io/fp8Pa for related discussion
   [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]
 }
 
@@ -330,6 +335,7 @@ myprompt::exec_vcs_info_precmd_hook()
 {
   MYPROMPT_GIT_BRANCH_SHOW=${MYPROMPT_GIT_BRANCH_SHOW:=true}
   [[ $SPACESHIP_GIT_BRANCH_SHOW == false ]] && return
+  myprompt::is_git_work_tree || return
   vcs_info
 }
 
