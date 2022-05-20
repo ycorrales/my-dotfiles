@@ -1,4 +1,4 @@
-if $USER == 'ycorrales' || $USER == 'ycmorales'
+if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Section General
   " {{{
