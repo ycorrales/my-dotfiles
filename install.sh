@@ -41,7 +41,7 @@
 
     [[ $# -gt 0 ]] && usage
 
-    local DOTFILES=${DOTFILES:-"$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")" && pwd )" > /dev/null 2>&1 && pwd )"}
+    local DOTFILES=${DOTFILES:-"$( cd "$( dirname "$(readlink -f "${BASH_SOURCE:-"$0"}")" )" && pwd )"}
 
     if [[ "$OSTYPE" =~ darwin.* ]]; then
       OS="osx_x86-64"
@@ -53,7 +53,8 @@
 
     [[ -n "$CLEAN" ]] && { cd ~; \
     rm .globus .vim .vscode .zsh .ssh/id_rsa* .ssh/config .config/nvim; \
-    rm .alidock-config.yaml .bash_profile .bashrc .bnlbox \.cadaverrc .fwknoprc .gitconfig .inputrc .netrc .rootrc .shrc .tmux.conf .vimrc .zshrc rootlogon.C; \
+    rm .alidock-config.yaml .bash_profile .bashrc .bnlbox \.cadaverrc; \
+    rm .fwknoprc .gitconfig .inputrc .netrc .rootrc .shrc .tmux.conf .vimrc .zshrc rootlogon.C; \
     cd -; exit 0; }
 
     # sourcing script to create the symbolic link
