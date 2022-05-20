@@ -81,6 +81,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export sPHENIX="$HOME/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX/"
   alias  gosPHENIX_MVTX_RO="clr; cd $sPHENIX/Projects/MVTX/Readout"
+  alias  goMVTX="clr; cd $sPHENIX/Projects/MVTX"
   alias  goEIC='clr; cd $HOME/Work/EIC/'
 
   #SECRET TOKEN
@@ -99,6 +100,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   alias umbrella_en=" su l329869 -c 'sudo launchctl   load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
   alias umbrella_dis="su l329869 -c 'sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
+  alias admin_en=" su l329869 -c 'sudo /usr/bin/dscl . -append /Groups/admin GroupMembership $(whoami)' "
+  alias admin_dis="su l329869 -c 'sudo /usr/sbin/dseditgroup -o edit -d $(whoami) -t user admin' "
   alias brew_root_en=" sudo chown -R $(whoami) /usr/local/bin /usr/local/share/man/man4 /usr/local/share/zsh /usr/local/share/  zsh/site-functions"
   alias brew_root_dis="sudo chown -R ycorrales /usr/local/bin /usr/local/share/man/man4 /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
   #ssh local tunnel for vnc
