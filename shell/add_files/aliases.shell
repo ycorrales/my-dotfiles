@@ -78,7 +78,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
   #alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
   #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
-  export sPHENIX="$HOME/Work/sPHENIX"
+  export sPHENIX="/Users/ycorrales/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX/"
   alias  gosPHENIX_MVTX_RO="clr; cd $sPHENIX/Projects/MVTX/Readout"
   alias  goMVTX="clr; cd $sPHENIX/Projects/MVTX"
