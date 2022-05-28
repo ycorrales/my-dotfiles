@@ -80,7 +80,7 @@ Host bnl_campus
   ProxyJump          bnl_cssh
 
 Host bnl_mosaic
-  HostName           130.199.21.155
+  HostName           130.199.23.194
   User               maps
   ProxyJump          bnl_cssh
 
