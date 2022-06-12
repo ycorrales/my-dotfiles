@@ -8,18 +8,18 @@
 
 # Dantong's FPGA server
 Host njit
-  HostName           hpdtl.cewit.stonybrook.edu
-  User               fpga
+  HostName          hpdtl.cewit.stonybrook.edu
+  User              fpga
 
 # CERN
 Host lxplus*
-  HostName           lxplus.cern.ch
-  User               ycorrale
+  HostName          lxplus.cern.ch
+  User              ycorrale
 
 # TO.INFN.IT
 Host zoroastro*
-  HostName           zoroastro.to.infn.it
-  User               corrales
+  HostName          zoroastro.to.infn.it
+  User              corrales
 
 #Host superfarm
 #  HostName           cloud-gw-215.to.infn.it
@@ -28,73 +28,76 @@ Host zoroastro*
 
 # LANL
 Host flx-amd-zoro
-  Hostname           localhost
-  Port               8022
-  ProxyJump          zoroastro
+  Hostname          localhost
+  Port              8022
+  ProxyJump         zoroastro
 
 Host flx-ming
-  Hostname           69.254.135.184
-  Port               37023
-  ProxyJump          none
+  Hostname          69.254.135.184
+  Port              37023
+  ProxyJump         none
 
 Host flx-amd
-  Hostname           localhost
-  Port               8022
-  ProxyJump          flx-ming
+  Hostname          localhost
+  Port              8022
+  ProxyJump         flx-ming
+
+Host mvtx
+  Hostname          204.121.146.106
 
 Host eic
-  Hostname           204.121.146.105
-  User               eic
+  Hostname          204.121.146.105
+  User              eic
 
 Host vc709
-  Hostname           204.121.146.104
+  Hostname          204.121.146.104
 
 Host mosaic
-  Hostname           204.121.146.110
+  Hostname          204.121.146.110
 
-Host eic vc709 mosaic flx-*
-  User               maps
-  ForwardX11         yes
-  ForwardX11Trusted  yes
-  ProxyJump          flx-amd
+Host mvtx eic vc709 mosaic flx-*
+  User              maps
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         flx-amd
 
 # BNL
 Host bnl_sdcc
-  HostName           ssh.sdcc.bnl.gov
-  ProxyJump          none
+  HostName          ssh.sdcc.bnl.gov
+  ProxyJump         none
 
 Host bnl_cssh
-  Hostname           cssh.rhic.bnl.gov
-  ProxyJump          none
+  Hostname          cssh.rhic.bnl.gov
+  ProxyJump         none
 
 Host bnl_phenix
-  HostName           rcas2067.rcf.bnl.gov
-  User               ycorrale
+  HostName          rcas2067.rcf.bnl.gov
+  User              ycorrale
 
 Host bnl_sphenix
-  HostName           sphnx02.sdcc.bnl.gov
+  HostName          sphnx02.sdcc.bnl.gov
 
 Host bnl_campus
-  HostName           nxcampus01.sdcc.bnl.gov
-  User               ycmorales
-  ProxyJump          bnl_cssh
+  HostName          nxcampus01.sdcc.bnl.gov
+  User              ycmorales
+  ProxyJump         bnl_cssh
 
 Host bnl_mosaic
-  HostName           130.199.23.194
-  User               maps
-  ProxyJump          bnl_cssh
+  HostName          130.199.23.194
+  User              maps
+  ProxyJump         bnl_cssh
 
 Host *.bnl.gov bnl_*
-  User               ycmorales
-  ProxyJump          bnl_sdcc
+  User              ycmorales
+  ProxyJump         bnl_sdcc
 
 # FNAL
 Host ftbfbnl01
-  HostName           ftbfbnl01.fnal.gov
-  User               ftbf_user
+  HostName          ftbfbnl01.fnal.gov
+  User              ftbf_user
 
 Host 192.168.60.*
-  ProxyJump          ftbfbnl01
+  ProxyJump         ftbfbnl01
 
 Host *.fnal.gov
   GSSAPIAuthentication      yes
@@ -102,15 +105,15 @@ Host *.fnal.gov
 
 # LBNL
 Host lbnl_mvtx
-  Hostname           131.243.31.77
-  User               aliceits
+  Hostname          131.243.31.77
+  User              aliceits
 
 # ALL
 Host *
-  IgnoreUnknown      AddKeysToAgent,UseKeychain
-  ControlMaster      yes
-  ControlPersist     600
-  IdentityFile       ~/.ssh/id_rsa
-  ForwardAgent       yes
-  AddKeysToAgent     yes
-  UseKeychain        yes
+  IgnoreUnknown     AddKeysToAgent,UseKeychain
+  ControlMaster     yes
+  ControlPersist    600
+  IdentityFile      ~/.ssh/id_rsa
+  ForwardAgent      yes
+  AddKeysToAgent    yes
+  UseKeychain       yes
