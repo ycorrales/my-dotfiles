@@ -27,39 +27,41 @@ Host zoroastro*
 #  ProxyJump          zoroastro
 
 # LANL
-Host flx-amd-zoro
-  Hostname          localhost
-  Port              8022
-  ProxyJump         zoroastro
-
-Host flx-ming
+Host ming_gateway
   Hostname          69.254.135.184
+  User              maps
   Port              37023
   ProxyJump         none
 
-Host flx-amd
+Host flx_lanl
   Hostname          localhost
   Port              8022
-  ProxyJump         flx-ming
+  ProxyJump         ming_gateway
 
-Host mvtx
+Host mosaic_lanl
+  User              ycorrales
+  Hostname          localhost
+  Port              8122
+  ProxyJump         ming_gateway
+
+Host mvtx_flx
   Hostname          204.121.146.106
 
-Host eic
+Host eic_malta
   Hostname          204.121.146.105
   User              eic
 
 Host vc709
   Hostname          204.121.146.104
 
-Host mosaic
-  Hostname          204.121.146.110
+#Host mosaic
+#  Hostname          204.121.146.110
 
-Host mvtx eic vc709 mosaic flx-*
+Host mvtx* eic* vc709* flx*
   User              maps
   ForwardX11        yes
   ForwardX11Trusted yes
-  ProxyJump         flx-amd
+  ProxyJump         flx_lanl
 
 # BNL
 Host bnl_sdcc
