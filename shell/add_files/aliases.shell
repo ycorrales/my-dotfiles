@@ -169,10 +169,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
       mount-flx $1¬
     }
 
-    local host=${1:-"flx-amd"}
+    local host=${1:-"flx_lanl"}
     cd '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/'
     if [[ -z "$(ls -A sshfs_flx)" ]]; then
-    ming-fwknop sshfs flx-amd:./ -o auto_cache sshfs_flx || unmount "$host"
+    ming-fwknop sshfs flx_lanl:./ -o auto_cache sshfs_flx || unmount "$host"
     else
       echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
       unmount ${host}
