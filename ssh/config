@@ -57,7 +57,7 @@ Host vc709
 #Host mosaic
 #  Hostname          204.121.146.110
 
-Host mvtx* eic* vc709* flx*
+Host mvtx* eic* vc709* flx_lanl
   User              maps
   ForwardX11        yes
   ForwardX11Trusted yes
@@ -71,6 +71,11 @@ Host bnl_sdcc
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
   ProxyJump         none
+
+Host flx_bnl
+  HostName          10.20.32.81
+  User              maps
+  ProxyJump         bnl_cssh
 
 Host bnl_phenix
   HostName          rcas2067.rcf.bnl.gov
@@ -109,6 +114,17 @@ Host *.fnal.gov
 Host lbnl_mvtx
   Hostname          131.243.31.77
   User              aliceits
+
+# MIT
+
+Host athena
+  HostName          athena.dialup.mit.edu
+  User              ycm
+
+Host mitfelix
+  Hostname          10.54.6.146
+  User              ycorrales
+  ProxyJump         athena
 
 # ALL
 Host *
