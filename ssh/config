@@ -33,15 +33,15 @@ Host ming_gateway
   Port              37023
   ProxyJump         none
 
-Host flx_lanl
-  Hostname          localhost
+Host lanl_flx
   Port              8022
-  ProxyJump         ming_gateway
 
-Host mosaic_lanl
-  User              ycorrales
-  Hostname          localhost
+Host lanl_vc709
   Port              8122
+
+Host lanl_*
+  Hostname          localhost
+  User              maps
   ProxyJump         ming_gateway
 
 Host mvtx_flx
@@ -57,11 +57,11 @@ Host vc709
 #Host mosaic
 #  Hostname          204.121.146.110
 
-Host mvtx* eic* vc709* flx_lanl
+Host mvtx* eic* vc709*
   User              maps
   ForwardX11        yes
   ForwardX11Trusted yes
-  ProxyJump         flx_lanl
+  ProxyJump         lanl_flx
 
 # BNL
 Host bnl_sdcc
@@ -72,10 +72,14 @@ Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
   ProxyJump         none
 
-Host flx_bnl
-  HostName          10.20.32.81
-  User              maps
+Host bnl_flx
+  HostName          ebdc11.sphenix.bnl.gov
+  User              ycmorales
   ProxyJump         bnl_cssh
+
+Host bnl_dcs
+  HostName          mvtxdcs0.sphenix.bnl.gov
+  ProxyJump         none
 
 Host bnl_phenix
   HostName          rcas2067.rcf.bnl.gov
@@ -96,6 +100,8 @@ Host bnl_mosaic
 
 Host *.bnl.gov bnl_*
   User              ycmorales
+  ForwardX11        yes
+  ForwardX11Trusted yes
   ProxyJump         bnl_sdcc
 
 # FNAL
