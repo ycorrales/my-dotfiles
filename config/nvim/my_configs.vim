@@ -186,8 +186,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " {{{
 
   " set a map leader for more key combos
-  let mapleader   = '\'
-  let g:mapleader = '\'
+  let mapleader   = '`'
+  let g:mapleader = '`'
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
@@ -252,6 +252,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
   map <space> /
+  map <C-space> ?
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Moving around, tabs, windows and buffers

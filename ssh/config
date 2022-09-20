@@ -72,14 +72,15 @@ Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
   ProxyJump         none
 
-Host bnl_flx
-  HostName          ebdc11.sphenix.bnl.gov
+Host bnl_campus
+  HostName          nxcampus01.sdcc.bnl.gov
   User              ycmorales
   ProxyJump         bnl_cssh
 
-Host bnl_dcs
-  HostName          mvtxdcs0.sphenix.bnl.gov
-  ProxyJump         none
+Host bnl_ebdc11
+  HostName          ebdc11.sphenix.bnl.gov
+  User              ycmorales
+  ProxyJump         bnl_cssh
 
 Host bnl_phenix
   HostName          rcas2067.rcf.bnl.gov
@@ -87,11 +88,6 @@ Host bnl_phenix
 
 Host bnl_sphenix
   HostName          sphnx02.sdcc.bnl.gov
-
-Host bnl_campus
-  HostName          nxcampus01.sdcc.bnl.gov
-  User              ycmorales
-  ProxyJump         bnl_cssh
 
 Host bnl_mosaic
   HostName          130.199.23.194
