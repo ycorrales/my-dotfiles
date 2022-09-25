@@ -31,7 +31,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   let $LANG='en_US'
 
   " Some basic configuration
-  set timeoutlen=250000
   syntax on                     " Enable syntax highlighting
   set t_Co=256                  " Explicitly tell vim that the terminal supports 256 colors"
 
@@ -39,7 +38,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   set noerrorbells
   set visualbell
   set t_vb=
-  set tm=500
+  set tm=800                    " set timeoutlen to 800 milliseconds
 
   " toggle invisible characters
   set list
@@ -186,8 +185,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " {{{
 
   " set a map leader for more key combos
-  let mapleader   = '`'
-  let g:mapleader = '`'
+  let mapleader   = "\<tab>"
+  let g:mapleader = "\<tab>"
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
