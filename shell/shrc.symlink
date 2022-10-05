@@ -1,4 +1,4 @@
-if [[ -n $ZSH_VERSION ]]; then
+if [[ -n "${ZSH_VERSION:-}" ]]; then
   # don't put duplicate lines in the history. See bash(1) for more options
   # ... or force ignoredups and ignorespace
   HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
@@ -41,7 +41,7 @@ if [[ -n $ZSH_VERSION ]]; then
   #bindkey -v
 fi
 
-if [[ -n $BASH_VERSION ]]; then
+if [[ -n "${BASH_VERSION:-}" ]]; then
   # ~/.bashrc: executed by bash(1) for non-login shells.
   # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
   # for examples
