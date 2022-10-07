@@ -9,7 +9,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   set history=1000  " change history to 1000
   set number                  " show line numbers
   " set relativenumber          " show relative line numbers
-  set formatoptions-=t
+  set formatoptions=c
   set textwidth=120
   set wrap                    " turn on line wrapping
   set wrapmargin=8            " wrap lines when coming within n characters from side
