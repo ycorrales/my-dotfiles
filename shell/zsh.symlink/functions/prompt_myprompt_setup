@@ -187,8 +187,8 @@ myprompt_exit_code()
 
   local PREFIX=$(printf "%-10s" "$msg")
   local SUFFIX
-  [[ $RETVAL == 0 ]]\
-  && SUFFIX="%F{green}$(printf ' \342\234\223')%f"\
+  [[ $RETVAL == 0 ]] \
+  && SUFFIX="%F{green}$(printf ' \342\234\223')%f" \
   || SUFFIX="%F{red}$(printf ' \342\234\227')%f"
 
   myprompt::section "white" "$PREFIX" "($RETVAL) " "$SUFFIX \n"
@@ -227,6 +227,14 @@ myprompt_logo()
   fi
 
   myprompt::section "white" "$logo_ch "
+}
+
+# Add python virtual env $VIRTUAL_ENV_PROMPT
+# variable defined in activate script
+myprompt_venv()
+{
+  [[ -z ${VIRTUAL_ENV_PROMPT} ]] && return
+  myprompt::section "white" "$VIRTUAL_ENV_PROMPT"
 }
 
 # Compose whole prompt from sections
@@ -353,7 +361,7 @@ prompt_myprompt_setup()
   setopt noprompt{bang,cr,percent,subst} "prompt${^prompt_opts[@]}"
 
   # Disable python virtualenv environment prompt prefix
-  VIRTUAL_ENV_DISABLE_PROMPT=true
+  VIRTUAL_ENV_DISABLE_PROMPT=
 
   # Configure vcs_info helper for potential use in the future
   add-zsh-hook precmd myprompt::exec_vcs_info_precmd_hook
@@ -366,7 +374,8 @@ prompt_myprompt_setup()
   user          # username section
   dir           # current directory section
   exit_code     # exit code section
-  git        # git info section
+  venv          # virtual env
+  git           # git info section
   prompt_char   # new line and prompt_char section
 )
 
