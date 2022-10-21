@@ -207,9 +207,9 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
   #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
   #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
 
-  alias src_sphenix="source $SPHENIX_SW/sphenix_utils/src_sphenix.sh"
+  alias src_sphenix="source $SPHENIX_SW/utils/scripts/sh/src_sphenix.sh"
   alias l-afs='klog.krb5 -principal ycorrale -cell rhic.bnl.gov'
-  alias create_sw_dir="( mkdir -p sw; cd sw; ln -nsf $SPHENIX_SW/sphenix_utils/build.sh ./; )"
+  alias create_sw_dir="( mkdir -p sw; cd sw; ln -nsf $SPHENIX_SW/utils/scripts/sh/build.sh ./; )"
 
   #alias runKFParticleTests="cd ~/software/coresoftware/offline/packages/KFParticle_sPHENIX/build/ && make && make install
   #&&  cd /sphenix/user/cdean/software/analysis/HF-Particle/KFParticle_sPHENIX/ && root -l -q -b
