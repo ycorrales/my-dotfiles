@@ -82,6 +82,17 @@ Host bnl_ebdc11
   User              ycmorales
   ProxyJump         bnl_cssh
 
+Host bnl_dcs
+  Hostname          mvtxdcs0.sphenix.bnl.gov
+  User              mvtxdcs
+  ProxyJump         bnl_ebdc11
+
+Host bnl_caen
+  Hostname          10.20.34.243
+  User              maps
+  ProxyJump         bnl_dcs
+  HostKeyAlgorithms=+ssh-dss
+
 Host bnl_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
