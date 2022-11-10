@@ -366,10 +366,10 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => C++ comment and uncomment
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  map <leader>c :s/^/\/\//<cr><leader><cr>
-  map <leader>cc :s/^/#/<cr><leader><cr>
-  map <leader>u :s/^\/\///<cr><leader><cr>
-  map <leader>uu :s/\s\s\/\///<cr><leader><cr>
+  map <leader>c :s/^/\/\//<cr><leader><space><leader><cr>
+  map <leader>cc :s/^/#/<cr><leader><space><leader><cr>
+  map <leader>u :s/^\/\///<cr><leader><space><leader><cr>
+  map <leader>uu :s/\s\s\/\///<cr><leader><space><leader><cr>
 
   map <leader>]] :s/^/  /<cr><leader><space><leader><cr>gv
   map <leader>[[ :s/\s\s//<cr><leader><space><leader><cr>gv
