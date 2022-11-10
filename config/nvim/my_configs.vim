@@ -212,8 +212,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """"""""""""""""""""""""""""""
   " Visual mode pressing * or # searches for the current selection
   " Super useful! From an idea by Michael Naumann
-  vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-  vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+  vnoremap <silent> * :<C-u>call VisualSelection('', '')<cr>/<C-r>=@/<cr><cr>
+  vnoremap <silent> # :<C-u>call VisualSelection('', '')<cr>?<C-r>=@/<cr><cr>
 
   " Copy to X11 primary clipboard with mouse
   vnoremap <LeftRelease> "*ygv
@@ -244,8 +244,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   command W w !sudo tee % > /dev/null
 
   " Disable highlight when <leader><cr> is pressed
-  map <silent> <leader><cr>    :nohlsearch<Bar>:echo<cr>
-  map <silent> <leader><Space> :set hlsearch! hlsearch?<CR>
+  map <silent> <leader><cr>    :nohlsearch<bar>:echo<cr>
+  map <silent> <leader><space> :set hlsearch! hlsearch?<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Fast editing and reloading of vimrc configs
@@ -276,25 +276,25 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " => Moving around, tabs, windows and buffers
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Bash like keys for the command line
-  cnoremap <C-A> <Home>
-  cnoremap <C-E> <End>
-  cnoremap <C-K> <C-U>
+  cnoremap <C-a> <Home>
+  cnoremap <C-e> <End>
+  cnoremap <C-k> <C-U>
 
-  cnoremap <C-P> <Up>
-  cnoremap <C-N> <Down>
+  cnoremap <C-p> <Up>
+  cnoremap <C-n> <Down>
 
   "move in insert mode
-  inoremap <C-A> <esc>^<esc>i
-  inoremap <C-E> <esc>g_<esc>a
+  inoremap <C-a> <esc>^<esc>i
+  inoremap <C-e> <esc>g_<esc>a
   "move in normal mode
-  noremap <C-A> ^
-  noremap <C-E> g_
+  noremap <C-a> ^
+  noremap <C-e> g_
 
   " Smart way to move between windows
-  map <C-j> <C-W>j
-  map <C-k> <C-W>k
-  map <C-h> <C-W>h
-  map <C-l> <C-W>l
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-h> <C-w>h
+  map <C-l> <C-w>l
 
   map <leader>bn :bnext<cr>
   map <leader>bp :bprevious<cr>
@@ -312,12 +312,12 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Let 'l' toggle between this and the last accessed tab
   let g:lasttab = 1
-  nmap <Leader>l :exe "tabn ".g:lasttab<CR>
+  nmap <leader>l :exe "tabn ".g:lasttab<cr>
   au TabLeave * let g:lasttab = tabpagenr()
 
   " Opens a new tab with the current buffer's path
   " Super useful when editing files in the same directory
-  map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+  map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
   " Switch CWD to the directory of the open buffer
   map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -366,18 +366,18 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => C++ comment and uncomment
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  map <leader>c :s/^/\/\//<CR><leader><CR>
-  map <leader>cc :s/^/#/<CR><leader><CR>
-  map <leader>u :s/^\/\///<CR><leader><CR>
-  map <leader>uu :s/\s\s\/\///<CR><leader><CR>
+  map <leader>c :s/^/\/\//<cr><leader><cr>
+  map <leader>cc :s/^/#/<cr><leader><cr>
+  map <leader>u :s/^\/\///<cr><leader><cr>
+  map <leader>uu :s/\s\s\/\///<cr><leader><cr>
 
-  map <leader>]] :s/^/  /<CR><Leader><CR>
-  map <leader>[[ :s/\s\s//<CR><Leader><CR>
+  map <leader>]] :s/^/  /<cr><leader><space><leader><cr>gv
+  map <leader>[[ :s/\s\s//<cr><leader><space><leader><cr>gv
 
   "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
 
   " Remove the Windows ^M - when the encodings gets messed up
-  noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+  noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Spell checking
@@ -485,13 +485,13 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
         \ "TabWidth":        2,
         \ "UseTab":          "Never"}
 
-  noremap = :silent <C-u>ClangFormat<CR>
+  noremap = :silent <C-u>ClangFormat<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Netrw
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Load Explore
-  noremap <leader>e :<C-u>Lexplore<CR>
+  noremap <leader>e :<C-u>Lexplore<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Nerd Tree and Nerd Tree Tab
