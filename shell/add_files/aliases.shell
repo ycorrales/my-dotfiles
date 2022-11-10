@@ -144,43 +144,32 @@ if [[ "$OSTYPE" == darwin* ]]; then
     return 0
   }
 
-  # mount rhic sPHENIX_SW sshfs file-system
-  mount-sPHENIX()
-  {
-    local BASE_DIR='/Users/ycorrales/Work/sPHENIX/'
-    pushd $BASE_DIR 2>&1 > /dev/null
-    #sshfs sphenix:/sphenix/u/ycmorales/Work/sPHENIX/ -o auto_cache RHIC_sPHENIX
-    #unmounting
-    if [[ -n "$(ls -A $BASE_DIR/sPHENIX_SW)" ]]; then
-      diskutil umount force sPHENIX_SW
-      diskutil umount force RCF_Work
-    fi
-    sshfs bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW -o auto_cache sPHENIX_SW
-    sshfs bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/ -o auto_cache RCF_Work
-
-    [[ "$?" == "0" ]] && echo "done."
-    popd > /dev/null
-    return 0
-  }
-
-  mount-flx()
+  mount-sshfs()
   {
     unmount()
     {
-      diskutil unmount force sshfs_flx
-      mount-flx $1¬
+      local loc_path=${1?"Error: path not found"}
+      diskutil unmount force $loc_path
     }
 
-    local host=${1:-"flx_lanl"}
-    cd '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/'
-    if [[ -z "$(ls -A sshfs_flx)" ]]; then
-    ming-fwknop sshfs flx_lanl:./ -o auto_cache sshfs_flx || unmount "$host"
-    else
-      echo "WARNING: folder sshfs_flx looks to be mounted, let try to unmount it first"
-      unmount ${host}
+    local rem_path=${1?"Error: missing remote path."}
+    local loc_path=${2?"Error: missing mount local path."}
+
+    local try=${try:-0}
+    if [[ -z "$(ls -A $loc_path)" ]]; then
+      sshfs $rem_path -o auto_cache $loc_path || unmount "$loc_path"
+    elif [ $try -lt 5 ]; then
+      echo "WARNING[$try]: folder sshfs_flx looks to be mounted, let try to unmount it first"
+      unmount ${loc_path}
+      let try++
+      mount-sshfs "$rem_path" "$loc_path"
     fi
     return 0
   }
+
+  alias mount-flx="mount-sshfs 'lanl_flx:./' '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/sshfs_flx'"
+  alias mount-sPHENIX_SW="mount-sshfs 'bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' '/Users/ycorrales/Work/sPHENIX/sPHENIX_SW'"
+  alias mount-RCF_Work="mount-sshfs 'bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' '/Users/ycorrales/Work/sPHENIX/RCF_Work'"
 
   #emulate watch linux command
   #@param 1, executable command
