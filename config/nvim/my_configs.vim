@@ -371,8 +371,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   map <leader>u :s/^\/\///<cr><leader><space><leader><cr>
   map <leader>uu :s/\s\s\/\///<cr><leader><space><leader><cr>
 
-  map <leader>]] :s/^/  /<cr><leader><space><leader><cr>gv
-  map <leader>[[ :s/\s\s//<cr><leader><space><leader><cr>gv
+  map <leader>]] :s/^/  /<cr><leader><cr>gv
+  map <leader>[[ :s/\s\s//<cr><leader><cr>gv
 
   "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
 
