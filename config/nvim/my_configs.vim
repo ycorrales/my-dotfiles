@@ -162,6 +162,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
     if (has("termguicolors"))
       set termguicolors
     endif
+  else
+    set term=screen-256color
   endif
 
   " Colorscheme
@@ -179,25 +181,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
     set background=dark
   endif
 
-  " Highligth current line number
-  fun! HiSet()
-     " make the highlighting of tabs and other non-text less annoying
-     hi SpecialKey ctermfg=238
-     hi NonText ctermfg=238
-     hi IncSearch cterm=NONE ctermbg=red ctermfg=0 gui=NONE guibg=#ff0000 guifg=#000000
-     hi clear CursorLine
-     hi CursorLineNR ctermfg=darkgreen cterm=bold guifg=darkgreen gui=bold
-  endfun
-
-  " Highlight current cursor line number only
-  set cursorline
-  call HiSet()
-  augroup HiSet
-    autocmd! ColorScheme * call HiSet()
-  augroup END
-
-  " highlight conflicts
-  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
   " }}}
 
   " Secttion Mappings
@@ -426,11 +409,11 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   "
 
   """"""""""""""""""""""""""""""
-  " => Searchant
+  " => SearchHi
   """"""""""""""""""""""""""""""
-  let g:searchant_all = 1
-  let g:searchant_map_stop = 0
-  nmap <leader><cr> <Plug>SearchantStop
+  highlight link Searchlight Incsearch
+  "let g:searchant_map_stop = 0
+  "nmap <leader><cr> <Plug>SearchantStop
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => ClangFormat
@@ -626,10 +609,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
       call setreg('/', old_query)
   endfun
 
-  if has("autocmd")
-      autocmd BufWritePre *.tcl,*.vhd,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee,*.C,*.h,*.c,*.cpp :call CleanExtraSpaces()
-  endif
-
   fun! DeleteTillSlash()
     let g:cmd = getcmdline()
 
@@ -706,10 +685,34 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
       let @/ = l:pattern
       let @" = l:saved_reg
   endfun
+
+  " Highligth current line number
+  fun! HiSet()
+     " make the highlighting of tabs and other non-text less annoying
+     hi SpecialKey ctermfg=238
+     hi NonText ctermfg=238
+     hi IncSearch cterm=NONE ctermbg=red ctermfg=0 gui=NONE guibg=#ff0000 guifg=#000000
+     hi clear CursorLine
+     hi CursorLineNR ctermfg=darkgreen cterm=bold guifg=darkgreen gui=bold
+  endfun
+
+  " Highlight current cursor line number only
+  set cursorline
+  call HiSet()
+  augroup HiSet
+    autocmd! ColorScheme * call HiSet()
+  augroup END
+
+  " highlight git conflicts
+  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
   " }}}
 
   " Section Filetypes
   " {{{
+
+  if has("autocmd")
+   au BufWritePre * :call CleanExtraSpaces()
+  endif
 
   """"""""""""""""""""""""""""""
   " => C++ section
@@ -763,12 +766,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
       setl foldtext=FoldText()
   endfunction
 
-  """"""""""""""""""""""""""""""
-  " => Shell section
-  """"""""""""""""""""""""""""""
-  if exists('$TMUX')
-      set term=screen-256color
-  endif
   " }}}
 
 endif
