@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
  " Plug 'JamshedVesuna/vim-markdown-preview'
  " plugin from vim
  Plug 'rhysd/vim-clang-format'
- Plug 'timakro/vim-searchant'
+ Plug 'PeterRincker/vim-searchlight'
  Plug 'vim-scripts/peaksea'
  Plug 'skielbasa/vim-material-monokai'
  Plug 'mkitt/tabline.vim'
