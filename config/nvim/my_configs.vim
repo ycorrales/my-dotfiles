@@ -700,7 +700,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   set cursorline
   call HiSet()
   augroup HiSet
-    autocmd! ColorScheme * call HiSet()
+    au!
+    autocmd ColorScheme * call HiSet()
   augroup END
 
   " highlight git conflicts
@@ -713,6 +714,11 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   if has("autocmd")
    au BufWritePre * :call CleanExtraSpaces()
   endif
+
+  "Set formatoptions
+  augroup ft
+    autocmd! FileType * set formatoptions-=ro
+  augroup END
 
   """"""""""""""""""""""""""""""
   " => C++ section
