@@ -93,6 +93,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh-dynamic-tunnel='ssh -CfN -D 1080'
+  alias myssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh"
   alias bnl_ssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh '1993:mail.rhic.bnl.gov:993' 'bnl_sdcc' && source $DOTFILES/ssh/ssh_tunnel.sh '3128:batch3.phy.bnl.gov:3128' 'bnl_cssh'"
   alias bnl_vnc_dcs="source $DOTFILES/ssh/ssh_tunnel.sh '5901:mvtxdcs0:5900' 'bnl_ebdc11'"
   alias bnl_printer="source $DOTFILES/ssh/ssh_tunnel.sh '8631:10.20.32.003:631' 'bnl_ebdc11'"
@@ -175,7 +176,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias mount-RCF_Work="mount-sshfs 'bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
   '/Users/ycorrales/Work/sPHENIX/RCF_Work'"
   alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src' \
-  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/documents/DCS/WinCC-OA/WinCC_OA_proj/mvtx-wccoa-lanl/mvtx_src'"
+  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/documents/DCS/WinCC-OA/WinCC_OA_proj/mvtx-wccoa-lanl/_mvtx_src'"
 
   #emulate watch linux command
   #@param 1, executable command
