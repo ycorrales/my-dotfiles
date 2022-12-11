@@ -130,7 +130,7 @@ fi
 b_tm=$($GDATE $FDATE)
 export LC_ALL='en_US.UTF-8'
 
-DOTFILES="$HOME/Software/_git/my_dotfiles/"
+DOTFILES="$HOME/Software/_myDotfiles"
 if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ $HOSTNAME =~ 'sdcc.bnl.gov'$ ]]; then
   DOTFILES="$HOME/dotfiles/"
 elif [[ $HOSTNAME =~ 'pn1714380.lanl.gov' ]]; then
