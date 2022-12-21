@@ -12,12 +12,13 @@ Host njit
   User              fpga
 
 # CERN
-Host lxplus*
+Host cern_lxplus
   HostName          lxplus.cern.ch
   User              ycorrale
+  PubkeyAuthentication yes
 
 # TO.INFN.IT
-Host zoroastro*
+Host to_zoroastro
   HostName          zoroastro.to.infn.it
   User              corrales
 
@@ -42,7 +43,7 @@ Host lanl_vc709
 Host lanl_*
   Hostname          localhost
   User              maps
-  ProxyJump         ming_gateway
+  ProxyJump         bnl_cssh
 
 Host mvtx_flx
   Hostname          204.121.146.106
