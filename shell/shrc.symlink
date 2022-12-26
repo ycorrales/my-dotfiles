@@ -36,6 +36,9 @@ if [[ -n "${ZSH_VERSION:-}" ]]; then
   autoload -U promptinit; promptinit
   prompt myprompt
 
+  #
+  autoload -U select-word-style; select-word-style bash
+
   setopt appendhistory autocd extendedglob nomatch notify KSH_ARRAYS
   setopt INTERACTIVE_COMMENTS
   #bindkey -v
