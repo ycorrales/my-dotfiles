@@ -94,7 +94,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh-dynamic-tunnel='ssh -CfN -D 1080'
   alias myssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh"
-  alias bnl_ssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh '1993:mail.rhic.bnl.gov:993' 'bnl_sdcc' && source $DOTFILES/ssh/ssh_tunnel.sh '3128:batch3.phy.bnl.gov:3128' 'bnl_cssh'"
+  alias bnl_ssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh '1993:mail.rhic.bnl.gov:993' 'bnl_ssh' && source $DOTFILES/ssh/ssh_tunnel.sh '3128:batch3.phy.bnl.gov:3128' 'bnl_cssh'"
   alias bnl_vnc_dcs="source $DOTFILES/ssh/ssh_tunnel.sh '5901:mvtxdcs0:5900' 'bnl_ebdc11'"
   alias bnl_printer="source $DOTFILES/ssh/ssh_tunnel.sh '8631:10.20.32.003:631' 'bnl_ebdc11'"
   alias lanl_vnc_flx="source $DOTFILES/ssh/ssh_tunnel.sh '5900:localhost:5900' 'lanl_flx'"

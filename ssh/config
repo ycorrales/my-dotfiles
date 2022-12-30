@@ -43,9 +43,9 @@ Host lanl_vc709
 Host lanl_*
   Hostname          localhost
   User              maps
-  ProxyJump         bnl_cssh
+  ProxyJump         bnl_ebdc11
 
-Host mvtx_flx
+Host flx
   Hostname          204.121.146.106
 
 Host eic_malta
@@ -58,14 +58,14 @@ Host vc709
 #Host mosaic
 #  Hostname          204.121.146.110
 
-Host mvtx* eic* vc709*
+Host flx* eic* vc709*
   User              maps
   ForwardX11        yes
   ForwardX11Trusted yes
-  ProxyJump         lanl_flx
+  #  ProxyJump         lanl_flx
 
 # BNL
-Host bnl_sdcc
+Host bnl_ssh
   HostName          ssh.sdcc.bnl.gov
   ProxyJump         none
 
@@ -110,7 +110,7 @@ Host *.bnl.gov bnl_*
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
-  ProxyJump         bnl_sdcc
+  ProxyJump         bnl_ssh
 
 # FNAL
 Host ftbfbnl01
@@ -135,7 +135,7 @@ Host athena
   HostName          athena.dialup.mit.edu
   User              ycm
 
-Host mitfelix
+Host mit_flx
   Hostname          10.54.6.146
   User              ycorrales
   ProxyJump         athena
