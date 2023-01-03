@@ -99,7 +99,7 @@ Host bnl_phenix
   User              ycorrale
 
 Host bnl_sphenix
-  HostName          sphnx02.sdcc.bnl.gov
+  HostName          sphnx01.sdcc.bnl.gov
 
 Host bnl_mosaic
   HostName          130.199.23.194
