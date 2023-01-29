@@ -43,7 +43,7 @@ Host lanl_vc709
 Host lanl_*
   Hostname          localhost
   User              maps
-  ProxyJump         bnl_ebdc11
+  ProxyJump         bnl_flx0
 
 Host flx
   Hostname          204.121.146.106
@@ -78,15 +78,20 @@ Host bnl_campus
   User              ycmorales
   ProxyJump         bnl_cssh
 
-Host bnl_ebdc11
-  HostName          ebdc11.sphenix.bnl.gov
+Host bnl_flx0
+  HostName          mvtx-flx0.sphenix.bnl.gov
+
+Host bnl_flx1
+  HostName          mvtx-flx1.sphenix.bnl.gov
+
+Host bnl_flx*
   User              ycmorales
   ProxyJump         bnl_cssh
 
 Host bnl_dcs
   Hostname          mvtxdcs0.sphenix.bnl.gov
   User              mvtxdcs
-  ProxyJump         bnl_ebdc11
+  ProxyJump         bnl_flx0
 
 Host bnl_caen
   Hostname          10.20.34.243
@@ -99,7 +104,7 @@ Host bnl_phenix
   User              ycorrale
 
 Host bnl_sphenix
-  HostName          sphnx01.sdcc.bnl.gov
+  HostName          sphnx02.sdcc.bnl.gov
 
 Host bnl_mosaic
   HostName          130.199.23.194
