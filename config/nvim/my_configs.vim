@@ -686,14 +686,17 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
       let @" = l:saved_reg
   endfun
 
-  " Highligth current line number
+  " Change defaults hi colors
   fun! HiSet()
      " make the highlighting of tabs and other non-text less annoying
      hi SpecialKey ctermfg=238
      hi NonText ctermfg=238
      hi IncSearch cterm=NONE ctermbg=red ctermfg=0 gui=NONE guibg=#ff0000 guifg=#000000
+     " Highligth current line number
      hi clear CursorLine
      hi CursorLineNR ctermfg=darkgreen cterm=bold guifg=darkgreen gui=bold
+     " Change color for Comment
+     hi Comment guifg=lightgreen
   endfun
 
   " Highlight current cursor line number only
