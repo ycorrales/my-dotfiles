@@ -84,6 +84,18 @@ Host bnl_flx0
 Host bnl_flx1
   HostName          mvtx-flx1.sphenix.bnl.gov
 
+Host bnl_flx2
+  HostName          mvtx-flx2.sphenix.bnl.gov
+
+Host bnl_flx3
+  HostName          mvtx-flx3.sphenix.bnl.gov
+
+Host bnl_flx4
+  HostName          mvtx-flx4.sphenix.bnl.gov
+
+Host bnl_flx5
+  HostName          mvtx-flx5.sphenix.bnl.gov
+
 Host bnl_flx*
   User              ycmorales
   ProxyJump         bnl_cssh
