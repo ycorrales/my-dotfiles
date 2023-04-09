@@ -106,7 +106,7 @@ Host bnl_dcs
   ProxyJump         bnl_flx0
 
 Host bnl_caen
-  Hostname          10.20.34.243
+  Hostname          10.20.34.247
   User              maps
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
