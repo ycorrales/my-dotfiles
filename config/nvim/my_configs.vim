@@ -258,6 +258,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Moving around, tabs, windows and buffers
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  nnoremap <C-n> <C-e>
+  nnoremap <C-p> <C-y>
+
   " Bash like keys for the command line
   cnoremap <C-a> <Home>
   cnoremap <C-e> <End>
@@ -311,11 +314,11 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   nmap <leader>o o<esc>
   nmap <leader>O O<esc>
 
-  " Move a line of text using ALT+[jk] or Command+[jk] on mac
-  nmap <M-j> mz:m+<cr>`z
-  nmap <M-k> mz:m-2<cr>`z
-  vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-  vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+  " Move 1 more lines up or down in normal and visual selection modes.
+  nnoremap K :m .-2<CR>==
+  nnoremap J :m .+1<CR>==
+  vnoremap K :m '<-2<CR>gv=gv
+  vnoremap J :m '>+1<CR>gv=gv
 
   if has("mac") || has("macunix")
     nmap <leader>j <M-j>
