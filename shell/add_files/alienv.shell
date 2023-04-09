@@ -16,21 +16,27 @@ if type alienv &> /dev/null; then
 
   o2-init()
   {
+    umask 002
+    MODULE=${1:-'O2@dev'}
     pushd ${ALISOFT}
-    aliBuild init O2@dev -d -z ./ --default o2
+    su l329869 -c "aliBuild init $MODULE -d -z ./ --default o2"
     popd
   }
 
   o2-build()
   {
-    pushd ${ALISOFT}
-    aliBuild build O2 -d -w $ALIBUILD_WORK_DIR --defaults o2
-    aliBuild clean
-    popd
+    (
+      umask 002
+      MODULE=${1:-'O2'}
+      pushd ${ALISOFT}
+      su l329869 -c "aliBuild build $MODULE -d -w $ALIBUILD_WORK_DIR --defaults o2"
+      aliBuild clean
+      popd
+    )
   }
 
-  alias o2-load=" alienv load O2/latest > /dev/null 2>&1 "
-  alias o2-unload=" alienv unload O2/latest > /dev/null 2>&1 "
+  alias o2-load=" alienv load ROOT/latest > /dev/null 2>&1 "
+  alias o2-unload=" alienv unload ROOT/latest > /dev/null 2>&1 "
 
   root-fl-ls()
   {
