@@ -169,8 +169,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
     return 0
   }
 
-  alias mount-flx="mount-sshfs 'lanl_flx:./' \
-  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_sshfs_flx'"
+  alias mount-bnl-mvtx="mount-sshfs 'bnl_flx0:/home' \
+  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_sshfs_bnl_mvtx'"
+  alias mount-lanl-flx="mount-sshfs 'lanl_flx:./' \
+  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_sshfs_lanl_flx'"
   alias mount-sPHENIX_SW="mount-sshfs 'bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' \
   '/Users/ycorrales/Work/sPHENIX/_sPHENIX_SW'"
   alias mount-RCF_Work="mount-sshfs 'bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
