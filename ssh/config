@@ -96,13 +96,15 @@ Host bnl_flx4
 Host bnl_flx5
   HostName          mvtx-flx5.sphenix.bnl.gov
 
-Host bnl_lanl
-  HostName          test03.sphenix.bnl.gov
-  User              maps
-
 Host bnl_flx*
   User              ycmorales
   ProxyJump         bnl_cssh
+
+Host bnl_lanl
+  HostName          test03.sphenix.bnl.gov
+  User              maps
+  ProxyJump         bnl_cssh
+
 
 Host bnl_dcs
   Hostname          mvtxdcs0.sphenix.bnl.gov
