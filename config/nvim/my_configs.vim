@@ -233,8 +233,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Fast editing and reloading of vimrc configs
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  map <leader>cf :tabe! ~/.config/nvim/my_configs.vim<cr>
-  map <leader>pf :tabe! ~/.config/nvim/plugins.vim<cr>
+  map <leader>cf :e! ~/.config/nvim/my_configs.vim<cr>
+  map <leader>pf :e! ~/.config/nvim/plugins.vim<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Command mode related
@@ -258,43 +258,24 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Moving around, tabs, windows and buffers
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  nnoremap <C-n> <C-e>
-  nnoremap <C-p> <C-y>
-
-  " Bash like keys for the command line
-  cnoremap <C-a> <Home>
-  cnoremap <C-e> <End>
-  cnoremap <C-k> <C-U>
-
-  cnoremap <C-p> <Up>
-  cnoremap <C-n> <Down>
 
   "move in insert mode
   inoremap <C-a> <esc>^<esc>i
   inoremap <C-e> <esc>g_<esc>a
-  "move in normal mode
-  noremap <C-a> ^
-  noremap <C-e> g_
 
-  " Smart way to move between windows
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-h> <C-w>h
-  map <C-l> <C-w>l
-
-  map <leader>bn :bnext<cr>
-  map <leader>bp :bprevious<cr>
+  nmap <leader>bn :bnext<cr>
+  nmap <leader>bp :bprevious<cr>
   " Close all the buffers
-  map <leader>ba :bufdo bd<cr>
+  nmap <leader>ba :bufdo bd<cr>
   " Delete current bufer
-  map <leader>bd :bdelete<cr>
+  nmap <leader>bd :bdelete<cr>
 
   " Useful mappings for managing tabs
-  map <leader>tn :tabnew<cr>
-  map <leader>to :tabonly<cr>
-  map <leader>tc :tabclose<cr>
-  map <leader>tm :tabmove
-  map <leader>t<leader> :tabnext
+  nmap <leader>tn :tabnew<cr>
+  nmap <leader>to :tabonly<cr>
+  nmap <leader>tc :tabclose<cr>
+  nmap <leader>tm :tabmove
+  nmap <leader>t<leader> :tabnext
 
   " Let 'l' toggle between this and the last accessed tab
   let g:lasttab = 1
@@ -303,10 +284,10 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Opens a new tab with the current buffer's path
   " Super useful when editing files in the same directory
-  map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+  nmap <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
   " Switch CWD to the directory of the open buffer
-  map <leader>cd :cd %:p:h<cr>:pwd<cr>
+  nmap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Editing mappings
@@ -383,33 +364,49 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " Section Plugins
   " {{{
 
-  """""""""""""""""""""""""""""
-  " => bufExplorer plugin
-  """""""""""""""""""""""""""""
-  " let g:bufExplorerDefaultHelp=0
-  " let g:bufExplorerShowRelativePath=1
-  " let g:bufExplorerFindActive=1
-  " let g:bufExplorerSortBy='name'
-  " map <leader>o :BufExplorer<cr>
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " => Nerd Tree and Nerd Tree Tab
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " close NERDTree after a file is opened
+  let g:NERDTreeQuitOnOpen=0
+  " show hidden files in NERDTree
+  let NERDTreeShowHidden=1
+  " Toggle NERDTree
+  nmap <silent> <leader>k :NERDTreeToggle<cr>
+  " expand to the path of the file in the current buffer
+  nmap <silent> <leader>y :NERDTreeTabFind<cr>
+  "let g:NERDTreeWinPos = "left"
+  "let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+  "let g:NERDTreeWinSize=30
+  "map <leader>nm :NERDTreeMirrorToggle<cr>
+  "map <leader>nb :NERDTreeFromBookmark
+  "            \setlength{\itemsep}{5 cm}
 
   """""""""""""""""""""""""""""""
-  "" => MRU plugin
+  " => MRU plugin
   """""""""""""""""""""""""""""""
-  ""let MRU_Max_Entries = 400
-  ""map <leader>f :MRU<CR>
-  "
+  "let MRU_Max_Entries = 400
+  "map <leader>f :MRU<CR>
+
   """""""""""""""""""""""""""""""
-  "" => CTRL-P
+  " => CTRL-P
   """""""""""""""""""""""""""""""
-  ""let g:ctrlp_working_path_mode = 0
-  ""
-  ""let g:ctrlp_map = '<c-f>'
-  ""map <leader>j :CtrlP<cr>
-  ""map <leader>z :CtrlPBuffer<cr>
-  ""
+  "map <leader>j :CtrlP<cr>
+  nmap <silent> <leader>r :CtrlPBuffer<cr>
+  let g:ctrlp_map = '<leader>t'
+  let g:ctrlp_dotfiles=1
+  let g:ctrlp_working_path_mode = 'ra'
+  " CtrlP ignore patterns
+  let g:ctrlp_custom_ignore = {
+            \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$'
+            \ }
+
+  " search the nearest ancestor that contains .git, .hg, .svn
+  let g:ctrlp_working_path_mode = 2
   ""let g:ctrlp_max_height = 20
   ""let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-  "
+
 
   """"""""""""""""""""""""""""""
   " => SearchHi
@@ -474,34 +471,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   noremap = :silent <C-u>ClangFormat<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => Netrw
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " Load Explore
-  noremap <leader>e :<C-u>Lexplore<cr>
-
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => Nerd Tree and Nerd Tree Tab
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  "let g:NERDTreeWinPos = "left"
-  "let NERDTreeShowHidden=0
-  "let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-  "let g:NERDTreeWinSize=30
-  "map <leader>nn :NERDTreeToggle<cr>
-  "map <leader>nf :NERDTreeTabFind<cr>
-  "map <leader>nm :NERDTreeMirrorToggle<cr>
-  "map <leader>nb :NERDTreeFromBookmark
-  "            \setlength{\itemsep}{5 cm}
-
-  """""""""""""""""""""""
-  " => netrw
-  """""""""""""""""""""""
-  let g:netrw_banner = 0
-  let g:netrw_liststyle = 3
-  let g:netrw_browse_split = 4
-  let g:netrw_altv = 1
-  let g:netrw_winsize = 20
-
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Syntastic (syntax checker)
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes':   [],'passive_filetypes': [] }
@@ -522,12 +491,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Javascript
   let g:syntastic_javascript_checkers = ['jshint']
-
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => Git gutter (Git diff)
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:gitgutter_enabled=0
-  nnoremap <leader>d :GitGutterToggle<cr>
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => lightline
@@ -562,6 +525,27 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
 
   " Section Extra
   " {{{
+
+  " Smart way to move between windows
+  nmap <C-j> :call WinMove('j')<cr>
+  nmap <C-k> :call WinMove('k')<cr>
+  nmap <C-h> :call WinMove('h')<cr>
+  nmap <C-l> :call WinMove('l')<cr>
+
+  " Window movement shortcuts
+  " move to the window in the direction shown, or create a new window
+  function! WinMove(key)
+      let t:curwin = winnr()
+      exec "wincmd ".a:key
+      if (t:curwin == winnr())
+          if (match(a:key,'[jk]'))
+              wincmd v
+          else
+              wincmd s
+          endif
+          exec "wincmd ".a:key
+      endif
+  endfunction
 
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => Misc

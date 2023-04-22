@@ -24,17 +24,17 @@ call plug#begin('~/.vim/plugged')
  Plug 'itchyny/lightline.vim'
  Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
  Plug 'tpope/vim-rhubarb' " hub extension for fugitive
- " Plug 'JamshedVesuna/vim-markdown-preview'
- " plugin from vim
+ Plug 'kien/ctrlp.vim' " fuzzy file finder
+ Plug 'preservim/nerdtree'
  Plug 'rhysd/vim-clang-format'
  Plug 'PeterRincker/vim-searchlight'
- Plug 'vim-scripts/peaksea'
- Plug 'skielbasa/vim-material-monokai'
- Plug 'mkitt/tabline.vim'
+ "Plug 'vim-scripts/peaksea'
+ "Plug 'skielbasa/vim-material-monokai'
+ "Plug 'mkitt/tabline.vim'
  Plug 'vim-syntastic/syntastic'
- Plug 'airblade/vim-gitgutter'
- Plug 'kassio/neoterm'
- Plug 'ryanpcmcquen/fix-vim-pasting'
+ "Plug 'airblade/vim-gitgutter'
+ "Plug 'kassio/neoterm'
+ "Plug 'ryanpcmcquen/fix-vim-pasting'
  Plug 'jreybert/vimagit'
 
  if v:version > 704
