@@ -80,8 +80,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
   export sPHENIX="/Users/ycorrales/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX/"
-  alias  gosPHENIX_MVTX_RO="clr; cd $sPHENIX/Projects/MVTX/Readout"
   alias  goMVTX="clr; cd $sPHENIX/Projects/MVTX"
+  alias  goMVTXro="clr; cd $sPHENIX/Projects/MVTX/Readout"
+  alias  goMVTXdoc="clr; cd /Users/ycorrales/Documents/MyDocuments/Projects/sPHENIX/MVTX"
   alias  goEIC='clr; cd $HOME/Work/EIC/'
 
   #SECRET TOKEN
