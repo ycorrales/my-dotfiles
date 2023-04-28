@@ -52,7 +52,7 @@
     fi
 
     [[ -n "$CLEAN" ]] && { cd ~; \
-    rm .globus .vim .vscode .zsh .ssh/id_rsa* .ssh/config .config/nvim; \
+    rm .globus .vim .vscode .zsh .ssh/id_* .ssh/config .config/nvim; \
     rm .alidock-config.yaml .bash_profile .bashrc .bnlbox \.cadaverrc; \
     rm .fwknoprc .gitconfig .inputrc .netrc .rootrc .shrc .tmux.conf .vimrc .zshrc rootlogon.C; \
     cd -; exit 0; }

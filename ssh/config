@@ -15,12 +15,15 @@ Host njit
 Host cern_lxplus
   HostName          lxplus.cern.ch
   User              ycorrale
-  PubkeyAuthentication yes
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
 
 # TO.INFN.IT
 Host to_zoroastro
   HostName          zoroastro.to.infn.it
   User              corrales
+  HostKeyAlgorithms=+ssh-dss
+  PubkeyAcceptedKeyTypes +ssh-rsa
 
 #Host superfarm
 #  HostName           cloud-gw-215.to.infn.it
@@ -120,16 +123,18 @@ Host bnl_caen
 Host bnl_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
+  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
 Host bnl_sphenix
   HostName          sphnx02.sdcc.bnl.gov
+  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
 Host bnl_mosaic
   HostName          130.199.23.194
   User              maps
   ProxyJump         bnl_cssh
 
-Host *.bnl.gov bnl_*
+Host bnl_*
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
@@ -162,6 +167,10 @@ Host mit_flx
   Hostname          10.54.6.146
   User              ycorrales
   ProxyJump         athena
+
+#GITHUB
+Host *github.com
+  IdentityFile      ~/.ssh/id_ecdsa
 
 # ALL
 Host *
