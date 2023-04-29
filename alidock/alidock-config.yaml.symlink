@@ -1,11 +1,10 @@
 ---
-dockName: "aliPhysics"
-imageName: "alipier/singularity:alidock.cc7"
+dockName: "Singularity"
+imageName: "ycorrales/singularity:alidock.cc7"
 dontUpdateImage: True
 dirOutside: "~/Work/Alice/AliSoft/alidock/"
-cvmfs: False
+cvmfs: True
 privileged: True
 mount:
-  - "~/Cernbox"
   - "~/Software"
   - "~/Work"

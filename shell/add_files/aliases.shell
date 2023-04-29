@@ -225,7 +225,7 @@ if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
       cp ~/.Xauthority ~/sing_sphenix_home/.
       cd /mnt/Work/sPHENIX;
       export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work:$_ALIDOCK_HOME/Work"
-      singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -login
+      singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -c 'source ~/.bashrc'
       exit $?
     )
   }
