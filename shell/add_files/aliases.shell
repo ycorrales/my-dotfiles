@@ -3,7 +3,7 @@
 #
 
 # General
-alias reload='source ~/.shrc' #reaload zsh config
+#alias reload='source ~/.shrc' #reaload zsh config, it does not work
 #Detect with `ls` flavor is in use
 myls='ls'
 colorflag='--color'
@@ -179,7 +179,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias mount-RCF_Work="mount-sshfs 'bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
   '/Users/ycorrales/Work/sPHENIX/_RCF_Work'"
   alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src' \
-  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/documents/DCS/WinCC-OA/WinCC_OA_proj/mvtx-wccoa-lanl/_mvtx_src'"
+  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_mvtx_src'"
 
   #emulate watch linux command
   #@param 1, executable command
