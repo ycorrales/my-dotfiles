@@ -1,10 +1,11 @@
 ---
 dockName: "Singularity"
 imageName: "ycorrales/singularity:alidock.cc7"
-dontUpdateImage: True
+dontUpdateImage: False
 dirOutside: "~/Work/Alice/AliSoft/alidock/"
-cvmfs: True
+cvmfs: False
 privileged: True
 mount:
+  - "/cvmfs"
   - "~/Software"
   - "~/Work"
