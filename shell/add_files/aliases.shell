@@ -15,22 +15,24 @@ fi
 type gsed      &> /dev/null && alias sed='gsed'
 type greadlink &> /dev/null && alias readlink='greadlink'
 
-#Filesystem aliases
-alias  dds="$myls -Fh ${colorflag} ${gdirfirst} "
+# Filesystem aliases
+alias dds="$myls -Fh ${colorflag} ${gdirfirst} "
 alias  la="$myls -AF  ${colorflag}"
 alias  ll="$myls -lFh ${colorflag} ${gdirfirst} "
-alias  llt="ll -hrt "
-alias  lld="ll | grep ^d"
+alias llt="ll -hrt "
+alias lld="ll | grep ^d"
 
-#python
+unset myls colorflag gdirfirst
+
+# python
 #alias python='/usr/local/bin/python3'
 #alias pip='/usr/local/bin/pip3'
 
-#GIT
+# GIT
 alias gl='git log --graph --pretty='\''%Cred%h%Creset %s %Cgreen(%cr) \
-  %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
-alias gmod='git show --pretty="format:" --name-only'
-alias gdname='git diff --name-status'
+         %C(bold blue)<%an>%Creset %C(yellow)%d%Creset'\'' --abbrev-commit'
+alias gitsname='git show --pretty="format:" --name-only'
+alias gitdname='git diff --name-status'
 alias gits='git status'
 type hub  &> /dev/null && alias git='hub'
 
@@ -45,17 +47,16 @@ alias vimcf='mvim $DOTFILES/config/nvim/my_configs.vim' #open fast vim config fi
 type nvim &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
 [[ -f "$HOME/Software/MakePDF/mkPDFdoc.sh" ]] && alias mkpdfdoc='source $HOME/Software/MakePDF/mkPDFdoc.sh'
 
-#WORKING_DIR
+# WORKING_DIR
 alias goDotfiles='clr; cd $DOTFILES'
 
 # Alias for mac only
 if [[ "$OSTYPE" == darwin* ]]; then
-  alias df='df -h' # disk free, in Gigabytes, not bytes
-  alias du='du -h' # calculate disk usage for a folder
+  # File size
+  alias  df='df -h' # disk free, in Gigabytes, not bytes
+  alias  du='du -h' # calculate disk usage for a folder
   alias dud='du -d 1 2> /dev/null'
   alias dus='du -hs  2> /dev/null'
-
-  # File size
   alias fs="stat -f \"%z bytes\""
 
   # Kill Dock
@@ -70,7 +71,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
   alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-  #WORKING_DIR
+  # WORKING_DIR
   #ALICE_WORK=${ALICE_WORK?"ALICE_WORK not defined"}
   #alias  goITSup="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/"
   #alias  goITSupTest="clr; cd $ALICE_WORK/Projects/ITS_Upgrade/assembly_OB/test_OB/"
@@ -78,36 +79,39 @@ if [[ "$OSTYPE" == darwin* ]]; then
   #alias  goSpecRun1="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun1"
   #alias  goSpecRun2="clr; cd $ALICE_WORK/Projects/PWGLF_SPECTRA/SpectraAnalysisRun2"
   #alias  goBjet="clr; cd $ALICE_WORK/Projects/PWGHF_HFCJ/Bjets"
-  export sPHENIX="/Users/ycorrales/Work/sPHENIX"
+  sPHENIX="/Users/ycorrales/Work/sPHENIX"
   alias  gosPHENIX="clr; cd $sPHENIX/"
   alias  goMVTX="clr; cd $sPHENIX/Projects/MVTX"
   alias  goMVTXro="clr; cd $sPHENIX/Projects/MVTX/Readout"
   alias  goMVTXdoc="clr; cd /Users/ycorrales/Documents/MyDocuments/Projects/sPHENIX/MVTX"
   alias  goEIC='clr; cd $HOME/Work/EIC/'
+  unset sPHENIX
 
-  #SECRET TOKEN
+  # SECRET TOKEN
   alias getGoogle='oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)'
   alias getLastPass='oathtool --totp -b $(cat $DOTFILES/backup_codes/lastPass.cd)'
   alias getBNLmail='oathtool --totp -b $(cat $DOTFILES/backup_codes/webmail_bnl.cd)'
 
-  #SSH
-  #alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
-  #alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
+  # SSH
+#  alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
+#  alias ssh_tunnel_ali42xl='ssh -p 10022 localhost'
   alias ssh-dynamic-tunnel='ssh -CfN -D 1080'
   alias myssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh"
   alias ssh_bnl_mail="myssh_tunnel 'mail.rhic' '-fNT bnl_ssh -L 1993:mail.rhic.bnl.gov:993'"
   alias ssh_bnl_proxy="myssh_tunnel 'batch3.phy' '-fNT bnl_cssh -L 3128:batch3.phy.bnl.gov:3128'"
   alias bnl_ssh_tunnel="ssh_bnl_mail && ssh_bnl_proxy"
-  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_flx0 -L 5901:mvtxdcs0:5900'"
+  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_flx0 -L 5901:mvtxdcs0:5900 -L 8825:0.0.0.0:2500'"
   alias bnl_printer="myssh_tunnel '8631:10.20' '-fNT bnl_flx0 -L 8631:10.20.32.003:631'"
 #  alias lanl_vnc_flx="source $DOTFILES/ssh/ssh_tunnel.sh '5900:localhost:5900' 'lanl_flx'"
   alias bnl_sc_tunnel="myssh_tunnel '8880:10.20.34.240' '-fNT bnl_dcs \
                        -L 8880:10.20.34.240:80 -L 8881:10.20.34.241:80 -L 8882:10.20.34.242:80 \
-                       -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80'"
+                       -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80 \
+                       -L 3000:info.sphenix.bnl.gov:3000'"
   alias fnal_ssh_tunnel="myssh_tunnel 'ftbfbnl01' '-fNT ftbfbnl01 \
                          -L 17815:localhost:7815 -L 10080:192.168.60.80:8081 -L 10081:192.168.60.149:8081 \
                          -L 10082:192.168.60.149:8082 -L 10007:192.168.60.7:80'"
 
+  # LANL
   alias umbrella_en=" su l329869 -c 'sudo launchctl   load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
   alias umbrella_dis="su l329869 -c 'sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
 
@@ -117,6 +121,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
                       /usr/local/share/zsh /usr/local/share/  zsh/site-functions"
   alias brew_root_dis="sudo chown -R ycorrales /usr/local/bin /usr/local/share/man/man4 \
                        /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
+
+# CSSHX
+  alias mvtx_op='i2cssh  -F -b -m bnl_flx5 bnl_flx0 bnl_flx1 bnl_flx2 bnl_flx3 bnl_flx4'
+  alias mvtx_run='mvtx_op -l phnxrc'
 
   ming-fwknop()
   {
@@ -181,6 +189,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
 fi #end MacOnly
 
+# ALIAS for RCF
 if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
   || [[ $HOSTNAME =~ sdcc.bnl.gov$ ]] \
   || [[ -n $SINGULARITY_NAME ]]; then
@@ -205,8 +214,8 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
 
 fi #end SPHENIX RCF
 
+# ALIAS for Singularity
 if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
-  #alias for sPHENIX singularity framework
   l-sph-singularity()
   {
     (
