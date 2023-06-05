@@ -88,7 +88,7 @@ void rootlogon()
   if(gSystem->Getenv("TMPDIR"))
     gSystem->SetBuildDir(gSystem->Getenv("TMPDIR"));
   bool load_myutils = (kBaseDir != "") ?
-  !gSystem->AccessPathName(Form("%s/MyUtils.cxx", kBaseDir.data())) : false;
+    !gSystem->AccessPathName(Form("%s/MyUtils.cxx", kBaseDir.data())) : false;
   if (load_myutils)
   {
     string tmp_build_dir = gSystem->GetBuildDir();
