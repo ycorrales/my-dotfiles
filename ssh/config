@@ -70,16 +70,24 @@ Host flx* eic* vc709*
 # BNL
 Host bnl_ssh
   HostName          ssh.sdcc.bnl.gov
+  IdentityFile      ~/.ssh/id_rsa
   ProxyJump         none
 
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
+  IdentityFile      ~/.ssh/id_rsa
   ProxyJump         none
 
 Host bnl_campus
   HostName          nxcampus01.sdcc.bnl.gov
   User              ycmorales
   ProxyJump         bnl_cssh
+
+Host bnl_bbox
+  HostName          bbox0.sphenix.bnl.gov
+  User              sphnxpro
+  ProxyJump         bnl_cssh
+
 
 Host bnl_flx0
   HostName          mvtx-flx0.sphenix.bnl.gov
@@ -155,7 +163,6 @@ Host lbnl_mvtx
   User              aliceits
 
 # MIT
-
 Host athena
   HostName          athena.dialup.mit.edu
   User              ycm
@@ -165,16 +172,12 @@ Host mit_flx
   User              ycorrales
   ProxyJump         athena
 
-#GITHUB
-Host *github.com
-  IdentityFile      ~/.ssh/id_ecdsa
-
 # ALL
 Host *
   IgnoreUnknown     AddKeysToAgent,UseKeychain
   ControlMaster     yes
   ControlPersist    600
-  IdentityFile      ~/.ssh/id_rsa
+  IdentityFile      ~/.ssh/id_ecdsa
   ForwardAgent      yes
   AddKeysToAgent    yes
   UseKeychain       yes
