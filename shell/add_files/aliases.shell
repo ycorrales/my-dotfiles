@@ -99,8 +99,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias myssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh"
   alias ssh_bnl_mail="myssh_tunnel 'mail.rhic' '-fNT bnl_ssh -L 1993:mail.rhic.bnl.gov:993'"
   alias ssh_bnl_proxy="myssh_tunnel 'batch3.phy' '-fNT bnl_cssh -L 3128:batch3.phy.bnl.gov:3128'"
-  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_flx0 -L 5901:mvtxdcs0:5900 -L 8825:0.0.0.0:2500'"
-  alias bnl_printer="myssh_tunnel '8631:10.20' '-fNT bnl_flx0 -L 8631:10.20.32.003:631'"
+  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_lanl -L 5901:mvtxdcs0:5900 -L 8825:0.0.0.0:2500'"
+  alias bnl_printer="myssh_tunnel '8631:10.20' '-fNT bnl_lanl -L 8631:10.20.32.003:631'"
   alias bnl_sc_tunnel="myssh_tunnel '8880:10.20.34.240' '-fNT bnl_dcs \
                        -L 8880:10.20.34.240:80 -L 8881:10.20.34.241:80 -L 8882:10.20.34.242:80 \
                        -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80 \
@@ -122,8 +122,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
                        /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
 
 # CSSHX
-  alias mvtx_op='i2cssh  -F -b -m bnl_flx5 bnl_flx0 bnl_flx1 bnl_flx2 bnl_flx3 bnl_flx4'
-  alias mvtx_run='mvtx_op -l phnxrc'
+  alias mvtx_op='i2cssh  -F -b -m mvtx-flx0 mvtx-flx1 mvtx-flx2 mvtx-flx3 mvtx-flx4 mvtx-flx5'
 
   ming-fwknop()
   {
@@ -168,9 +167,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   alias mount-bnl-home="mount-sshfs 'bnl_lanl:/home' \
   '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_sshfs_bnl_home'"
-  alias mount-sPHENIX_SW="mount-sshfs 'bnl_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' \
+  alias mount-sPHENIX_SW="mount-sshfs 'sdcc_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' \
   '/Users/ycorrales/Work/sPHENIX/_sPHENIX_SW'"
-  alias mount-RCF_Work="mount-sshfs 'bnl_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
+  alias mount-RCF_Work="mount-sshfs 'sdcc_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
   '/Users/ycorrales/Work/sPHENIX/_RCF_Work'"
   alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src' \
   '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_mvtx_src'"

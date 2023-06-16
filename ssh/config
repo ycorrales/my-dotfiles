@@ -68,10 +68,6 @@ Host flx* eic* vc709*
   #  ProxyJump         lanl_flx
 
 # BNL
-Host bnl_ssh
-  HostName          ssh.sdcc.bnl.gov
-  IdentityFile      ~/.ssh/id_rsa
-  ProxyJump         none
 
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
@@ -81,43 +77,26 @@ Host bnl_cssh
 Host bnl_campus
   HostName          nxcampus01.sdcc.bnl.gov
   User              ycmorales
-  ProxyJump         bnl_cssh
 
-Host bnl_bbox
-  HostName          bbox0.sphenix.bnl.gov
+Host bnl_mosaic
+  HostName          130.199.23.194
+  User              maps
+
+Host bbox*
+  HostName          %h.sphenix.bnl.gov
   User              sphnxpro
-  ProxyJump         bnl_cssh
 
-
-Host bnl_flx0
-  HostName          mvtx-flx0.sphenix.bnl.gov
-
-Host bnl_flx1
-  HostName          mvtx-flx1.sphenix.bnl.gov
-
-Host bnl_flx2
-  HostName          mvtx-flx2.sphenix.bnl.gov
-
-Host bnl_flx3
-  HostName          mvtx-flx3.sphenix.bnl.gov
-
-Host bnl_flx4
-  HostName          mvtx-flx4.sphenix.bnl.gov
-
-Host bnl_flx5
-  HostName          mvtx-flx5.sphenix.bnl.gov
+Host mvtx-flx*
+  HostName         %h.sphenix.bnl.gov
 
 Host bnl_lanl
-  HostName          test03.sphenix.bnl.gov
-
-Host bnl_flx* bnl_lanl*
-  User              ycmorales
-  ProxyJump         bnl_cssh
+  HostName         test03.sphenix.bnl.gov
 
 Host bnl_dcs
   Hostname          mvtxdcs0.sphenix.bnl.gov
   User              mvtxdcs
-  ProxyJump         bnl_flx0
+  ProxyJump         bnl_lanl
+  IdentityFile      ~/.ssh/id_rsa
 
 Host bnl_caen
   Hostname          10.20.34.243
@@ -125,22 +104,29 @@ Host bnl_caen
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
 
-Host bnl_phenix
+Host bnl_* bbox* mvtx-flx*
+  User              ycmorales
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         bnl_cssh
+
+
+Host bnl_ssh
+  HostName          ssh.sdcc.bnl.gov
+  IdentityFile      ~/.ssh/id_rsa
+  ProxyJump         none
+
+Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
   PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
-Host bnl_sphenix
+Host sdcc_sphenix
   HostName          sphnx02.sdcc.bnl.gov
+  User              ycmorales
   PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
-Host bnl_mosaic
-  HostName          130.199.23.194
-  User              maps
-  ProxyJump         bnl_cssh
-
-Host bnl_*
-  User              ycmorales
+Host sdcc_*
   ForwardX11        yes
   ForwardX11Trusted yes
   ProxyJump         bnl_ssh
