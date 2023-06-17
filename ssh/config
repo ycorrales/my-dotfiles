@@ -71,6 +71,7 @@ Host flx* eic* vc709*
 
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
+  User              ycmorales
   IdentityFile      ~/.ssh/id_rsa
   ProxyJump         none
 
@@ -82,17 +83,30 @@ Host bnl_mosaic
   HostName          130.199.23.194
   User              maps
 
-Host bbox*
+Host bbox?
   HostName          %h.sphenix.bnl.gov
   User              sphnxpro
 
-Host mvtx-flx*
+Host bbox?.sphenix.bnl.gov
+  HostName          %h
+  User              sphnxpro
+
+Host mvtx-flx?
   HostName         %h.sphenix.bnl.gov
+
+Host mvtx-flx?.sphenix.bnl.gov
+  HostName         %h
 
 Host bnl_lanl
   HostName         test03.sphenix.bnl.gov
 
-Host bnl_dcs
+Host bbox* mvtx-flx* bnl_lanl
+  User              ycmorales
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         bnl_cssh
+
+Host bnl_dcs mvtxdcs0.sphenix.bnl.gov
   Hostname          mvtxdcs0.sphenix.bnl.gov
   User              mvtxdcs
   ProxyJump         bnl_lanl
@@ -104,15 +118,9 @@ Host bnl_caen
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
 
-Host bnl_* bbox* mvtx-flx*
-  User              ycmorales
-  ForwardX11        yes
-  ForwardX11Trusted yes
-  ProxyJump         bnl_cssh
-
-
 Host bnl_ssh
   HostName          ssh.sdcc.bnl.gov
+  User              ycmorales
   IdentityFile      ~/.ssh/id_rsa
   ProxyJump         none
 
