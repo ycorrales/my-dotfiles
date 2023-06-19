@@ -132,7 +132,7 @@ Host sdcc_phenix
 Host sdcc_sphenix
   HostName          sphnx02.sdcc.bnl.gov
   User              ycmorales
-  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
+#  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
 Host sdcc_*
   ForwardX11        yes
