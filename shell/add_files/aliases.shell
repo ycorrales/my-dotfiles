@@ -154,8 +154,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
     local loc_path=${2?"Error: missing mount local path."}
 
     local try=${try:-0}
-    if [[ -z "$(ls -A $loc_path)" ]]; then
-      sshfs $rem_path -o auto_cache $loc_path || unmount "$loc_path"
+    if [[ -z "$(ls -A $loc_path 2>/dev/null)" ]]; then
+      sshfs $rem_path -o auto_cache $loc_path || { unmount "$loc_path" && mount-sshfs $loc_path $rem_path; }
     elif [ $try -lt 5 ]; then
       echo "WARNING[$try]: folder sshfs_flx looks to be mounted, let try to unmount it first"
       unmount ${loc_path}
