@@ -103,7 +103,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias bnl_printer="myssh_tunnel '8631:10.20' '-fNT bnl_lanl -L 8631:10.20.32.003:631'"
   alias bnl_sc_tunnel="myssh_tunnel '8880:10.20.34.240' '-fNT bnl_dcs \
                        -L 8880:10.20.34.240:80 -L 8881:10.20.34.241:80 -L 8882:10.20.34.242:80 \
-                       -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80 \
+                       -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80 -L 8889:10.20.34.249:80\
                        -L 3000:info.sphenix.bnl.gov:3000'"
   alias bnl_ssh_tunnel="ssh_bnl_mail && ssh_bnl_proxy && bnl_vnc_dcs && bnl_sc_tunnel"
   alias fnal_ssh_tunnel="myssh_tunnel 'ftbfbnl01' '-fNT ftbfbnl01 \
@@ -122,8 +122,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
                        /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
 
 # CSSHX
-  alias mvtx_op='i2cssh  -F -b -m mvtx-flx0 mvtx-flx1 mvtx-flx2 mvtx-flx3 mvtx-flx4 mvtx-flx5'
-
+  alias mvtx_op='i2cssh  -F -b -m mvtx-flx5 mvtx-flx0 mvtx-flx1 mvtx-flx2 mvtx-flx3 mvtx-flx4'
+  alias mvtx_op_phnxrc='mvtx_op -l phnxrc'
   ming-fwknop()
   {
     local cmd="$@"
@@ -151,11 +151,13 @@ if [[ "$OSTYPE" == darwin* ]]; then
     }
 
     local rem_path=${1?"Error: missing remote path."}
-    local loc_path=${2?"Error: missing mount local path."}
+    local loc_path="/tmp/${rem_path%%:*}/${rem_path#*:}"
+    [[ -d $loc_path ]] || mkdir -p $loc_path
+#    local loc_path=${2?"Error: missing mount local path."}
 
     local try=${try:-0}
-    if [[ -z "$(ls -A $loc_path 2>/dev/null)" ]]; then
-      sshfs $rem_path -o auto_cache $loc_path || { unmount "$loc_path" && mount-sshfs $loc_path $rem_path; }
+    if [[ -z "$(ls -A $loc_path 2> /dev/null)" ]]; then
+      sshfs $rem_path -o auto_cache $loc_path || { unmount "$loc_path" && mount-sshfs $rem_path; }
     elif [ $try -lt 5 ]; then
       echo "WARNING[$try]: folder sshfs_flx looks to be mounted, let try to unmount it first"
       unmount ${loc_path}
@@ -165,14 +167,13 @@ if [[ "$OSTYPE" == darwin* ]]; then
     return 0
   }
 
-  alias mount-bnl-home="mount-sshfs 'bnl_lanl:/home' \
-  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_sshfs_bnl_home'"
-  alias mount-sPHENIX_SW="mount-sshfs 'sdcc_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' \
-  '/Users/ycorrales/Work/sPHENIX/_sPHENIX_SW'"
-  alias mount-RCF_Work="mount-sshfs 'sdcc_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
-  '/Users/ycorrales/Work/sPHENIX/_RCF_Work'"
-  alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src' \
-  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_mvtx_src'"
+  alias mount-bnl-home="mount-sshfs 'bnl_lanl:/home'"
+#  alias mount-sPHENIX_SW="mount-sshfs 'sdcc_sphenix:/sphenix/u/ycmorales/sPHENIX_SW' \
+#  '/Users/ycorrales/Work/sPHENIX/_sPHENIX_SW'"
+#  alias mount-RCF_Work="mount-sshfs 'sdcc_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/' \
+#  '/Users/ycorrales/Work/sPHENIX/_RCF_Work'"
+#  alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src' \
+#  '/Users/ycorrales/Work/sPHENIX/Projects/MVTX/Readout/_mvtx_src'"
 
   #emulate watch linux command
   #@param 1, executable command
