@@ -100,6 +100,11 @@ Host mvtx-flx?.sphenix.bnl.gov
 Host bnl_lanl
   HostName         test03.sphenix.bnl.gov
 
+Host bnl_hf
+  Hostname         hf-trigger.sphenix.bnl.gov
+  User             maps
+  ProxyJump        bnl_cssh
+
 Host bbox* mvtx-flx* bnl_lanl
   User              ycmorales
   ForwardX11        yes
