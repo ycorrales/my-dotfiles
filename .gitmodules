@@ -1,3 +1,6 @@
 [submodule "python_env"]
 	path = python_env
 	url = git@github.com:ycorrales/my-python-env.git
+[submodule "root/my-root-macros"]
+	path = root/my-root-macros
+	url = git@github.com:ycorrales/my-root-macros.git

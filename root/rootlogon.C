@@ -25,7 +25,7 @@ void rootlogon()
   const string inc = pwd;
   //
   const string kBaseDir    = gSystem->Getenv("ROOTSYS")       ?
-                             gSystem->ExpandPathName("$HOME/Work/_myRootMacros/main") : "";
+                             gSystem->ExpandPathName("$DOTFILES/root/my-root-macros/main") : "";
   const string fastjet     = gSystem->Getenv("FASTJET")       ?
                              gSystem->ExpandPathName("$FASTJET/include")                    : "";
   const string aliroot     = gSystem->Getenv("ALICE_ROOT")    ?
