@@ -31,41 +31,53 @@ Host to_zoroastro
 #  ProxyJump          zoroastro
 
 # LANL
-Host ming_gateway
-  Hostname          69.254.135.184
-  User              maps
-  Port              37023
-  ProxyJump         none
+#Host ming_gateway
+#  Hostname          69.254.135.184
+#  User              maps
+#  Port              37023
+#  ProxyJump         none
 
-Host lanl_flx
-  Port              8022
 
-Host lanl_vc709
-  Port              8122
+Host lanl_mvtx_nuc_int
+  Hostname          204.121.140.130
 
-Host lanl_*
+Host lanl_mvtx_nuc_ext
   Hostname          localhost
-  User              maps
-  ProxyJump         bnl_flx0
+  Port              8022
+  ProxyJump         bnl_lanl
 
-Host flx
-  Hostname          204.121.146.106
+Host lanl_mvtx_nuc*
+  User              ycmorales
 
-Host eic_malta
-  Hostname          204.121.146.105
-  User              eic
+#Host lanl_flx
+#  Port              8022
+#
+#Host lanl_vc709
+#  Port              8122
+#
+#Host lanl_*
+#  Hostname          localhost
+#  User              maps
+#  ProxyJump         bnl_flx0
 
-Host vc709
-  Hostname          204.121.146.104
+  #Host flx
+  #  Hostname          204.121.146.106
+  #
+  #Host eic_malta
+  #  Hostname          204.121.146.105
+  #  User              eic
+  #
+  #Host vc709
+  #  Hostname          204.121.146.104
 
 #Host mosaic
 #  Hostname          204.121.146.110
 
-Host flx* eic* vc709*
-  User              maps
-  ForwardX11        yes
-  ForwardX11Trusted yes
-  #  ProxyJump         lanl_flx
+#Host flx* eic* vc709*
+#  User              maps
+#  ForwardX11        yes
+#  ForwardX11Trusted yes
+#  ProxyJump         lanl_flx
 
 # BNL
 
