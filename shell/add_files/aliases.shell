@@ -110,6 +110,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
                          -L 17815:localhost:7815 -L 10080:192.168.60.80:8081 -L 10081:192.168.60.149:8081 \
                          -L 10082:192.168.60.149:8082 -L 10007:192.168.60.7:80'"
 
+  alias lanl_vnc_nuc="myssh_tunnel 'lanl_mvtx_nuc' '-fNT lanl_mvtx_nuc_ext -L 5900:localhost:5900'"
+
+  alias mv_to_ws="ssh lanl_mvtx_nuc_ext 'export DISPLAY=:0 && wmctrl -s $1' &> /dev/null"
+
+
   # LANL
   alias umbrella_en=" su l329869 -c 'sudo launchctl   load /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
   alias umbrella_dis="su l329869 -c 'sudo launchctl unload /Library/LaunchDaemons/com.opendns.osx.RoamingClientConfigUpdater.plist' "
