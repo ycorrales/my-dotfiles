@@ -147,7 +147,7 @@ Host sdcc_phenix
   PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
 Host sdcc_sphenix
-  HostName          sphnx02.sdcc.bnl.gov
+  HostName          sphnx05.sdcc.bnl.gov
   User              ycmorales
 #  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
 
