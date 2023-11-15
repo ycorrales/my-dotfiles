@@ -176,7 +176,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   }
 
   alias mount-bnl-home="mount-sshfs 'bnl_lanl:/home'"
-#  alias mount-sPHENIX_SW="mount-sshfs 'sdcc_sphenix:/sphenix/u/ycmorales/sPHENIX_SW'"
+  alias mount-sdcc-sphenix_sw="mount-sshfs 'sdcc_sphenix:/sphenix/u/ycmorales/sPHENIX_SW'"
 #  alias mount-RCF_Work="mount-sshfs 'sdcc_sphenix:/gpfs02/sphenix/user/ycmorales/sphenix/'"
 #  alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src'"
 
