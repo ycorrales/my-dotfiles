@@ -1,0 +1,199 @@
+# ssh commands
+# ProxyJump <proxy-host> is a shorthand for
+# old metthod
+# ProxyCommand ssh <proxy-host> -q -W %h:%p
+# or
+# very old methos
+# ProxyCommand ssh <proxy-host> nc %h %p
+
+# Dantong's FPGA server
+Host njit
+  HostName          hpdtl.cewit.stonybrook.edu
+  User              fpga
+
+# CERN
+Host cern_lxplus
+  HostName          lxplus.cern.ch
+  User              ycorrale
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+
+# TO.INFN.IT
+Host to_zoroastro
+  HostName          zoroastro.to.infn.it
+  User              corrales
+#  HostKeyAlgorithms=+ssh-dss
+#  PubkeyAcceptedKeyTypes +ssh-rsa
+
+#Host superfarm
+#  HostName           cloud-gw-215.to.infn.it
+#  User               corrales
+#  ProxyJump          zoroastro
+
+# LANL
+#Host ming_gateway
+#  Hostname          69.254.135.184
+#  User              maps
+#  Port              37023
+#  ProxyJump         none
+
+
+Host lanl_mvtx_nuc_int
+  Hostname          204.121.140.130
+
+Host lanl_mvtx_nuc_ext
+  Hostname          localhost
+  Port              8022
+  ProxyCommand ssh bnl_lanl -q -W %h:$p
+
+Host lanl_mvtx_nuc*
+  User              ycmorales
+
+#Host lanl_flx
+#  Port              8022
+#
+#Host lanl_vc709
+#  Port              8122
+#
+#Host lanl_*
+#  Hostname          localhost
+#  User              maps
+#  ProxyJump         bnl_flx0
+
+  #Host flx
+  #  Hostname          204.121.146.106
+  #
+  #Host eic_malta
+  #  Hostname          204.121.146.105
+  #  User              eic
+  #
+  #Host vc709
+  #  Hostname          204.121.146.104
+
+#Host mosaic
+#  Hostname          204.121.146.110
+
+#Host flx* eic* vc709*
+#  User              maps
+#  ForwardX11        yes
+#  ForwardX11Trusted yes
+#  ProxyJump         lanl_flx
+
+# BNL
+
+Host bnl_cssh
+  Hostname          cssh.rhic.bnl.gov
+  User              ycmorales
+  IdentityFile      ~/.ssh/id_rsa
+
+Host bnl_campus
+  HostName          nxcampus01.sdcc.bnl.gov
+  User              ycmorales
+
+Host bnl_mosaic
+  HostName          130.199.23.194
+  User              maps
+
+Host bbox?
+  HostName          %h.sphenix.bnl.gov
+  User              sphnxpro
+
+Host bbox?.sphenix.bnl.gov
+  HostName          %h
+  User              sphnxpro
+
+Host mvtx-flx?
+  HostName         %h.sphenix.bnl.gov
+
+Host mvtx-flx?.sphenix.bnl.gov
+  HostName         %h
+
+Host bnl_lanl
+  HostName         test03.sphenix.bnl.gov
+
+Host bnl_hf
+  Hostname         hf-trigger.sphenix.bnl.gov
+  User             maps
+  ProxyCommand ssh bnl_cssh -q -W %h:%p
+
+Host bbox* mvtx-flx* bnl_lanl
+  User              ycmorales
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyCommand ssh bnl_cssh -q -W %h:%p
+
+Host bnl_dcs mvtxdcs0.sphenix.bnl.gov
+  Hostname          mvtxdcs0.sphenix.bnl.gov
+  User              mvtxdcs
+  ProxyCommand ssh bnl_lanl -q -W %h:%p
+  IdentityFile      ~/.ssh/id_rsa
+
+Host bnl_caen
+  Hostname          10.20.34.243
+  User              maps
+  ProxyCommand ssh bnl_dcs -q -W %h:%p
+#  HostKeyAlgorithms=+ssh-dss
+
+Host bnl_caen_tel
+  Hostname          10.20.34.247
+  User              maps
+  ProxyCommand ssh bnl_dcs -q -W %h:%p
+#  HostKeyAlgorithms=+ssh-dss
+
+Host bnl_ssh
+  HostName          ssh.sdcc.bnl.gov
+  User              ycmorales
+  IdentityFile      ~/.ssh/id_rsa
+#  ProxyJump         none
+
+Host sdcc_phenix
+  HostName          rcas2067.rcf.bnl.gov
+  User              ycorrale
+#  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
+
+Host sdcc_sphenix
+  HostName          sphnx05.sdcc.bnl.gov
+  User              ycmorales
+#  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
+
+Host sdcc_*
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyCommand ssh bnl_ssh -q -W %h:%p
+
+# FNAL
+Host ftbfbnl01
+  HostName          ftbfbnl01.fnal.gov
+  User              ftbf_user
+
+Host 192.168.60.*
+#  ProxyJump         ftbfbnl01
+
+Host *.fnal.gov
+  GSSAPIAuthentication      yes
+  GSSAPIDelegateCredentials yes
+
+# LBNL
+Host lbnl_mvtx
+  Hostname          131.243.31.77
+  User              aliceits
+
+# MIT
+Host athena
+  HostName          athena.dialup.mit.edu
+  User              ycm
+
+Host mit_flx
+  Hostname          10.54.6.146
+  User              ycorrales
+#  ProxyJump         athena
+
+# ALL
+Host *
+  IgnoreUnknown     AddKeysToAgent,UseKeychain
+  ControlMaster     yes
+  ControlPersist    600
+  IdentityFile      ~/.ssh/id_ecdsa
+  ForwardAgent      yes
+  AddKeysToAgent    yes
+  UseKeychain       yes
