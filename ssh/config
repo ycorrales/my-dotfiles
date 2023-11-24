@@ -19,11 +19,11 @@ Host cern_lxplus
   GSSAPIDelegateCredentials yes
 
 # TO.INFN.IT
-Host to_zoroastro
-  HostName          zoroastro.to.infn.it
-  User              corrales
-  HostKeyAlgorithms=+ssh-dss
-  PubkeyAcceptedKeyTypes +ssh-rsa
+#Host to_zoroastro
+#  HostName          zoroastro.to.infn.it
+#  User              corrales
+#  HostKeyAlgorithms +ssh-dss
+#  PubkeyAcceptedKeyTypes +ssh-rsa
 
 #Host superfarm
 #  HostName           cloud-gw-215.to.infn.it
