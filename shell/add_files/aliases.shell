@@ -143,7 +143,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   {
     local DIR=${1:-"./"}
     #TRASH_FILE='0 .DS_Store'
-    TRASH_FILE=('.DS_Store' '._.DS_Store')
+    TRASH_FILE=('.DS_Store' '._.DS_Store' '.nfs*')
     find $DIR -type f \( -name ${TRASH_FILE[0]} -o -name ${TRASH_FILE[1]} \) -ls -delete 2> /dev/null
     return 0
   }
