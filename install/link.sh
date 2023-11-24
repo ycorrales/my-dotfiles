@@ -43,7 +43,7 @@
   }
 
   DO_FORCE=${1:-""}
-  [[ "$( bc -l <<< "$( ssh -V 2> >(sed 's,^[^0-9]*,,;s,[^\.0-9].*,,') ) < '7.0'" )" == "1" ]] && \
+  [[ "$( bc -l <<< "$( ssh -V 2> >(sed 's,^[^0-9]*,,;s,[^0-9].*,,') ) < 7.0" )" == 1 ]] && \
     SSH_CONFIG_6="$DOTFILES/ssh/config_6"
 
   ln -nsf "${SSH_CONFIG_6:-"$DOTFILES/ssh/config_7"}" "$DOTFILES/ssh/config"
