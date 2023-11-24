@@ -156,19 +156,22 @@ fi
 b_tm=$($GDATE $FDATE)
 export LC_ALL='en_US.UTF-8'
 
-DOTFILES="$HOME/Software/_myDotfiles"
-if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ $HOSTNAME =~ 'sdcc.bnl.gov'$ ]]; then
-  DOTFILES="$HOME/dotfiles/"
-elif [[ $HOSTNAME =~ 'pn1714380.lanl.gov' ]]; then
-  DOTFILES="$HOME/dotfiles/"
+
+DOTFILES=$( cd "$( dirname "$( dirname "$( readlink -f "${BASH_SOURCE[0]:-$0}" )" )" )" && pwd )
+
+#DOTFILES="$HOME/Software/_myDotfiles"
+#if [[ $HOSTNAME =~ 'rcf.bnl.gov'$ ]] || [[ $HOSTNAME =~ 'sdcc.bnl.gov'$ ]]; then
+#  DOTFILES="$HOME/dotfiles/"
+if [[ $HOSTNAME =~ 'pn1714380.lanl.gov' ]]; then
+#  DOTFILES="$HOME/dotfiles/"
   #some workaound for linux lanl machine
   unset SSH_ASKPASS
   if [[ -f '/etc/bash_completion.d/git' ]]; then
    source '/etc/bash_completion.d/git'
   fi
 elif [[ -n "$_ALIDOCK_ENV" ]]; then
-  DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
-  DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
+#  DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
+#  DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
   [ -n SINGULARITY_NAME ] && export SW_WORK_DIR="${HOME}/sPHENIX/Projects/01.MVTX/02.Testbeam/TB-2019_FTBF_4stave-telescope/sw"
 fi
 export DOTFILES
