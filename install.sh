@@ -66,6 +66,8 @@
     done
 
     [[ $OS = "osx_x86-64" && -n "$CONFIG_MAC" ]] && _config_myMac
+
+    return 0
   }
 
   Main "$@"

@@ -5,7 +5,7 @@
 
   DOTFILES=${DOTFILES?"err_msg"}
 
-  pinfo "" > /dev/null 2>&1 || source "${DOTFILES}"/shell/add_files/utils.shell
+  pinfo "" > /dev/null 2>&1 || source "${DOTFILES}/shell/add_files/utils.shell"
 
   #function for symlink
   function do_symlink()
@@ -43,10 +43,15 @@
   }
 
   DO_FORCE=${1:-""}
+  [[ "$( bc -l <<< "$( ssh -V 2> >(sed 's,^[^0-9]*,,;s,[^\.0-9].*,,') ) < '7.0'" )" == "1" ]] && \
+    SSH_CONFIG_6="$DOTFILES/ssh/config_6"
+
+  ln -nsf "${SSH_CONFIG_6:-"$DOTFILES/ssh/config_7"}" "$DOTFILES/ssh/config"
 
   # do_symlink dir prefix links_list [force]
   prep_symlink ''        '.' "$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )" '.symlink'
-  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh" -type f -maxdepth 1 \( -name "config" -o -name "id_*" \) )"
+  prep_symlink '.ssh'    ''  "$( find -H "$DOTFILES/ssh" -maxdepth 1 \( -type f -o -type l \) \
+    \( -name 'config' -o -name 'id_*' -o -name 'rc' \) )"
   prep_symlink '.config' ''  "$( find -H "$DOTFILES/config" -maxdepth 1 ! -path "$DOTFILES/config" )"
   prep_symlink ''        ''  "$DOTFILES/root/rootlogon.C"
 
