@@ -12,8 +12,8 @@
   {
     local TARGET=${1:-}
     local LINK=${2:-}
-    local S_TARGET="~${TARGET#$HOME}"
-    local S_LINK="~${LINK#$HOME}"
+    local S_TARGET="~${TARGET#"$HOME"}"
+    local S_LINK="~${LINK#"$HOME"}"
 
     if test -e "$LINK" &&  test -z "$DO_FORCE"; then
       perror "$S_LINK already exists... Skipping.";
@@ -37,7 +37,8 @@
       { pdebug "Creating ~/$DIR"; mkdir -p "$HOME"/"$DIR"; }
 
     for TARGET in $LINKABLES; do
-      local LINK_NAME="$HOME/$PREFIX$( basename "$TARGET" "$EXT" )"
+      local LINK_NAME
+      LINK_NAME="$HOME/$PREFIX$( basename "$TARGET" "$EXT" )"
       do_symlink "$TARGET" "$LINK_NAME"
     done
   }

@@ -7,5 +7,5 @@
   [[ $( echo "$( ps -ef | grep "$PATTERN" | grep -v 'grep' | wc -l | bc) > 0" | bc ) == 1 ]] && \
     kill $(ps -ef | grep "$PATTERN" | grep -v 'grep' | sed -e "s/[ ]\{2,\}/ /g" | cut -d " " -f 2)
 
-  ssh $SSH_OPT &> /dev/null
+  ssh "$SSH_OPT" &> /dev/null
 )

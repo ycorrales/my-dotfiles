@@ -88,10 +88,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
   unset sPHENIX
 
   # SECRET TOKEN
-  alias getGoogle="oathtool --totp -b $(cat $DOTFILES/backup_codes/google_key.cd)| tr -d '\n' | pbcopy"
-  alias getLastPass="oathtool --totp -b $(cat $DOTFILES/backup_codes/lastPass.cd) | tr -d '\n' | pbcopy"
-  alias getSDCC="oathtool --totp -b $(cat $DOTFILES/backup_codes/BNL_SDCC.cd) | tr -d '\n' | pbcopy"
-  alias getBNLmail="oathtool --totp -b $(cat $DOTFILES/backup_codes/webmail_bnl.cd) | tr -d '\n' | pbcopy"
+  alias getGoogle="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/google_key.cd)| tr -d '\n' | pbcopy"
+  alias getLastPass="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/lastPass.cd) | tr -d '\n' | pbcopy"
+  alias getSDCC="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/BNL_SDCC.cd) | tr -d '\n' | pbcopy"
+  alias getBNLmail="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/webmail_bnl.cd) | tr -d '\n' | pbcopy"
 
   # SSH
 #  alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
@@ -144,10 +144,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
     local DIR=${1:-"./"}
     local TRASH_FILE=('.DS_Store' '._.DS_Store' '.nfs*')
     local OPT
-    for file in ${TRASH_FILE[@]}; do
-     OPT=$( echo $OPT ${OPT:+'-o'} "-name $file" )
+    for file in "${TRASH_FILE[@]}"; do
+     OPT="$OPT ${OPT:+-o} -name $file"
     done
-    find $DIR -type f \( $OPT \) -ls -delete 2> /dev/null
+    find "$DIR" -type f \( $OPT \) -ls -delete 2> /dev/null
     return 0
   }
 
@@ -156,23 +156,23 @@ if [[ "$OSTYPE" == darwin* ]]; then
     unmount()
     {
       local loc_path=${1?"Error: path not found"}
-      diskutil unmount force $loc_path
+      diskutil unmount force "$loc_path"
     }
 
     local rem_full_path=${1?"Error: missing remote path."}
     local rem_server=${rem_full_path%%:*}
     local rem_path=${rem_full_path#*:}
-    ssh ${rem_server} test -d ${rem_path} &> /dev/null || { perror "$rem_path No such file or directory"; return 1; }
+    ssh "${rem_server}" test -d "${rem_path}" &> /dev/null || { perror "$rem_path No such file or directory"; return 1; }
     local loc_path="/tmp/${rem_server}/${rem_path}"
-    [[ -d $loc_path ]] || mkdir -p $loc_path
+    [[ -d $loc_path ]] || mkdir -p "$loc_path"
 
     local try=${try:-0}
-    if [[ -z "$(ls -A $loc_path 2> /dev/null)" ]]; then
-      sshfs $rem_full_path -o auto_cache $loc_path || { unmount "$loc_path" && mount-sshfs $rem_full_path; }
-    elif [ $try -lt 5 ]; then
+    if [[ -z "$(ls -A "$loc_path" 2> /dev/null)" ]]; then
+      sshfs "$rem_full_path" -o auto_cache "$loc_path" || { unmount "$loc_path" && mount-sshfs "$rem_full_path"; }
+    elif [ "$try" -lt 5 ]; then
       echo "WARNING[$try]: folder sshfs_flx looks to be mounted, let try to unmount it first"
-      unmount ${loc_path}
-      let try++
+      unmount "${loc_path}"
+      (( try++ ))
       mount-sshfs "$rem_full_path"
     fi
     return 0
@@ -190,7 +190,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   watch()
   {
     trap "echo exit...; return" INT
-    while :; do clear; $1; sleep ${2:-2}; done
+    while :; do clear; $1; sleep "${2:-2}"; done
   }
 
 fi #end MacOnly
@@ -227,7 +227,7 @@ if [[ -n "$_ALIDOCK_ENV" ]] && [[ -z $SINGULARITY_NAME ]]; then
     (
       _ALIDOCK_HOME="/home/alidock/sing_sphenix_home"
       cp ~/.Xauthority ~/sing_sphenix_home/.
-      cd /mnt/Work/sPHENIX;
+      cd /mnt/Work/sPHENIX || exit;
       export SINGULARITY_BINDPATH="Singularity/cvmfs/:/cvmfs,/mnt/Software:$_ALIDOCK_HOME/Software,/mnt/Work:$_ALIDOCK_HOME/Work"
       singularity shell -H ~/sing_sphenix_home Singularity/cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg -c 'source ~/.bashrc'
       exit $?

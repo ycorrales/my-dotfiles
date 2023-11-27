@@ -4,11 +4,11 @@
   GATEWAY='bnl_flx0'
   PORT='8022'
   SSH_OPT="-f -N -T -R $PORT:localhost:22 $GATEWAY"
-  BC="$(ps aux | grep '^.*/usr/bin/ssh.*${PORT}.*${GATEWAY}' | grep -v 'grep' | wc -l | bc) > 0"
+  BC="$(ps aux | grep '^.*/usr/bin/ssh.*'"${PORT}"'.*'"${GATEWAY}" | grep -v 'grep' | wc -l | bc) > 0"
   if [[ $( echo "$BC" | bc ) == 0 ]]; then
     [[ $( echo "$(ps aux | grep $GATEWAY | grep -v 'grep' | wc -l | bc) > 0" | bc ) == 1 ]] && \
     ps aux | grep $GATEWAY | grep -v 'grep' | awk '{print $2}' | xargs kill
-    /bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "ExitOnForwardFailure yes" ${SSH_OPT}
+    /bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "ExitOnForwardFailure yes" "${SSH_OPT}"
   fi
 )
 

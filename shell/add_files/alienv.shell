@@ -10,17 +10,17 @@ if type alienv &> /dev/null; then
   create-alien-cert()
   {
     local _path=${1:-"*.p12"}
-    openssl pkcs12 -clcerts -nokeys -in $_path -out usercert.pem
-    openssl pkcs12 -nocerts         -in $_path -out userkey.pem
+    openssl pkcs12 -clcerts -nokeys -in "$_path" -out usercert.pem
+    openssl pkcs12 -nocerts         -in "$_path" -out userkey.pem
   }
 
   o2-init()
   {
     umask 002
     MODULE=${1:-'O2@dev'}
-    pushd ${ALISOFT}
+    pushd "${ALISOFT}" || exit
     su l329869 -c "aliBuild init $MODULE -d -z ./ --default o2"
-    popd
+    popd || exit
   }
 
   o2-build()
@@ -28,10 +28,10 @@ if type alienv &> /dev/null; then
     (
       umask 002
       MODULE=${1:-'O2'}
-      pushd ${ALISOFT}
+      pushd "${ALISOFT}" || exit
       su l329869 -c "aliBuild build $MODULE -d -w $ALIBUILD_WORK_DIR --defaults o2"
       aliBuild clean
-      popd
+      popd || exit
     )
   }
 
@@ -48,8 +48,8 @@ EOF
 
   o2-find()
   {
-    if [ ! -z $1 ]; then
-      find -H ${ALISOFT} -iname $@
+    if [ -n "$1" ]; then
+      find -H "${ALISOFT}" -iname "$@"
     else
       echo "alio2-find: missing argument"
       return 1
@@ -116,7 +116,7 @@ EOF
 fi
 
 # Execute alidock within the appropriate Python virtual environment
-if test -d $HOME/.virtualenvs/alidock; then
+if test -d "$HOME"/.virtualenvs/alidock; then
   function alidock() {
     (
       source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
