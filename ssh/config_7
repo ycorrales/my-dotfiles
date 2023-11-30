@@ -150,12 +150,14 @@ Host bnl_ssh
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
-  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
+  PubkeyAcceptedKeyTypes +ssh-rsa
+  #Workaround for re-enabling RSA
 
 Host sdcc_sphenix
   HostName          sphnx05.sdcc.bnl.gov
   User              ycmorales
-#  PubkeyAcceptedKeyTypes +ssh-rsa #Workaround for re-enabling RSA
+  PubkeyAcceptedKeyTypes +ssh-rsa
+  #Workaround for re-enabling RSA
 
 Host sdcc_*
   ForwardX11        yes
