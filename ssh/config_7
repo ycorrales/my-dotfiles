@@ -85,7 +85,7 @@ Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
   User              ycmorales
   IdentityFile      ~/.ssh/id_rsa
-  ProxyJump         none
+# ProxyJump         none
 
 Host bnl_campus
   HostName          nxcampus01.sdcc.bnl.gov
@@ -145,7 +145,7 @@ Host bnl_ssh
   HostName          ssh.sdcc.bnl.gov
   User              ycmorales
   IdentityFile      ~/.ssh/id_rsa
-  ProxyJump         none
+#  ProxyJump         none
 
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
