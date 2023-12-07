@@ -102,10 +102,10 @@ Host bbox?.sphenix.bnl.gov
   HostName          %h
   User              sphnxpro
 
-Host mvtx-flx?
+Host mvtx?
   HostName         %h.sphenix.bnl.gov
 
-Host mvtx-flx?.sphenix.bnl.gov
+Host mvtx?.sphenix.bnl.gov
   HostName         %h
 
 Host bnl_lanl
@@ -116,7 +116,7 @@ Host bnl_hf
   User             maps
   ProxyCommand ssh bnl_cssh -q -W %h:%p
 
-Host bbox* mvtx-flx* bnl_lanl
+Host bbox* mvtx* bnl_lanl
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
