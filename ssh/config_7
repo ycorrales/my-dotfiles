@@ -117,13 +117,13 @@ Host bnl_hf
   User             maps
   ProxyJump        bnl_cssh
 
-Host bbox* mvtx* bnl_lanl
+Host bbox* mvtx? mvtx?.* bnl_lanl
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
   ProxyJump         bnl_cssh
 
-Host bnl_dcs mvtxdcs0.sphenix.bnl.gov
+Host bnl_dcs
   Hostname          mvtxdcs0.sphenix.bnl.gov
   User              mvtxdcs
   ProxyJump         bnl_lanl
