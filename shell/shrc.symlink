@@ -173,6 +173,8 @@ elif [[ -n "$_ALIDOCK_ENV" ]]; then
 #  DOTFILES=${SINGULARITY_NAME+"${DOTFILES}"}
 #  DOTFILES=${DOTFILES:="/mnt/Software/dotfiles/"}
   [ -n SINGULARITY_NAME ] && export SW_WORK_DIR="${HOME}/sPHENIX/Projects/01.MVTX/02.Testbeam/TB-2019_FTBF_4stave-telescope/sw"
+elif [[ $HOSTNAME =~ ^'mvtx'[0-5] ]] || [[ "$HOSTNAME" =~ ^'test03' ]]; then
+  [ -f /home/ycmorales/my-mvtx-tools/sh/extra_functions.sh ] && . /home/ycmorales/my-mvtx-tools/sh/extra_functions.sh
 fi
 export DOTFILES
 
