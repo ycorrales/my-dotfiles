@@ -114,7 +114,7 @@ Host bnl_lanl
 
 Host bnl_hf
   Hostname         hf-trigger.sphenix.bnl.gov
-  User             maps
+  User             mvtx
   ProxyJump        bnl_cssh
 
 Host bbox* mvtx? mvtx?.* bnl_lanl
