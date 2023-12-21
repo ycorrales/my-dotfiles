@@ -93,6 +93,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias getSDCC="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/BNL_SDCC.cd) | tr -d '\n' | pbcopy"
   alias getBNLmail="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/webmail_bnl.cd) | tr -d '\n' | pbcopy"
   alias getReMarkable="oathtool --totp -b $( cat "$DOTFILES"/backup_codes/ReMarkable.cd )"
+  alias getTocopay="cat $DOTFILES/backup_codes/tocopay.cd | tr -d '\n' | pbcopy"
 
   # SSH
 #  alias ssh_tunnel_zoro='ssh -fN -L 10022:ali42xl.to.infn.it:22 -l corrales zoroastro.to.infn.it'
