@@ -18,6 +18,11 @@ Host cern_lxplus
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
 
+Host cern_mvtx
+  HostName          mvtx.cern.ch
+  User              root
+  ProxyJump         cern_lxplus
+
 # TO.INFN.IT
 Host to_zoroastro
   HostName          zoroastro.to.infn.it
