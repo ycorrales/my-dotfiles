@@ -90,6 +90,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # SECRET TOKEN
   alias getGoogle="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/google_key.cd)| tr -d '\n' | pbcopy"
   alias getLastPass="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/lastPass.cd) | tr -d '\n' | pbcopy"
+  alias getCERN="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/CERN.cd) | tr -d '\n' | pbcopy"
   alias getSDCC="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/BNL_SDCC.cd) | tr -d '\n' | pbcopy"
   alias getBNLmail="oathtool --totp -b $(cat "$DOTFILES"/backup_codes/webmail_bnl.cd) | tr -d '\n' | pbcopy"
   alias getReMarkable="oathtool --totp -b $( cat "$DOTFILES"/backup_codes/ReMarkable.cd )"
