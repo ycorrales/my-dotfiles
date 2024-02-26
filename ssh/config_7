@@ -88,9 +88,14 @@ Host lanl_mvtx_nuc*
 
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
+
+Host bnl_ssh
+  HostName          ssh.sdcc.bnl.gov
+
+Host bnl_ssh bnl_cssh
   User              ycmorales
   IdentityFile      ~/.ssh/id_rsa
-# ProxyJump         none
+#  ProxyJump         none
 
 Host bnl_campus
   HostName          nxcampus01.sdcc.bnl.gov
@@ -120,9 +125,8 @@ Host bnl_lanl
 Host bnl_hf
   Hostname         hf-trigger.sphenix.bnl.gov
   User             mvtx
-  ProxyJump        bnl_cssh
 
-Host bbox* mvtx? mvtx?.* bnl_lanl
+Host bbox* mvtx? mvtx?.* bnl_lanl bnl_hf bnl_campus
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
@@ -145,12 +149,6 @@ Host bnl_caen_tel
   User              maps
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
-
-Host bnl_ssh
-  HostName          ssh.sdcc.bnl.gov
-  User              ycmorales
-  IdentityFile      ~/.ssh/id_rsa
-#  ProxyJump         none
 
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
