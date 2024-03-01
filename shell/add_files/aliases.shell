@@ -209,7 +209,7 @@ if [[ $HOSTNAME =~ rcf.bnl.gov$ ]]    \
   export WORK='/gpfs02/sphenix/user/ycmorales/sphenix'
   export AFS='/afs/rhic/phenix/users/ycorrale/'
   export SPHENIX_SW=/sphenix/u/ycmorales/sPHENIX_SW
-  export MYINSTALL=$SPHENIX_SW/install
+  #export MYINSTALL=$SPHENIX_SW/install
   #export LD_LIBRARY_PATH=$MYINSTALL/lib:$LD_LIBRARY_PATH
   #export ROOT_INCLUDE_PATH=$MYINSTALL/include:$ROOT_INCLUDE_PATH
 
