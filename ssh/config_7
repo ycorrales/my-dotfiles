@@ -153,13 +153,13 @@ Host bnl_caen_tel
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
-  PubkeyAcceptedKeyTypes +ssh-rsa
+  #PubkeyAcceptedKeyTypes +ssh-rsa
   #Workaround for re-enabling RSA
 
 Host sdcc_sphenix
   HostName          sphnx05.sdcc.bnl.gov
   User              ycmorales
-  PubkeyAcceptedKeyTypes +ssh-rsa
+  #PubkeyAcceptedKeyTypes +ssh-rsa
   #Workaround for re-enabling RSA
 
 Host sdcc_*
