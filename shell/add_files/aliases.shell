@@ -131,7 +131,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
                        /usr/local/share/zsh /usr/local/share  /zsh/site-functions"
 
 # CSSHX
-  alias mvtx_op='i2cssh  -F -b -m mvtx-flx5 mvtx-flx0 mvtx-flx1 mvtx-flx2 mvtx-flx3 mvtx-flx4'
+  alias mvtx_op='i2cssh  -F -b -m mvtx5 mvtx0 mvtx1 mvtx2 mvtx3 mvtx4'
   alias mvtx_op_phnxrc='mvtx_op -l phnxrc'
   ming-fwknop()
   {
