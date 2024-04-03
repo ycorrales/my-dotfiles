@@ -39,3 +39,4 @@
 	defaultBranch = master
 [safe]
 	directory = /Users/ycorrales/Work/Alice/AliSoft/O2
+	directory = /home/mvtx/firmware/RU_mainFPGA
