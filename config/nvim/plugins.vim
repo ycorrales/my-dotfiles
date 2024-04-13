@@ -24,7 +24,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'itchyny/lightline.vim'
  Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
  Plug 'tpope/vim-rhubarb' " hub extension for fugitive
- Plug 'kien/ctrlp.vim' " fuzzy file finder
+ Plug 'ctrlpvim/ctrlp.vim' " fuzzy file finder
  Plug 'preservim/nerdtree'
  Plug 'rhysd/vim-clang-format'
  Plug 'PeterRincker/vim-searchlight'

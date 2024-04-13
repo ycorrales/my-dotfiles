@@ -391,7 +391,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""
   " => CTRL-P
   """""""""""""""""""""""""""""""
-  "map <leader>j :CtrlP<cr>
+  map <leader>j :CtrlP<cr>
   nmap <silent> <leader>r :CtrlPBuffer<cr>
   let g:ctrlp_map = '<leader>t'
   let g:ctrlp_dotfiles=1
