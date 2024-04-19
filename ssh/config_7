@@ -150,6 +150,13 @@ Host bnl_caen_tel
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
 
+Host bnl_shift
+  Hostname          10.20.34.248
+  User              sphenix-operator
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         bnl_dcs
+
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
