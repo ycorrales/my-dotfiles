@@ -109,7 +109,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias bnl_sc_tunnel="myssh_tunnel '8880:10.20.34.240' '-fNT bnl_dcs \
                        -L 8880:10.20.34.240:80 -L 8881:10.20.34.241:80 -L 8882:10.20.34.242:80 \
                        -L 8883:10.20.34.243:80 -L 8886:10.20.34.246:80 -L 8887:10.20.34.247:80 -L 8889:10.20.34.249:80\
-                       -L 3000:info.sphenix.bnl.gov:3000'"
+                       -L 3000:insight.sphenix.bnl.gov:3000'"
   alias bnl_ssh_tunnel="ssh_bnl_mail && ssh_bnl_proxy && bnl_vnc_dcs && bnl_vnc_shifter && bnl_sc_tunnel"
   alias fnal_ssh_tunnel="myssh_tunnel 'ftbfbnl01' '-fNT ftbfbnl01 \
                          -L 17815:localhost:7815 -L 10080:192.168.60.80:8081 -L 10081:192.168.60.149:8081 \
