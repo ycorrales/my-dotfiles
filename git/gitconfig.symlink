@@ -40,3 +40,5 @@
 [safe]
 	directory = /Users/ycorrales/Work/Alice/AliSoft/O2
 	directory = /home/mvtx/firmware/RU_mainFPGA
+	directory = /etc/rcdaq_exporter
+	directory = /home/ycmorales/rcdaq_exporter

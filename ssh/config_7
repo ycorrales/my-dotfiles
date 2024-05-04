@@ -91,6 +91,7 @@ Host bnl_cssh
 
 Host bnl_ssh
   HostName          ssh.sdcc.bnl.gov
+  ProxyJump         bnl_cssh
 
 Host bnl_ssh bnl_cssh
   User              ycmorales
@@ -100,6 +101,10 @@ Host bnl_ssh bnl_cssh
 Host bnl_campus
   HostName          nxcampus01.sdcc.bnl.gov
   User              ycmorales
+
+Host git.racf.bnl.gov githost*.sdcc.bnl.gov
+  User              ycmorales
+  ProxyJump         bnl_ssh
 
 Host bnl_mosaic
   HostName          130.199.23.194
