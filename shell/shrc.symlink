@@ -156,7 +156,6 @@ fi
 b_tm=$($GDATE $FDATE)
 export LC_ALL='en_US.UTF-8'
 
-
 DOTFILES=$( cd "$( dirname "$( dirname "$( readlink -f "${BASH_SOURCE[0]:-$0}" )" )" )" && pwd )
 
 #DOTFILES="$HOME/Software/_myDotfiles"
