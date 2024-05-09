@@ -50,7 +50,7 @@ type nvim &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
 # WORKING_DIR
 alias goDotfiles='clr; cd $DOTFILES'
 #TMUX
-alias en_display_tmux="export DISPLAY=$(tmux show-env | sed -n 's/^DISPLAY=//p')"
+alias tmux_en_display='export DISPLAY=$(tmux show-env | sed -n '\''s/^DISPLAY=//p'\'')'
 
 # Alias for mac only
 if [[ "$OSTYPE" == darwin* ]]; then
