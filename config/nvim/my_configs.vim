@@ -329,20 +329,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   cno <C-l> <Right>
   cno <C-h> <Left>
 
-
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  " => C++ comment and uncomment
-  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  map <leader>c :s/^/\/\//<cr><leader><space><leader><cr>
-  map <leader>cc :s/^/#/<cr><leader><space><leader><cr>
-  map <leader>u :s/^\/\///<cr><leader><space><leader><cr>
-  map <leader>uu :s/\s\s\/\///<cr><leader><space><leader><cr>
-
-  map <leader>]] :s/^/  /<cr><leader><cr>gv
-  map <leader>[[ :s/\s\s//<cr><leader><cr>gv
-
-  "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
-
   " Remove the Windows ^M - when the encodings gets messed up
   noremap <leader>m mmHmt:%s/<C-v><cr>//ge<cr>'tzt'm
 
@@ -716,6 +702,15 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """"""""""""""""""""""""""""""
   "au FileType cpp set colorcolumn=80,100
 
+  au FileType cpp map <leader>c :s/^/\/\//<cr><leader><space><leader><cr>
+  au FileType cpp map <leader>u :s/^\/\///<cr><leader><space><leader><cr>
+
+  map <leader>]] :s/^/  /<cr><leader><cr>gv
+  map <leader>[[ :s/\s\s//<cr><leader><cr>gv
+
+  "map <leader>= :%!astyle<CR>    ====> No used, ClangFormat instead
+
+
   """"""""""""""""""""""""""""""
   " => Python section
   """"""""""""""""""""""""""""""
@@ -738,6 +733,11 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   au FileType python set cindent
   au FileType python set cinkeys-=0#
   au FileType python set indentkeys-=0#
+
+  au FileType python map <leader>c :s/^/#/<cr><leader><space><leader><cr>
+  au FileType python map <leader>u :s/^#//<cr><leader><space><leader><cr>
+
+
 
   """"""""""""""""""""""""""""""
   " => JavaScript section
