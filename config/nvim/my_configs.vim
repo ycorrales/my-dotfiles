@@ -21,6 +21,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
   " Ignore compiled files
+  set path+=**
+  set wildmenu
+  set wildignore+=comma,separated,list,of,file,patterns
   set wildignore=*.o,*~,*.pyc
   if has("win16") || has("win32")
     set wildignore+=.git\*,.hg\*,.svn\*
