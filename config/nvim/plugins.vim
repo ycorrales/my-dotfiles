@@ -27,7 +27,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'ctrlpvim/ctrlp.vim' " fuzzy file finder
  Plug 'preservim/nerdtree'
  Plug 'rhysd/vim-clang-format'
- Plug 'PeterRincker/vim-searchlight'
  "Plug 'vim-scripts/peaksea'
  "Plug 'skielbasa/vim-material-monokai'
  "Plug 'mkitt/tabline.vim'
@@ -36,7 +35,8 @@ call plug#begin('~/.vim/plugged')
  "Plug 'kassio/neoterm'
  "Plug 'ryanpcmcquen/fix-vim-pasting'
 
- if v:version > 704
+ if v:version > 810
+   Plug 'PeterRincker/vim-searchlight'
    Plug 'benmills/vimux' " tmux integration for vim
    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
    Plug 'jreybert/vimagit'
