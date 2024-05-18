@@ -190,8 +190,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " {{{
 
   " set a map leader for more key combos
-  let mapleader   = "\<tab>"
-  let g:mapleader = "\<tab>"
+  let mapleader   = "\\"
+  let g:mapleader = "\\"
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
