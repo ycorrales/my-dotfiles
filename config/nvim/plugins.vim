@@ -35,11 +35,11 @@ call plug#begin('~/.vim/plugged')
  "Plug 'airblade/vim-gitgutter'
  "Plug 'kassio/neoterm'
  "Plug 'ryanpcmcquen/fix-vim-pasting'
- Plug 'jreybert/vimagit'
 
  if v:version > 704
    Plug 'benmills/vimux' " tmux integration for vim
    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+   Plug 'jreybert/vimagit'
  endif
 
  call plug#end()
