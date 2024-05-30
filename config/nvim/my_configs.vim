@@ -124,9 +124,9 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   elseif has("win16") || has("win32")
     set gfn=Hack:h14,Source\ Code\ Pro:h12,itstream\ Vera\ Sans\ Mono:h11
   elseif has("gui_gtk2")
-    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    set gfn=Monospace\ 13
   elseif has("linux")
-    set gfn=Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    set gfn=Monospace\ 13
   elseif has("unix")
     set gfn=Monospace\ 13
   endif
