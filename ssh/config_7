@@ -165,19 +165,21 @@ Host bnl_shift
 Host sdcc_phenix
   HostName          rcas2067.rcf.bnl.gov
   User              ycorrale
+  ProxyJump         bnl_ssh
   #PubkeyAcceptedKeyTypes +ssh-rsa
   #Workaround for re-enabling RSA
 
-Host sdcc_sphenix
-  HostName          sphnx05.sdcc.bnl.gov
+Host sphnx0?
+  HostName          %h.sdcc.bnl.gov
+
+Host sphnx0?.sphenix.bnl.gov
+  HostName         %h
+
+Host sphnx0? sphnx0?.*
   User              ycmorales
-  #PubkeyAcceptedKeyTypes +ssh-rsa
-  #Workaround for re-enabling RSA
-
-Host sdcc_*
+  ProxyJump         bnl_ssh
   ForwardX11        yes
   ForwardX11Trusted yes
-  ProxyJump         bnl_ssh
 
 # FNAL
 Host ftbfbnl01
