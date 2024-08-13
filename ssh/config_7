@@ -23,6 +23,16 @@ Host cern_mvtx
   User              root
   ProxyJump         cern_lxplus
 
+Host cern_svmithi02
+  HostName         svmithi02.cern.ch
+  User             ycorrale
+  ProxyJump        cern_lxplus
+
+Host cern_svmithi03
+  HostName         svmithi03.cern.ch
+  User             ycorrale
+  ProxyJump        cern_lxplus
+
 # TO.INFN.IT
 Host to_zoroastro
   HostName          zoroastro.to.infn.it
