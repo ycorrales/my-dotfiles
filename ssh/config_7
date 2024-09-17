@@ -161,7 +161,7 @@ Host bnl_caen
 
 Host bnl_caen_tel
   Hostname          10.20.34.247
-  User              maps
+  User              admin
   ProxyJump         bnl_dcs
   HostKeyAlgorithms=+ssh-dss
 
