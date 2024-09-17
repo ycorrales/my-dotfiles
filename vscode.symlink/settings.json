@@ -3,7 +3,6 @@
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "vs-minimal",
   "workbench.colorTheme": "Default Dark+",
-  "workbench.activityBar.visible": true,
 	"editor.tabSize": 2,
   "workbench.colorCustomizations":
   {
@@ -37,7 +36,11 @@
 
   // TURN OFF AUTOCOMPLETION
   // Controls if quick suggestions should show up or not while typing
-  "editor.quickSuggestions": false,
+  "editor.quickSuggestions": {
+    "comments": "off",
+    "strings": "off",
+    "other": "off"
+  },
 
   // Controls the delay in ms after which quick suggestions will show up
   "editor.quickSuggestionsDelay": 90,
