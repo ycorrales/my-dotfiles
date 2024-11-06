@@ -105,7 +105,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias myssh_tunnel="source $DOTFILES/ssh/ssh_tunnel.sh"
   alias ssh_bnl_mail="myssh_tunnel 'mail.rhic' '-fNT bnl_ssh -L 1993:mail.rhic.bnl.gov:993'"
   alias ssh_bnl_proxy="myssh_tunnel 'batch3.phy' '-fNT bnl_cssh -L 3128:batch3.phy.bnl.gov:3128'"
-  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_lanl -L 5901:mvtxdcs0.sphenix.bnl.gov:5900 -L 8825:0.0.0.0:2500'"
+  alias bnl_vnc_dcs="myssh_tunnel '5901:mvtxdcs0' '-fNT bnl_lanl -L 5901:mvtxdcs0.sphenix.bnl.gov:5900'"
+  alias bnl_dim_dcs="myssh_tunnel '8825:0.0.' '-fNT mvtx0.sphenix.bnl.gov -L 8825:0.0.0.0:2500'"
   alias bnl_vnc_shifter="myssh_tunnel '5902:localhost' '-fNT bnl_shift -L 5902:localhost:5900'"
   alias bnl_printer="myssh_tunnel '8631:10.20' '-fNT bnl_lanl -L 8631:10.20.32.003:631'"
   alias bnl_sc_tunnel="myssh_tunnel '8880:10.20.34.240' '-fNT bnl_dcs \
@@ -186,6 +187,12 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias mount-sdcc-work="mount-sshfs 'sphnx05:/gpfs02/sphenix/user/ycmorales/'"
   alias mount-sdcc-WWW="mount-sshfs 'sphnx05:/gpfs02/sphenix/WWW/run/2024/MVTX'"
   alias mount-sdcc-home="mount-sshfs 'sphnx05:/sphenix/u/ycmorales'"
+  function code_ssh()
+  {
+    local ssh_path=$1
+    cmd="code --folder-uri=vscode-remote://ssh-remote+${ssh_path}"
+    eval $cmd
+  }
 #  alias mount-wincc-dcs="mount-sshfs 'bnl_dcs:D:\WinCC_OA_Proj\mvtx_src'"
 
   #emulate watch linux command
