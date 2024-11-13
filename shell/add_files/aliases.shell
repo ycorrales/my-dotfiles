@@ -51,6 +51,7 @@ type nvim &> /dev/null && alias vim='nvim' # Using nvim as vim in terminal
 alias goDotfiles='clr; cd $DOTFILES'
 #TMUX
 alias tmux_en_display='export DISPLAY=$(tmux show-env | sed -n '\''s/^DISPLAY=//p'\'')'
+alias tmux_ssh_sock_enable='export SSH_AUTH_SOCK=$(ls ~/.ssh/ssh_auth_sock)'
 
 # Alias for mac only
 if [[ "$OSTYPE" == darwin* ]]; then

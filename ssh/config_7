@@ -11,6 +11,11 @@ Host njit
   HostName          hpdtl.cewit.stonybrook.edu
   User              fpga
 
+# Dantong's Simulation server
+Host njit_sim
+  Hostname          srv365-16.cewit.stonybrook.edu
+  User              yasser
+
 # CERN
 Host cern_lxplus
   HostName          lxplus.cern.ch
@@ -28,7 +33,7 @@ Host cern_svmithi02
   User             ycorrale
   ProxyJump        cern_lxplus
 
-Host cern_svmithi03
+Host cern_svmithi03`
   HostName         svmithi03.cern.ch
   User             ycorrale
   ProxyJump        cern_lxplus
