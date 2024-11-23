@@ -11,6 +11,9 @@ gdirfirst=''
 if type gls &> /dev/null; then
   myls='gls -N' # GNU `ls`
   gdirfirst='--group-directories-first'
+elif test ls --version | grep 'GNU coreutils' &> /dev/null; then
+  myls='ls -N'
+  gdirfirst='--group-directories-first'
 fi
 type gsed      &> /dev/null && alias sed='gsed'
 type greadlink &> /dev/null && alias readlink='greadlink'
