@@ -57,7 +57,6 @@ Host to_zoroastro
 #  Port              37023
 #  ProxyJump         none
 
-
 Host lanl_mvtx_nuc_int
   Hostname          204.121.140.130
 
