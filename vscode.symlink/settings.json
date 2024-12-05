@@ -128,5 +128,9 @@
     "${workspaceFolder}/**",
     "/Users/ycorrales/Work/Alice/AliSoft/sw/osx_x86-64/ROOT/v6-24-02-local1/include"
   ],
-  "python.defaultInterpreterPath": "/usr/bin/python3"
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "editor.rulers":
+  [
+    120
+  ]
 }
