@@ -19,7 +19,7 @@ if type alienv &> /dev/null; then
     umask 002
     MODULE=${1:-'O2@dev'}
     pushd "${ALISOFT}" || exit
-    su l329869 -c "aliBuild init $MODULE -d -z ./ --default o2"
+    aliBuild init $MODULE -d -z ./ --default o2
     popd || exit
   }
 
@@ -29,7 +29,7 @@ if type alienv &> /dev/null; then
       umask 002
       MODULE=${1:-'O2'}
       pushd "${ALISOFT}" || exit
-      su l329869 -c "aliBuild build $MODULE -d -w $ALIBUILD_WORK_DIR --defaults o2"
+      aliBuild build $MODULE -d -w $ALIBUILD_WORK_DIR --defaults o2
       aliBuild clean
       popd || exit
     )
