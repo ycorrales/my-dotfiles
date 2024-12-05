@@ -3,6 +3,7 @@ if type alienv &> /dev/null; then
   export ALICE_WORK=${ALICE_WORK:-"$HOME/Work/Alice"}
   export ALISOFT=${ALISOFT:-"$ALICE_WORK/AliSoft"}
   export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
+  export ALIBUILD_ALIENV="/tmp/alienv"
   eval "$(alienv shell-helper)"
 
   alias alice-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
@@ -35,8 +36,8 @@ if type alienv &> /dev/null; then
     )
   }
 
-  alias o2-load=" alienv load ROOT/latest > /dev/null 2>&1 "
-  alias o2-unload=" alienv unload ROOT/latest > /dev/null 2>&1 "
+  alias o2-load=" alienv load ROOT/latest > /dev/null 2>&1 || true"
+  alias o2-unload=" alienv unload ROOT/latest > /dev/null 2>&1 || true "
 
   root-fl-ls()
   {
