@@ -87,7 +87,8 @@ if [[ -n "$BASH_VERSION" ]]; then
     elif [[ -z ${PROMPT_COMMAND} ]]; then
       PROMPT_COMMAND="${1}"
     else
-      PROMPT_COMMAND="${PROMPT_COMMAND}; ${1}"
+#      PROMPT_COMMAND="${PROMPT_COMMAND}; ${1}"
+      PROMPT_COMMAND="${1}"
     fi
   }
 

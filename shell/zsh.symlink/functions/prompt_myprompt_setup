@@ -237,6 +237,13 @@ myprompt_venv()
   myprompt::section "white" "$VIRTUAL_ENV_PROMPT"
 }
 
+# Add alienv prompt
+myprompt_alienv()
+{
+  [[ -z ${LOADEDMODULES} ]] && return
+  myprompt::section "white" "[${LOADEDMODULES##*:}]"
+}
+
 # Compose whole prompt from sections
 # USAGE:
 #   myprompt::compose_prompt [section...]
@@ -374,6 +381,7 @@ prompt_myprompt_setup()
   user          # username section
   dir           # current directory section
   exit_code     # exit code section
+  alienv        # alienv section
   venv          # virtual env
   git           # git info section
   prompt_char   # new line and prompt_char section

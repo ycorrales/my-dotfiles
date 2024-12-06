@@ -183,13 +183,13 @@ Host sdcc_phenix
   #PubkeyAcceptedKeyTypes +ssh-rsa
   #Workaround for re-enabling RSA
 
-Host sphnx0?
+Host sphnx0? sphnxsub0?
   HostName          %h.sdcc.bnl.gov
 
-Host sphnx0?.sphenix.bnl.gov
+Host sphnx0?.sphenix.bnl.gov  sphnxsub0?.sphenix.bnl.gov
   HostName         %h
 
-Host sphnx0? sphnx0?.*
+Host sphnx0? sphnx0?.* sphnx*
   User              ycmorales
   ProxyJump         bnl_ssh
   ForwardX11        yes
