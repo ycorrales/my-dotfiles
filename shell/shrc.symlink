@@ -174,6 +174,7 @@ elif [[ -n "$_ALIDOCK_ENV" ]]; then
   [ -n SINGULARITY_NAME ] && export SW_WORK_DIR="${HOME}/sPHENIX/Projects/01.MVTX/02.Testbeam/TB-2019_FTBF_4stave-telescope/sw"
 elif [[ $HOSTNAME =~ ^(mvtx[0-5]|test03|sphnx) ]]; then
   [ -f ${HOME}/my-mvtx-tools/sh/extra_functions.sh ] && . ${HOME}/my-mvtx-tools/sh/extra_functions.sh
+  [ -f ${HOME}/sPHENIX_SW/utils/bash-completion/bash_completion ] && . ${HOME}/sPHENIX_SW/utils/bash-completion/bash_completion
 fi
 export DOTFILES
 
