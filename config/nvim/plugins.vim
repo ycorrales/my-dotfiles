@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
  "Plug 'kassio/neoterm'
  "Plug 'ryanpcmcquen/fix-vim-pasting'
 
- if v:version > 810
+ if v:version > 810 || has('nvim')
    Plug 'PeterRincker/vim-searchlight'
    Plug 'benmills/vimux' " tmux integration for vim
    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
