@@ -363,8 +363,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " Toggle NERDTree
   nmap <silent> <leader>k :NERDTreeToggle<cr>
   " expand to the path of the file in the current buffer
-  nmap <silent> <leader>y :NERDTreeTabFind<cr>
-  "let g:NERDTreeWinPos = "left"
+  " nmap <silent> <leader>y :NERDTreeTabFind<cr>
+  let g:NERDTreeWinPos = "left"
   "let NERDTreeIgnore = ['\.pyc$', '__pycache__']
   "let g:NERDTreeWinSize=30
   "map <leader>nm :NERDTreeMirrorToggle<cr>
@@ -383,7 +383,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   nmap <silent> <leader>r :CtrlPMRU<cr>
   nmap <silent> <leader>b :CtrlPBuffer<cr>
   nmap <silent> <leader>f :CtrlP<cr>
-  let g:ctrlp_map = '<leader>t'
+  let g:ctrlp_map = '<leader> t'
   let g:ctrlp_dotfiles=1
   let g:ctrlp_working_path_mode = 'ra'
   " CtrlP ignore patterns
