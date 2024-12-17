@@ -121,6 +121,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
                          -L 17815:localhost:7815 -L 10080:192.168.60.80:8081 -L 10081:192.168.60.149:8081 \
                          -L 10082:192.168.60.149:8082 -L 10007:192.168.60.7:80'"
 
+  alias open_lxplus_cm="ssh -O check lxplus.cern.ch || ssh -fNM lxplus.cern.ch"
+  alias kill_lxplus_cm="ssh -O check lxplus.cern.ch && ssh -O exit lxplus.cern.ch"
+
   alias lanl_vnc_nuc="myssh_tunnel 'lanl_mvtx_nuc' '-fNT lanl_mvtx_nuc_ext -L 5903:localhost:5900'"
 
   alias mv_to_ws="ssh lanl_mvtx_nuc_ext 'export DISPLAY=:0 && wmctrl -s $1' &> /dev/null"

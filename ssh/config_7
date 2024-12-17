@@ -18,10 +18,29 @@ Host njit_sim
 
 # CERN
 Host cern_lxplus
-  HostName          lxplus.cern.ch
-  User              ycorrale
+  HostName lxplus.cern.ch
+
+Match Host lxplus*.cern.ch
+  # Specify your username to save having to type it.
+  User ycorrale
+  # Never use a jump host for lxplus - just connect direct
+  ProxyJump none
+  # Do Kerberos authentication and delegation
   GSSAPIAuthentication yes
   GSSAPIDelegateCredentials yes
+  # Public key authentication to lxplus is almost always useless - avoid
+  PubkeyAuthentication no
+  # Forwarding public keys may make sense however to login to other hosts.
+  ForwardAgent yes
+  # IP addresses move around too much at CERN so ignore them.
+  CheckHostIP no
+  # Normally a good idea always to keep things alive.
+  ServerAliveInterval 100
+  # Finally configure the ControlMaster
+  ControlPath ~/.ssh/%r@%h:%p
+  ControlMaster autoask
+  # Persist the socket after the first session is destroyed.
+  ControlPersist 1m
 
 Host cern_mvtx
   HostName          mvtx.cern.ch
@@ -99,7 +118,6 @@ Host lanl_mvtx_nuc*
 #  ProxyJump         lanl_flx
 
 # BNL
-
 Host bnl_cssh
   Hostname          cssh.rhic.bnl.gov
 
@@ -124,19 +142,11 @@ Host bnl_mosaic
   HostName          130.199.23.194
   User              maps
 
-Host bbox?
+Host bbox? mvtx?
   HostName          %h.sphenix.bnl.gov
+
+Match Host bbox?.sphenix.bnl.gov
   User              sphnxpro
-
-Host bbox?.sphenix.bnl.gov
-  HostName          %h
-  User              sphnxpro
-
-Host mvtx?
-  HostName         %h.sphenix.bnl.gov
-
-Host mvtx?.sphenix.bnl.gov
-  HostName         %h
 
 Host bnl_lanl
   HostName         test03.sphenix.bnl.gov
@@ -145,7 +155,7 @@ Host bnl_hf
   Hostname         hf-trigger.sphenix.bnl.gov
   User             mvtx
 
-Host bbox* mvtx? mvtx?.* bnl_lanl bnl_hf bnl_campus
+Host bbox* mvtx?.* bnl_lanl bnl_hf bnl_campus
   User              ycmorales
   ForwardX11        yes
   ForwardX11Trusted yes
@@ -186,10 +196,7 @@ Host sdcc_phenix
 Host sphnx0? sphnxsub0?
   HostName          %h.sdcc.bnl.gov
 
-Host sphnx0?.sphenix.bnl.gov  sphnxsub0?.sphenix.bnl.gov
-  HostName         %h
-
-Host sphnx0? sphnx0?.* sphnx*
+Match Host sphnx*.sdcc.bnl.gov
   User              ycmorales
   ProxyJump         bnl_ssh
   ForwardX11        yes
