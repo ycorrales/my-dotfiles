@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
  "Plug 'skielbasa/vim-material-monokai'
  "Plug 'mkitt/tabline.vim'
  Plug 'vim-syntastic/syntastic'
- "Plug 'airblade/vim-gitgutter'
+ Plug 'airblade/vim-gitgutter'
  "Plug 'kassio/neoterm'
  "Plug 'ryanpcmcquen/fix-vim-pasting'
 
@@ -39,7 +39,6 @@ call plug#begin('~/.vim/plugged')
    Plug 'PeterRincker/vim-searchlight'
    Plug 'benmills/vimux' " tmux integration for vim
    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-   Plug 'jreybert/vimagit'
  endif
 
  call plug#end()

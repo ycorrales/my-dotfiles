@@ -132,5 +132,8 @@
   "editor.rulers":
   [
     120
-  ]
+  ],
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  }
 }

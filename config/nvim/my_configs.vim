@@ -190,8 +190,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   " {{{
 
   " set a map leader for more key combos
-  let mapleader   = "\\"
-  let g:mapleader = "\\"
+  let mapleader   = ","
+  let g:mapleader = ","
 
   """"""""""""""""""""""""""""""
   " => Visual mode related
@@ -218,6 +218,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   vnoremap <leader>{  <esc>`>a}<esc>`<i{<esc>
   vnoremap <leader>'  <esc>`>a'<esc>`<i'<esc>
   vnoremap <leader>"  <esc>`>a"<esc>`<i"<esc>
+  vnoremap <leader><  <esc>`>a><esc>`<i<<esc>
 
   "remap esc
   "inoremap jk <esc>
@@ -307,8 +308,6 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   if has("mac") || has("macunix")
     nmap <leader>j <M-j>
     nmap <leader>k <M-k>
-    vmap <leader>j <M-j>
-    vmap <leader>k <M-k>
   endif
 
   " Map auto complete of (, [, {, <,", ',
