@@ -6,20 +6,12 @@
 # very old methos
 # ProxyCommand ssh <proxy-host> nc %h %p
 
-# Dantong's FPGA server
-Host njit
-  HostName          hpdtl.cewit.stonybrook.edu
-  User              fpga
-
 # Dantong's Simulation server
-Host njit_sim
+Host njit
   Hostname          srv365-16.cewit.stonybrook.edu
   User              yasser
 
 # CERN
-Host cern_lxplus
-  HostName lxplus.cern.ch
-
 Match Host lxplus*.cern.ch
   # Specify your username to save having to type it.
   User ycorrale
@@ -192,9 +184,6 @@ Host sdcc_phenix
   ProxyJump         bnl_ssh
   #PubkeyAcceptedKeyTypes +ssh-rsa
   #Workaround for re-enabling RSA
-
-Host sphnx0? sphnxsub0?
-  HostName          %h.sdcc.bnl.gov
 
 Match Host sphnx*.sdcc.bnl.gov
   User              ycmorales
