@@ -1,2 +1,0 @@
-[[ -r ~/.shrc ]] && source ~/.shrc
-export PROMPT_EOL_MARK='' #supress '%' as mark of incomplete line (line w/o EOL)

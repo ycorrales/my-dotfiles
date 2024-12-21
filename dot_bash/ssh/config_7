@@ -1,0 +1,229 @@
+# ssh commands
+# ProxyJump <proxy-host> is a shorthand for
+# old metthod
+# ProxyCommand ssh <proxy-host> -q -W %h:%p
+# or
+# very old methos
+# ProxyCommand ssh <proxy-host> nc %h %p
+
+# Dantong's Simulation server
+Host njit
+  Hostname          srv365-16.cewit.stonybrook.edu
+  User              yasser
+
+# CERN
+Match Host lxplus*.cern.ch
+  # Specify your username to save having to type it.
+  User ycorrale
+  # Never use a jump host for lxplus - just connect direct
+  ProxyJump none
+  # Do Kerberos authentication and delegation
+  GSSAPIAuthentication yes
+  GSSAPIDelegateCredentials yes
+  # Public key authentication to lxplus is almost always useless - avoid
+  PubkeyAuthentication no
+  # Forwarding public keys may make sense however to login to other hosts.
+  ForwardAgent yes
+  # IP addresses move around too much at CERN so ignore them.
+  CheckHostIP no
+  # Normally a good idea always to keep things alive.
+  ServerAliveInterval 100
+  # Finally configure the ControlMaster
+  ControlPath ~/.ssh/%r@%h:%p
+  ControlMaster autoask
+  # Persist the socket after the first session is destroyed.
+  ControlPersist 1m
+
+Host cern_mvtx
+  HostName          mvtx.cern.ch
+  User              root
+  ProxyJump         cern_lxplus
+
+Host cern_svmithi02
+  HostName         svmithi02.cern.ch
+  User             ycorrale
+  ProxyJump        cern_lxplus
+
+Host cern_svmithi03`
+  HostName         svmithi03.cern.ch
+  User             ycorrale
+  ProxyJump        cern_lxplus
+
+# TO.INFN.IT
+Host to_zoroastro
+  HostName          zoroastro.to.infn.it
+  User              corrales
+  HostKeyAlgorithms=+ssh-dss
+  PubkeyAcceptedKeyTypes +ssh-rsa
+
+#Host superfarm
+#  HostName           cloud-gw-215.to.infn.it
+#  User               corrales
+#  ProxyJump          zoroastro
+
+# LANL
+#Host ming_gateway
+#  Hostname          69.254.135.184
+#  User              maps
+#  Port              37023
+#  ProxyJump         none
+
+Host lanl_mvtx_nuc_int
+  Hostname          204.121.140.130
+
+Host lanl_mvtx_nuc_ext
+  Hostname          localhost
+  Port              8022
+  ProxyJump         bnl_lanl
+
+Host lanl_mvtx_nuc*
+  User              ycmorales
+
+#Host lanl_flx
+#  Port              8022
+#
+#Host lanl_vc709
+#  Port              8122
+#
+#Host lanl_*
+#  Hostname          localhost
+#  User              maps
+#  ProxyJump         bnl_flx0
+
+  #Host flx
+  #  Hostname          204.121.146.106
+  #
+  #Host eic_malta
+  #  Hostname          204.121.146.105
+  #  User              eic
+  #
+  #Host vc709
+  #  Hostname          204.121.146.104
+
+#Host mosaic
+#  Hostname          204.121.146.110
+
+#Host flx* eic* vc709*
+#  User              maps
+#  ForwardX11        yes
+#  ForwardX11Trusted yes
+#  ProxyJump         lanl_flx
+
+# BNL
+Host bnl_cssh
+  Hostname          cssh.rhic.bnl.gov
+
+Host bnl_ssh
+  HostName          ssh.sdcc.bnl.gov
+  ProxyJump         bnl_cssh
+
+Host bnl_ssh bnl_cssh
+  User              ycmorales
+  IdentityFile      ~/.ssh/id_rsa
+#  ProxyJump         none
+
+Host bnl_campus
+  HostName          nxcampus01.sdcc.bnl.gov
+  User              ycmorales
+
+Host git.racf.bnl.gov githost*.sdcc.bnl.gov
+  User              ycmorales
+  ProxyJump         bnl_ssh
+
+Host bnl_mosaic
+  HostName          130.199.23.194
+  User              maps
+
+Host bbox? mvtx?
+  HostName          %h.sphenix.bnl.gov
+
+Match Host bbox?.sphenix.bnl.gov
+  User              sphnxpro
+
+Host bnl_lanl
+  HostName         test03.sphenix.bnl.gov
+
+Host bnl_hf
+  Hostname         hf-trigger.sphenix.bnl.gov
+  User             mvtx
+
+Host bbox* mvtx?.* bnl_lanl bnl_hf bnl_campus
+  User              ycmorales
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         bnl_cssh
+
+Host bnl_dcs
+  Hostname          mvtxdcs0.sphenix.bnl.gov
+  User              mvtxdcs
+  ProxyJump         bnl_lanl
+  IdentityFile      ~/.ssh/id_rsa
+
+Host bnl_caen
+  Hostname          10.20.34.243
+  User              maps
+  ProxyJump         bnl_dcs
+  HostKeyAlgorithms=+ssh-dss
+
+Host bnl_caen_tel
+  Hostname          10.20.34.247
+  User              admin
+  ProxyJump         bnl_dcs
+  HostKeyAlgorithms=+ssh-dss
+
+Host bnl_shift
+  Hostname          10.20.34.248
+  User              sphenix-operator
+  ForwardX11        yes
+  ForwardX11Trusted yes
+  ProxyJump         bnl_dcs
+
+Host sdcc_phenix
+  HostName          rcas2067.rcf.bnl.gov
+  User              ycorrale
+  ProxyJump         bnl_ssh
+  #PubkeyAcceptedKeyTypes +ssh-rsa
+  #Workaround for re-enabling RSA
+
+Match Host sphnx*.sdcc.bnl.gov
+  User              ycmorales
+  ProxyJump         bnl_ssh
+  ForwardX11        yes
+  ForwardX11Trusted yes
+
+# FNAL
+Host ftbfbnl01
+  HostName          ftbfbnl01.fnal.gov
+  User              ftbf_user
+
+Host 192.168.60.*
+  ProxyJump         ftbfbnl01
+
+Host *.fnal.gov
+  GSSAPIAuthentication      yes
+  GSSAPIDelegateCredentials yes
+
+# LBNL
+Host lbnl_mvtx
+  Hostname          131.243.31.77
+  User              aliceits
+
+# MIT
+Host athena
+  HostName          athena.dialup.mit.edu
+  User              ycm
+
+Host mit_flx
+  Hostname          10.54.6.146
+  User              ycorrales
+  ProxyJump         athena
+
+# ALL
+Host *
+  IgnoreUnknown     AddKeysToAgent,UseKeychain
+  ControlMaster     yes
+  ControlPersist    600
+  IdentityFile      ~/.ssh/id_ecdsa
+  ForwardAgent      yes
+  AddKeysToAgent    yes
+  UseKeychain       yes

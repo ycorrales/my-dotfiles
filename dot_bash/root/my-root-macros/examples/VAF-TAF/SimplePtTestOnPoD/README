@@ -1,0 +1,12 @@
+To run on the Virtual Analysis Facility with PoD:
+
+  vafctl stop
+  vafctl start
+  vafreq <num_of_workers>
+  vafcount
+
+Wait for a certain number of workers, then:
+
+  root RunPoD.C
+
+You must have a valid AliEn token.

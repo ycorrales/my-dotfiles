@@ -1,3 +1,6 @@
 [submodule "root/my-root-macros"]
 	path = root/my-root-macros
 	url = git@github.com:ycorrales/my-root-macros.git
+[submodule "dot_zsh"]
+	path = dot_zsh
+	url = git@github.com:ycorrales/nicknisi_dotfiles.git

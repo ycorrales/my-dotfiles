@@ -1,0 +1,3 @@
+LABEL=Data none ntfs rw,auto,nobrowse
+UUID=4E97223F-BDE9-4613-B662-F6B65844EE99 /Users/ycorrales/Software/GIT_repos/my_sPHENIX_repos/sPHENIX_SW apfs rw 0 2
+

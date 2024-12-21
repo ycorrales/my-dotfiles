@@ -1,8 +1,0 @@
-file_names=( /usr/local/etc/profile.d/bash_completion.sh ~/.bashrc )
-
-for file in "${file_names[@]}"; do
-  [[ -r ${file} ]] && source "${file}"
-done
-
-unset file_names
-unset file

@@ -1,0 +1,4 @@
+.DS_Store
+*_cxx.d
+*_cxx.so
+build/*

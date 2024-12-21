@@ -1,0 +1,125 @@
+if type alienv &> /dev/null; then
+
+  export ALICE_WORK=${ALICE_WORK:-"$HOME/Work/Alice"}
+  export ALISOFT=${ALISOFT:-"$ALICE_WORK/AliSoft"}
+  export ALIBUILD_WORK_DIR=${ALIBUILD_WORK_DIR:-"$ALISOFT/sw"}
+  eval "$(alienv shell-helper)"
+
+  alias alice-cert='openssl x509 -in "$HOME/.globus/usercert.pem" -noout -dates'
+
+  create-alien-cert()
+  {
+    local _path=${1:-"*.p12"}
+    openssl pkcs12 -clcerts -nokeys -in "$_path" -out usercert.pem
+    openssl pkcs12 -nocerts         -in "$_path" -out userkey.pem
+  }
+
+  o2-init()
+  {
+    umask 002
+    MODULE=${1:-'O2@dev'}
+    pushd "${ALISOFT}" || exit
+    aliBuild init $MODULE -d -z ./ --default o2
+    popd || exit
+  }
+
+  o2-build()
+  {
+    (
+      umask 002
+      MODULE=${1:-'O2'}
+      pushd "${ALISOFT}" || exit
+      aliBuild build $MODULE -d -w $ALIBUILD_WORK_DIR --defaults o2
+      aliBuild clean
+      popd || exit
+    )
+  }
+
+  alias o2-load=" alienv load ROOT/latest > /dev/null 2>&1 || true"
+  alias o2-unload=" alienv unload ROOT/latest > /dev/null 2>&1 || true "
+
+  root-fl-ls()
+  {
+    root -l <<EOF
+    gMyUtils->ShowFileKeys("$1")
+    .q
+EOF
+  }
+
+  o2-find()
+  {
+    if [ -n "$1" ]; then
+      find -H "${ALISOFT}" -iname "$@"
+    else
+      echo "alio2-find: missing argument"
+      return 1
+    fi
+  }
+
+#  alien_kill_all_jobs() {
+#    local MAX=$1
+#    for JOBID in $( ali-cmd alien_ps | grep -v '-' | grep 'ycorrale' | awk '{print $2}' | sed 's/.*\(..........\)/\1/' ); do
+#      if [ -z "$MAX" ]; then
+#         alien_kill "$JOBID"
+#      elif [[ $JOBID < $MAX ]]; then
+#        ali-cmd alien_kill "$JOBID"
+#      fi
+#    done
+#  }
+
+#  alien_merge_rbyr() {
+#
+#    function LastField()
+#    {
+#      local LINE="$1"
+#      local FIELD
+#      local i=1
+#      while [ "${FIELD}x" == 'x' ]; do
+#        FIELD=$(echo "$LINE" | rev | cut -d"/" -f"$i" | rev)
+#        let i=$i+1
+#      done
+#      echo "$FIELD"
+#    }
+#
+#    local MIN_NUM_ARG=1
+#    if [[ $# -lt ${MIN_NUM_ARG} ]]; then
+#      echo "Only $# number of arguments. Must be at least 2"
+#      return;
+#    fi
+#
+#    local DIRBASE=$1
+#    local FILESTOMERGE=$2
+#    local re='^[0-9]+$'
+#    [[ ${FILESTOMERGE} =~ $re ]] || FILESTOMERGE="-1"
+#    local CMD="alien_ls"
+#    local ALIEN_HOME_PATH="/alice/cern.ch/user/y/ycorrale"
+#    local FULL_PATH="${ALIEN_HOME_PATH}/${DIRBASE}/output/"
+#    local FOLDER=$( LastField "${DIRBASE}" )
+#
+#    echo "Creating and entering the main folder $FOLDER"
+#    mkdir -p $FOLDER
+#    pushd $FOLDER
+#    for RUN_NUM in $(aliCmd ${CMD} $FULL_PATH | grep -E '^[0-9]+' ); do
+#      local DIR_NAME=${RUN_NUM}
+#      mkdir -p ${DIR_NAME}
+#      echo "Entering to $DIR_NAME"
+#      cd $DIR_NAME
+#alio2 -l -b <<END
+#  gMyUtils->MergeFromFind("$FULL_PATH/$DIR_NAME","AnalysisResults.root", 1, ${FILESTOMERGE})
+#  .q
+#END
+#      cd ..
+#    done
+#    echo "Exiting main folder ..."
+#    popd
+#  }
+fi
+
+# Execute alidock within the appropriate Python virtual environment
+if test -d "$HOME"/.virtualenvs/alidock; then
+  function alidock() {
+    (
+      source "/Users/ycorrales/.virtualenvs/alidock/bin/activate" && command alidock "$@"; exit $?;
+    )
+  }
+fi
