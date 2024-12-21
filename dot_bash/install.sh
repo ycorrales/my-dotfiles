@@ -18,13 +18,13 @@
   function Main()
   {
     # Parse options
-    local FORSE=""
+    local FORCE=""
     local CONFIG_MAC=""
     local CLEAN=""
     while getopts "cfm" arg; do
       case $arg in
         f)
-          FORSE=1
+          FORCE=1
           ;;
         m)
           CONFIG_MAC=1
@@ -41,6 +41,7 @@
 
     [[ $# -gt 0 ]] && usage
 
+    [[ -n "${FORCE}" ]] && unset DOTFILES
     local DOTFILES=${DOTFILES:-"$( cd "$( dirname "$(readlink -f "${BASH_SOURCE:-"$0"}")" )" && pwd )"}
 
     if [[ "$OSTYPE" =~ darwin.* ]]; then
@@ -62,7 +63,7 @@
     for file in "${files[@]}"; do
       local FILE_PATH=${DOTFILES}/$file
       # shellcheck source=./install/link.sh
-      [ -f "${FILE_PATH}" ] && source "$FILE_PATH" "$FORSE"
+      [ -f "${FILE_PATH}" ] && source "$FILE_PATH" "$FORCE"
     done
 
     [[ $OS = "osx_x86-64" && -n "$CONFIG_MAC" ]] && _config_myMac
