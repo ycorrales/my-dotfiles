@@ -21,7 +21,9 @@ call plug#begin('~/.vim/plugged')
  Plug 'rakr/vim-one'
 " utilities
 " Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
- Plug 'itchyny/lightline.vim'
+if ! exists('g:vscode')
+  Plug 'itchyny/lightline.vim'
+endif
  Plug 'tpope/vim-fugitive' " amazing git wrapper for vim
  Plug 'tpope/vim-rhubarb' " hub extension for fugitive
  Plug 'ctrlpvim/ctrlp.vim' " fuzzy file finder
