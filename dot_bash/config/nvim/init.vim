@@ -1,4 +1,4 @@
-if has('nvim') && ! exists('g:vscode')
+if has('nvim')
   " init.lua
   " Neovim-specific configuration
   " Use the ycm config

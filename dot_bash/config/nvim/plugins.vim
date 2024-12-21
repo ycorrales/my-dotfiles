@@ -14,7 +14,7 @@ if !filereadable(plugpath)
     endif
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/lazy')
 
 " colorschemes
 " Plug 'KeitaNakamura/neodark.vim'
