@@ -70,7 +70,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   set modeline
   set modelines=2
 
-  set clipboard=unnamed
+  set clipboard=unnamedplus
 
   set ttyfast                 " faster redrawing
 
@@ -119,7 +119,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
   " Set font according to system
-  if has("mac") || has("macunix")
+  if has("mac") || has("macunix") || exists('g:vscode')
     set gfn=Hack:h12,Source\ Code\ Pro:h12,Meslo\ LG\ M\ DZ:h13
   elseif has("win16") || has("win32")
     set gfn=Hack:h14,Source\ Code\ Pro:h12,itstream\ Vera\ Sans\ Mono:h11
@@ -466,9 +466,11 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   noremap <C-w>e :SyntasticCheck<CR>
   noremap <C-w>f :SyntasticToggleMode<CR>
 
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+  if ! exists('g:vscode')
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+  endif
 
   let g:syntastic_always_populate_loc_list=1
   let g:syntastic_auto_loc_list=1
@@ -484,7 +486,8 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " => lightline
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  let g:lightline = {
+  if ! exists('g:vscode')
+    let g:lightline = {
         \ 'colorscheme': 'one',
         \ 'active': {
         \   'left': [ ['mode', 'paste'],
@@ -504,6 +507,7 @@ if $USER == 'ycorrales' || $USER == 'ycmorales' || $USER == 'l329869'
         \ 'separator': { 'left': ' ', 'right': ' ' },
         \ 'subseparator': { 'left': ' ', 'right': ' ' }
         \ }
+  endif
 
   """""""""""""""""""
   " vim-markdown
